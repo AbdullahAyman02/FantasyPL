@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FantasyPL.Pages
 {
@@ -24,7 +26,12 @@ namespace FantasyPL.Pages
         public void OnPost()
         {
             userInfo.Username = Request.Form["Username"];
-            userInfo.Password = Request.Form["Password"];
+            string password = Request.Form["Password"];
+            var sha = SHA256.Create();
+            var byteArr = Encoding.Default.GetBytes(password);
+            var hashedPasswordByte = sha.ComputeHash(byteArr);
+            string hashedPassword = Convert.ToBase64String(hashedPasswordByte);
+            userInfo.Password = hashedPassword;
             try
             {
                 DBManager dBManager = new();
@@ -34,8 +41,10 @@ namespace FantasyPL.Pages
                     command.Parameters.AddWithValue("@Username", userInfo.Username);
                     command.Parameters.AddWithValue("@Password", userInfo.Password);
                     SqlDataReader reader = dBManager.ExecuteReader(command);
-                    if (reader.HasRows)
+                    if (reader.HasRows) { 
                         successMessage = "Logged in successfully";
+                        Response.Redirect("/clubs");
+                    }
                     else
                         errorMessage = "User not registered";
                 }

@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FantasyPL.Pages
 {
@@ -16,6 +19,7 @@ namespace FantasyPL.Pages
 
         public void OnPost()
         {
+            userInfo.Birthdate = null;
             userInfo.FirstName = Request.Form["Fname"];
             userInfo.MiddleName = Request.Form["Mname"];
             userInfo.LastName = Request.Form["Lname"];
@@ -24,7 +28,12 @@ namespace FantasyPL.Pages
             userInfo.FavoriteClub = Request.Form["favorite_club"];
             userInfo.Email = Request.Form["Email"];
             userInfo.Username = Request.Form["username"];
-            userInfo.Password = Request.Form["password"];
+            string password = Request.Form["password"];
+            var sha = SHA256.Create();
+            var byteArr = Encoding.Default.GetBytes(password);
+            var hashedPasswordByte = sha.ComputeHash(byteArr);
+            string hashedPassword = Convert.ToBase64String(hashedPasswordByte);
+            userInfo.Password = hashedPassword;
             userInfo.Gender = Request.Form["gender"];
             userInfo.Birthdate = Request.Form["birthday"];
             userInfo.UserType = "F";
@@ -97,14 +106,12 @@ namespace FantasyPL.Pages
         public string LastName { get; set; }
         public string FantasyTeamName { get; set; }
         public string Country { get; set; }
-
         public string FavoriteClub { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Gender { get; set; }
-        public string Birthdate { get; set; }
-
+        public string? Birthdate { get; set; }
         public string UserType { get; set;}
     }
 }
