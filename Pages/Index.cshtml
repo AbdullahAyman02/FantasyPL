@@ -1,0 +1,43 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4"><strong>Welcome to Fantasy Premier League</strong></h1>
+</div>
+<div class="flexcontainer">
+<div class="center"> 
+    <h3>Login</h3>
+    @if (Model.successMessage.Length > 0)
+    {       
+                <div class='alert alert-success alert-dimsmissiable fade show flexcontainer' role='alert'>
+                    <string>@Model.successMessage</string>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+    }
+    @if (Model.errorMessage.Length > 0)
+    {
+                <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                     <string>@Model.errorMessage</string>
+                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+    }
+    <form method="post">
+        <div class="txt_field">
+            <input type="text" name="Username" value='@Model.userInfo.Username' required/>
+            <label>Username</label>
+        </div>
+        <div class="txt_field">
+            <input type="password" name='Password' value='@Model.userInfo.Password' required/>
+            <label>Password</label>
+        </div>
+        <input type="submit" value="Login"/>
+        <div class="signup_link">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Join the Community</a>
+        </div>
+    </form>
+</div>
+<iframe src="https://player.vimeo.com/video/356002261?h=40491cc727&autoplay=1&loop=1&color=ffffff&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</div>
