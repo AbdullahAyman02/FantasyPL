@@ -36,7 +36,7 @@ namespace FantasyPL.Pages
             userInfo.Password = hashedPassword;
             userInfo.Gender = Request.Form["gender"];
             userInfo.Birthdate = Request.Form["birthday"];
-            userInfo.UserType = "F";
+            userInfo.UserType = 'F';
 
             //save data
             try
@@ -112,6 +112,6 @@ namespace FantasyPL.Pages
         public string Password { get; set; }
         public string Gender { get; set; }
         public string? Birthdate { get; set; }
-        public string UserType { get; set;}
+        public char UserType { get; set;}
     }
 }

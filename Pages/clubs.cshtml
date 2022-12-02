@@ -3,3 +3,70 @@
 @{
 }
 <h1>CLUBS</h1>
+<div class="flexcontainerdown">
+	<div>
+	<form method="post">
+        <div class="txt_field">
+        <label for="club" id="clublabel">Club</label>      
+        <select id="club" name="club" class="form-control" value='@GlobalVar.clubQueried.Name'>
+			@foreach(var club in GlobalVar.listClubs){
+					@if(GlobalVar.clubQueried.Name == club.Name){
+						<option value="@club.Name" selected>@club.Name</option>
+					}else{
+						<option value="@club.Name">@club.Name</option>
+					}
+			}
+        </select>
+		</div>
+		<table class="table">
+			<tr>Club Details</tr>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Club Abbrv.</th>
+					<th>Est. Year</th>
+					<th>City</th>
+					<th>No. of Trophies</th>
+					<th>Owner's First Name</th>
+					<th>Owner's Last Name</th>
+					<th>Points</th>
+					<th>Wins</th>
+					<th>Draws</th>
+					<th>Losses</th>
+					<th>Goals For</th>
+					<th>Goals Against</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@GlobalVar.clubQueried.Name</td>
+					<td>@GlobalVar.clubQueried.Name_Abbreviation</td>
+					<td>@GlobalVar.clubQueried.Establishment_year</td>
+					<td>@GlobalVar.clubQueried.City</td>
+					<td>@GlobalVar.clubQueried.Number_of_Trophies</td>
+					<td>@GlobalVar.clubQueried.Owner_Fname</td>
+					<td>@GlobalVar.clubQueried.Owner_Lname</td>
+					<td>@GlobalVar.clubQueried.Points</td>
+					<td>@GlobalVar.clubQueried.Wins</td>
+					<td>@GlobalVar.clubQueried.Draws</td>
+					<td>@GlobalVar.clubQueried.Losses</td>
+					<td>@GlobalVar.clubQueried.Goals_For</td>
+					<td>@GlobalVar.clubQueried.Goals_Against</td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" value="Submit"/>
+		<div class = "flexcontainer">
+		 <a class="club_link" asp-area="" asp-page="/ViewClubLB">View Leaderboard</a>
+		 </div>
+		@if (GlobalVar.LoggedInUser.UserType == 'A')
+		{
+			<div class="flexcontainer">
+						<a class="club_link" asp-area="" asp-page="/InsertClub">Insert Club</a>
+						<a class="club_link" asp-area="" asp-page="/EditClub">Edit Club</a>
+						<a class="club_link" asp-area="" asp-page="/deleteClub">Delete Club</a>
+			</div>
+		}
+	</form>
+</div>
+</div>

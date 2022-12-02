@@ -1,0 +1,28 @@
+﻿@page
+@model FantasyPL.Pages.DeleteClubModel
+@{
+}
+<br/>
+<br />
+<div class="center form">
+<h3>Delete a Club</h3>
+<form method="post">
+        @if (Model.Message.Length > 0)
+        {
+            <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                <string>@Model.Message</string>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+	<div class="txt_field">
+		<label for="club" id="clublabel">Club</label>      
+		<select id="club" name="club" class="form-control" value='@GlobalVar.clubQueried.Name'>
+			@foreach (var club in GlobalVar.listClubs)
+			{
+					<option value="@club.Name">@club.Name</option>
+			}
+		</select>
+	</div>
+	<input type="submit" value="Delete"/>
+</form>
+</div>

@@ -1,0 +1,53 @@
+﻿@page
+@model FantasyPL.Pages.InsertClubModel
+@{
+}
+<br/>
+<br />
+<div class="center form">
+<h3>Add a Club</h3>
+<form method="post">
+        @if (Model.Message.Length > 0)
+        {
+            <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                <string>@Model.Message</string>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+	<div class="txt_field">
+	 <input type="text" name='name' value='@Model.clubInfo.Name' required/>
+	 <label>Club Name</label>
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='name_abbreviation' value='@Model.clubInfo.Name_Abbreviation' required/>
+	 <label>Club Name Abbreviation</label>
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='establishment_year' value='@Model.clubInfo.Establishment_year' required/>
+	 <label>Establishment Year</label>
+	</div>
+    <div class="txt_field">
+        <label for="city" id="citylabel">City</label>      
+        <select id="city" name="city" class="form-control" value='@Model.clubInfo.City'>
+                <option value="London">London</option>
+				<option selected value="Manchester">Manchester</option>
+				<option value="Birmingham">Birmingham</option>
+         </select>
+	</div>
+	<div class="txt_field">
+		<input type="text" name='number_of_trophies' value='@Model.clubInfo.Number_of_Trophies' required/>
+		<label>Number of Trophies</label>
+	</div>
+	<div class="name">
+		<div class="txt_field">
+			<input type="text" name='owner_fname' value='@Model.clubInfo.Owner_Fname' required/>
+			<label>Owner's First Name'</label>
+		</div>
+		<div class="txt_field">
+			<input type="text" name='owner_lname' value='@Model.clubInfo.Owner_Lname' required/>
+			<label>Owner's Last Name'</label>
+		</div>
+	</div>
+	<input type="submit" value="Insert"/>
+</form>
+</div>

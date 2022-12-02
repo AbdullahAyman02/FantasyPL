@@ -6,6 +6,12 @@ using System.Text;
 
 namespace FantasyPL.Pages
 {
+    public static class GlobalVar
+    {
+        public static List<Club> listClubs = new List<Club>();
+        public static Club clubQueried = new Club();
+        public static User LoggedInUser = new User();
+    }
     public class IndexModel : PageModel
     {
         public User userInfo = new();
@@ -41,12 +47,14 @@ namespace FantasyPL.Pages
                     command.Parameters.AddWithValue("@Username", userInfo.Username);
                     command.Parameters.AddWithValue("@Password", userInfo.Password);
                     SqlDataReader reader = dBManager.ExecuteReader(command);
-                    if (reader.HasRows) { 
+                    if(!reader.HasRows)
+                        errorMessage = "User not registered";
+                    while (reader.Read()) {
+                        GlobalVar.LoggedInUser.Username = reader.GetString(0);
+                        GlobalVar.LoggedInUser.UserType = reader.GetString(7)[0];
                         successMessage = "Logged in successfully";
                         Response.Redirect("/clubs");
                     }
-                    else
-                        errorMessage = "User not registered";
                 }
             } catch (Exception ex)
             {
