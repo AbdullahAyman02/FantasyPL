@@ -19,12 +19,17 @@
 		<select id="club" name="club" class="form-control" value='@GlobalVar.clubQueried.Name'>
 			@foreach (var club in GlobalVar.listClubs)
 			{
+				if(club.Name == GlobalVar.clubQueried.Name){
+						<option selected Value="@club.Name">@club.Name</option>
+				}
+				else{
 						<option Value="@club.Name">@club.Name</option>
+				}
 			}
 		</select>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='name_abbreviation' value='@GlobalVar.clubQueried.Name_Abbreviation' required/>
+	 <input type="text" name='name_abbreviation' id='name_abbreviation' value='@GlobalVar.clubQueried.Name_Abbreviation' required/>
 	 <label>Club Name Abbreviation</label>
 	</div>
 	<div class="txt_field">
@@ -34,9 +39,17 @@
     <div class="txt_field">
         <label for="city" id="citylabel">City</label>      
 		<select id="city" name="city" class="form-control" value='@GlobalVar.clubQueried.City'>
-                <option value="London">London</option>
-				<option selected value="Manchester">Manchester</option>
-				<option value="Birmingham">Birmingham</option>
+				@foreach (var club in GlobalVar.listClubs)
+				{
+						if (club.City == GlobalVar.clubQueried.City)
+						{
+								<option selected Value="@club.City">@club.City</option>
+						}
+						else
+						{
+								<option Value="@club.City">@club.City</option>
+						}
+				}
          </select>
 	</div>
 	<div class="txt_field">
@@ -53,6 +66,16 @@
 			<label>Owner's Last Name'</label>
 		</div>
 	</div>
-	<input type="submit" value="Update"/>
+	<input type="submit" name="Update" value="Update"/>
+	<input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display:none"/>
 </form>
 </div>
+@section scripts{ 
+<script>
+	$(function () {
+		$("#club").on("change", function() {
+			$("#Refresh").click()
+		});
+	});
+</script>
+}

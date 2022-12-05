@@ -1,0 +1,72 @@
+﻿@page
+@model FantasyPL.Pages.playerModel
+@{
+}
+<h1>PLAYERS</h1>
+<div class="flexcontainerdown">
+	<div>
+	<form method="post">
+        <div class="txt_field">
+        <label for="player" id="playerlabel">Player</label>      
+        <select id="player" name="player" class="form-control" value='@GlobalVar.playerQueried.Fname'>
+			@foreach(var player in GlobalVar.listPlayers){
+					@if(GlobalVar.playerQueried.Fname == player.Fname){
+						<option value="@player.Fname" selected>@player.Fname</option>
+					}else{
+						<option value="@player.Fname">@player.Fname</option>
+					}
+			}
+        </select>
+		</div>
+		<table class="table">
+			<tr>Player Details</tr>
+			<thead>
+				<tr>
+					<th>Fname</th>
+					<th>Mname</th>
+					<th>Lname</th>
+					<th>Price</th>
+					<th>Age</th>
+					<th>Player Number</th>
+					<th>Weight</th>
+					<th>Height</th>
+					<th>Nationality</th>
+					<th>Debut Year</th>
+					<th>Contract Length</th>
+					<th>Club Abbreviation</th>
+					<th>Points</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@GlobalVar.playerQueried.Fname</td>
+					<td>@GlobalVar.playerQueried.Mname</td>
+					<td>@GlobalVar.playerQueried.Lname</td>
+					<td>@GlobalVar.playerQueried.Price</td>
+					<td>@GlobalVar.playerQueried.Age</td>
+					<td>@GlobalVar.playerQueried.Player_Number</td>
+					<td>@GlobalVar.playerQueried.Weight</td>
+					<td>@GlobalVar.playerQueried.Height</td>
+					<td>@GlobalVar.playerQueried.Nationality</td>
+					<td>@GlobalVar.playerQueried.Debut_Year</td>
+					<td>@GlobalVar.playerQueried.Contract_Length</td>
+					<td>@GlobalVar.playerQueried.Club_Abbreviation</td>
+					<td>@GlobalVar.playerQueried.Points</td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" value="Submit"/>
+		<div class = "flexcontainer">
+		 <a class="club_link" asp-area="" asp-page="/ViewPlayerLB">View Leaderboard</a>
+		 </div>
+		@if (GlobalVar.LoggedInUser.UserType == 'A')
+		{
+			<div class="flexcontainer">
+						<a class="club_link" asp-area="" asp-page="/InsertPlayer">Insert Player</a>
+						<a class="club_link" asp-area="" asp-page="/EditPlayer">Edit Player</a>
+						<a class="club_link" asp-area="" asp-page="/deletePlayer">Delete Player</a>
+			</div>
+		}
+	</form>
+</div>
+</div>

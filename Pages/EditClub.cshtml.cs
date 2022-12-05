@@ -1,9 +1,4 @@
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.SqlClient;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace FantasyPL.Pages
 {
@@ -18,6 +13,12 @@ namespace FantasyPL.Pages
         }
         public void OnPost()
         {
+            string btnvalue = Request.Form["Refresh"];
+            if (btnvalue != null)
+            {
+                GlobalVar.clubQueried = controller.SelectClubByName(Request.Form["club"]);
+                return;
+            }
             clubInfo.Name = Request.Form["club"];
             clubInfo.Name_Abbreviation = Request.Form["name_abbreviation"];
             clubInfo.Establishment_year = Convert.ToInt32(Request.Form["establishment_year"]);
@@ -26,6 +27,9 @@ namespace FantasyPL.Pages
             clubInfo.Owner_Fname = Request.Form["owner_fname"];
             clubInfo.Owner_Lname = Request.Form["owner_lname"];
             Message = controller.UpdateClub(clubInfo);
+            controller.UpdateClubsList();
         }
+
+
     }
 }

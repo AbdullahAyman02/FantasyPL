@@ -177,6 +177,78 @@ namespace FantasyPL.Pages
             }
         }
 
+        public void UpdatePlayersList()
+        {
+            GlobalVar.listPlayers.Clear();
+            String query = "SELECT * FROM Players ORDER BY Points DESC";
+            using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+            {
+                using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                {
+                    int pos = 1;
+                    while (reader.Read())
+                    {
+                        player player = new player();
+                        player.Club_Abbreviation = reader.GetString(0);
+                        player.Player_Number = reader.GetInt32(1);
+                        player.Fname = reader.GetString(2);
+                        player.Mname = reader.GetString(3);
+                        player.Lname = reader.GetString(4);
+                        player.Price = reader.GetInt32(5);
+                        player.Age = reader.GetInt32(6);
+                        player.Height = reader.GetInt32(7);
+                        player.Weight = reader.GetInt32(8);
+                        player.Nationality = reader.GetString(9);
+                        player.Debut_Year = reader.GetInt32(10);
+                        player.Contract_Length = reader.GetInt32(11);
+                        player.Points = reader.GetInt32(12);
+                        pos++;
+                        GlobalVar.listPlayers.Add(player);
+                    }
+                }
+            }
+        }
+
+        public player SelectPlayerByName(string Name)
+        {
+            try
+            {
+                String query = "SELECT * FROM Players WHERE NAME = @name";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@name", Name);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        player player = new player();
+                        while (reader.Read())
+                        {
+                            player.Club_Abbreviation = reader.GetString(0);
+                            player.Player_Number = reader.GetInt32(1);
+                            player.Fname = reader.GetString(2);
+                            player.Mname = reader.GetString(3);
+                            player.Lname = reader.GetString(4);
+                            player.Price = reader.GetInt32(5);
+                            player.Age = reader.GetInt32(6);
+                            player.Height = reader.GetInt32(7);
+                            player.Weight = reader.GetInt32(8);
+                            player.Nationality = reader.GetString(9);
+                            player.Debut_Year = reader.GetInt32(10);
+                            player.Contract_Length = reader.GetInt32(11);
+                            player.Points = reader.GetInt32(12);
+
+                        }
+
+                        return player;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         public void TerminateConnection()
         {
             dBManager.CloseConnection();

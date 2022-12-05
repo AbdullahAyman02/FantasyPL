@@ -9,8 +9,10 @@ namespace FantasyPL.Pages
     public static class GlobalVar
     {
         public static List<Club> listClubs = new List<Club>();
+        public static List<player> listPlayers = new List<player>();
         public static Club clubQueried = new Club();
         public static User LoggedInUser = new User();
+        public static player playerQueried = new player();
     }
     public class IndexModel : PageModel
     {

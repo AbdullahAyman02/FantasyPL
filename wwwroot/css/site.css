@@ -164,7 +164,7 @@ div iframe {
     bottom:15%;
 }
 
-#countrylabel, #favclublabel, #birthdaylabel, #genderlabel, #clublabel, #citylabel{
+#countrylabel, #favclublabel, #birthdaylabel, #genderlabel, #clublabel, #citylabel, #playerlabel{
     transform: translate(0, -2.5em)
 }
 
@@ -216,4 +216,9 @@ table {
     padding: 10px;
     width:max-content;
     text-decoration:none;
+}
+
+#Abood {
+    width:30px;
+    height:20px;
 }
