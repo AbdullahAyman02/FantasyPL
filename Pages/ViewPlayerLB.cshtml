@@ -1,0 +1,31 @@
+﻿@page
+@model FantasyPL.Pages.ViewPlayerLBModel
+@{
+}
+<div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Position</th>
+				<th>Club</th>
+				<th>No.</th>
+				<th>Points</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+		@foreach (var player in GlobalVar.listPlayers)
+		{
+			<tr>
+				<td>@player.Fname @player.Mname @player.Lname</td>
+				<td>@player.Position</td>
+				<td>@player.Club</td>
+				<td>@player.Player_Number</td>
+				<td>@player.Points</td>
+				<td>@player.Price</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>

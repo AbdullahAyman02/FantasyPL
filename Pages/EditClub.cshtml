@@ -39,15 +39,15 @@
     <div class="txt_field">
         <label for="city" id="citylabel">City</label>      
 		<select id="city" name="city" class="form-control" value='@GlobalVar.clubQueried.City'>
-				@foreach (var club in GlobalVar.listClubs)
+				@foreach (var city in GlobalVar.Cities)
 				{
-						if (club.City == GlobalVar.clubQueried.City)
+						if (city == GlobalVar.clubQueried.City)
 						{
-								<option selected Value="@club.City">@club.City</option>
+								<option selected Value="@city">@city</option>
 						}
 						else
 						{
-								<option Value="@club.City">@club.City</option>
+								<option Value="@city">@city</option>
 						}
 				}
          </select>

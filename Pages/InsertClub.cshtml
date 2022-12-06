@@ -29,9 +29,15 @@
     <div class="txt_field">
         <label for="city" id="citylabel">City</label>      
         <select id="city" name="city" class="form-control" value='@Model.clubInfo.City'>
-                <option value="London">London</option>
-				<option selected value="Manchester">Manchester</option>
-				<option value="Birmingham">Birmingham</option>
+            @foreach (var city in GlobalVar.Cities)
+            {
+                if(city == GlobalVar.clubQueried.City){
+                    <option selected Value="@city">@city</option>
+                }
+                else{
+                    <option Value="@city">@city</option>
+                }
+            }
          </select>
 	</div>
 	<div class="txt_field">

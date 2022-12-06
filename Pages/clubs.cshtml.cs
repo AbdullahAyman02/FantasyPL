@@ -20,7 +20,7 @@ namespace FantasyPL.Pages
 
     public class Club
     {
-        public int Postition { get; set; }
+        public int Position { get; set; }
         public string Name { get; set; }
         public string Name_Abbreviation { get; set; }
         public int Establishment_year { get; set; }

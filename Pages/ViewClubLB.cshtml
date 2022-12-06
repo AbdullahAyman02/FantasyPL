@@ -3,34 +3,33 @@
 @{
 }
 <div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Position</th>
-					<th>Name</th>
-					<th>Wins</th>
-					<th>Draws</th>
-					<th>Losses</th>
-					<th>Points</th>
-					<th>Goals For</th>
-					<th>Goals Against</th>
-				</tr>
-			</thead>
-			<tbody>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Position</th>
+				<th>Name</th>
+				<th>Wins</th>
+				<th>Draws</th>
+				<th>Losses</th>
+				<th>Points</th>
+				<th>Goals For</th>
+				<th>Goals Against</th>
+			</tr>
+		</thead>
+		<tbody>
 			@foreach (var club in GlobalVar.listClubs)
 			{
-				<tr>
-					<td>@club.Postition</td>
-					<td>@club.Name</td>
-					<td>@club.Wins</td>
-					<td>@club.Draws</td>
-					<td>@club.Losses</td>
-					<td>@club.Points</td>
-					<td>@club.Goals_For</td>
-					<td>@club.Goals_Against</td>
-				</tr>
+					<tr>
+						<td>@club.Position</td>
+						<td>@club.Name</td>
+						<td>@club.Wins</td>
+						<td>@club.Draws</td>
+						<td>@club.Losses</td>
+						<td>@club.Points</td>
+						<td>@club.Goals_For</td>
+						<td>@club.Goals_Against</td>
+					</tr>
 			}
-			</tbody>
-		</table>
-	</div>
+		</tbody>
+	</table>
 </div>

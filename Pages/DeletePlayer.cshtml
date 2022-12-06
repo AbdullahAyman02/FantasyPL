@@ -1,0 +1,61 @@
+﻿@page
+@model FantasyPL.Pages.DeletePlayerModel
+@{
+}
+<h1>Delete a Player</h1>
+<div class="flexcontainerdown">
+    <div>
+    <form method="post">
+        @if (Model.Message.Length > 0)
+        {
+                <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                    <string>@Model.Message</string>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+        }
+    <div class="txt_field">
+    <label for="club3" id="clublabel">Club</label>
+    <select id="club3" name="club3" class="form-control" value='@GlobalVar.playerQueried.Club_Abbreviation'>
+                @foreach (var club in GlobalVar.listClubs)
+                {
+                    @if (GlobalVar.playerQueried.Club_Abbreviation == club.Name_Abbreviation)
+                    {
+                        <option value="@club.Name_Abbreviation" selected>@club.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@club.Name_Abbreviation">@club.Name</option>
+                    }
+                }
+        </select>
+    </div>
+    <div class="txt_field">
+        <label for="player" id="playerlabel">Player</label>
+        <select id="player" name="player" class="form-control" value='@GlobalVar.playerQueried.Fname'>
+            @foreach (var player in GlobalVar.clubPlayers)
+            {
+                @if (GlobalVar.playerQueried.Fname == player.Fname && GlobalVar.playerQueried.Mname == player.Mname && GlobalVar.playerQueried.Lname == player.Lname)
+                {
+                            <option value="@player.Player_Number" selected>@player.Fname @player.Mname @player.Lname</option>
+                }
+                else
+                {
+                            <option value="@player.Player_Number">@player.Fname @player.Mname @player.Lname</option>
+                }
+            }
+        </select>
+    </div>
+    <input type="submit" value="Delete"/>
+    <input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display: none"/>
+</form>
+</div>
+</div>
+@section scripts{ 
+    <script>
+        $(function () {
+            $("#club3").on("change", function() {
+                $("#Refresh").click()
+            });
+        });
+    </script>
+}

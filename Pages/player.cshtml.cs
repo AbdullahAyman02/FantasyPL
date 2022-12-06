@@ -6,15 +6,42 @@ namespace FantasyPL.Pages
     public class playerModel : PageModel
     {
         Controller controller = new Controller();
+        public string Message = "";
         public void OnGet()
         {
+            controller.UpdateClubsList();
             controller.UpdatePlayersList();
             GlobalVar.playerQueried = GlobalVar.listPlayers[0];
+            controller.SelectPlayersByClubAbbr(GlobalVar.playerQueried.Club_Abbreviation);
         }
         public void OnPost()
         {
-            string playerName = Request.Form["player"];
-            GlobalVar.playerQueried = controller.SelectPlayerByName(playerName);
+            Message = "";
+            string btnvalue = Request.Form["Refresh"];
+            if (btnvalue != null)
+            {
+                controller.SelectPlayersByClubAbbr(Request.Form["club2"]);
+                if (GlobalVar.clubPlayers.Count > 0)
+                {
+                    GlobalVar.playerQueried = GlobalVar.clubPlayers[0];
+                }
+                else
+                {
+                    player p = new player();
+                    p.Club_Abbreviation = Request.Form["club2"];
+                    GlobalVar.playerQueried = p;
+                }
+                return;
+            }
+            string clubAbbr = Request.Form["club2"];
+            int playerNo = Convert.ToInt16(Request.Form["player"]);
+            player player = controller.SelectPlayer(clubAbbr, playerNo);
+            if(player.Club_Abbreviation != null)
+                GlobalVar.playerQueried = controller.SelectPlayer(clubAbbr, playerNo);
+            else
+            {
+                Message = "No Player with this data";
+            }
         }
 
     }
@@ -32,6 +59,8 @@ namespace FantasyPL.Pages
         public int Debut_Year { get; set; }
         public int Contract_Length { get; set; }
         public string Club_Abbreviation { get; set; }
+        public string Club { get; set; }
         public int Points { get; set; }
+        public string Position { get; set; }
     }
 }

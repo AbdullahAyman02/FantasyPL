@@ -1,0 +1,127 @@
+﻿@page
+@model FantasyPL.Pages.EditPlayerModel
+@{
+}
+<br/>
+<br />
+<div class="center form">
+<h3>Update a Player</h3>
+<form method="post">
+		@if (Model.Message.Length > 0)
+		{
+				<div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+					<string>@Model.Message</string>
+					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+				</div>
+		}
+	<div class="txt_field">
+		<label for="club3" id="clublabel">Club</label>
+		<select id="club3" name="club3" class="form-control" value='@GlobalVar.playerQueried.Club_Abbreviation'>
+		@foreach (var club in GlobalVar.listClubs)
+		{
+			@if (GlobalVar.playerQueried.Club_Abbreviation == club.Name_Abbreviation)
+			{
+					<option value="@club.Name_Abbreviation" selected>@club.Name</option>
+			}
+			else
+			{
+					<option value="@club.Name_Abbreviation">@club.Name</option>
+			}
+		}
+		</select>
+	</div>
+	<div class="txt_field">
+		<label for="player2" id="playerlabel">Player</label>
+		<select id="player2" name="player2" class="form-control" value='@GlobalVar.playerQueried.Fname'>
+		@foreach (var player in GlobalVar.clubPlayers)
+		{
+			@if (GlobalVar.playerQueried.Fname == player.Fname && GlobalVar.playerQueried.Mname == player.Mname && GlobalVar.playerQueried.Lname == player.Lname)
+			{
+				<option value="@player.Player_Number" selected>@player.Fname @player.Mname @player.Lname</option>
+			}
+			else
+			{
+				<option value="@player.Player_Number">@player.Fname @player.Mname @player.Lname</option>
+			}
+		}
+		</select>
+	</div>
+	<div class="name">
+		<div class="txt_field">
+			<input type="text" name='Fname' value='@GlobalVar.playerQueried.Fname' required/>
+			<label>First Name</label>
+		</div>
+		<div class="txt_field">
+			<input type="text" name='Mname' value='@GlobalVar.playerQueried.Mname' required/>
+			<label>Middle Name</label>
+		</div>
+		<div class="txt_field">
+			<input type="text" name='Lname' value='@GlobalVar.playerQueried.Lname' required/>
+			<label>Last Name</label>
+		</div>
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='price' value='@GlobalVar.playerQueried.Price' required/>
+	 <label>Price</label>
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='age' value='@GlobalVar.playerQueried.Age' required/>
+	 <label>Age</label>
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='height' value='@GlobalVar.playerQueried.Height' required/>
+	 <label>Height</label>
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='weight' value='@GlobalVar.playerQueried.Weight' required/>
+	 <label>Weight</label>
+	</div>
+	<div class="txt_field">
+		<label for="nationality" id="nationalityLabel">Nationality</label>      
+		<select id="nationality" name="nationality" class="form-control" value='@GlobalVar.playerQueried.Nationality'>
+				@foreach (var country in GlobalVar.Countries)
+				{
+					if (country == GlobalVar.playerQueried.Nationality)
+					{
+						<option selected Value="@country">@country</option>
+					}
+					else
+					{
+						<option Value="@country">@country</option>
+					}
+				}
+		 </select>
+	</div>
+	<div class="txt_field">
+		<input type="text" name='debut' value='@GlobalVar.playerQueried.Debut_Year' required/>
+		<label>Debut Year</label>
+	</div>
+	<div class="name">
+		<div class="txt_field">
+			<input type="text" name='contract' value='@GlobalVar.playerQueried.Contract_Length' required/>
+			<label>Contract Length</label>
+		</div>
+		<div class="txt_field">
+			<input type="text" name='points' value='@GlobalVar.playerQueried.Points' required/>
+			<label>Points</label>
+		</div>
+	</div>
+	<input type="submit" name="Update" value="Update"/>
+	<input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display:none"/>
+	<input type="submit" name="Refresh2" id="Refresh2" value="Refresh2" style="Display:none"/>
+</form>
+</div>
+@section scripts{ 
+	<script>
+		$(function () {
+			$("#club3").on("change", function() {
+				$("#Refresh").click()
+			});
+		});
+		$(function () {
+			$("#player2").on("change", function() {
+				$("#Refresh2").click()
+			});
+		});
+	</script>
+}

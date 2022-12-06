@@ -9,12 +9,13 @@ namespace FantasyPL.Pages
 {
     public class RegisterModel : PageModel
     {
+        Controller controller = new Controller();
         public User userInfo = new User();
-        public string errorMessage = "";
-        public string successMessage = "";
+        public string Message = "";
 
         public void OnGet()
         {
+            controller.UpdateClubsList();
         }
 
         public void OnPost()
@@ -37,63 +38,27 @@ namespace FantasyPL.Pages
             userInfo.Gender = Request.Form["gender"];
             userInfo.Birthdate = Request.Form["birthday"];
             userInfo.UserType = 'F';
+            userInfo.Balance = 100;
 
             //save data
-            try
-            {
-                DBManager dBManager = new DBManager();
-                String sql = "INSERT INTO Users " +
-                             "VALUES(@Username, @Email, @Password, @FirstName, @MiddleName, @LastName, @Birthdate, @UserType, @Gender, @Country, @FantasyTeamName, @FavoriteClub)";
-
-                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
-                {
-                    command.Parameters.AddWithValue("@Username", userInfo.Username);
-                    command.Parameters.AddWithValue("@Email", userInfo.Email);
-                    command.Parameters.AddWithValue("@Password", userInfo.Password);
-                    command.Parameters.AddWithValue("@FirstName", userInfo.FirstName);
-                    command.Parameters.AddWithValue("@MiddleName", userInfo.MiddleName);
-                    command.Parameters.AddWithValue("@LastName", userInfo.LastName);
-                    command.Parameters.AddWithValue("@Birthdate", userInfo.Birthdate);
-                    command.Parameters.AddWithValue("@UserType", userInfo.UserType);
-                    command.Parameters.AddWithValue("@Gender", userInfo.Gender);
-                    command.Parameters.AddWithValue("@Country", userInfo.Country);
-                    command.Parameters.AddWithValue("@FantasyTeamName", userInfo.FantasyTeamName);
-                    command.Parameters.AddWithValue("@FavoriteClub", userInfo.FavoriteClub);
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        errorMessage = ex.Message;
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                errorMessage = ex.Message;
-                successMessage = "";
-                return;
-            }
+            Message = controller.InsertUser(userInfo);
 
             if(userInfo.FirstName.Length == 0)
                 return;
 
-            successMessage = "You have been Registered Successfully!!!!!!!";
+            //successMessage = "You have been Registered Successfully!!!!!!!";
 
-            userInfo.FirstName = "";
-            userInfo.MiddleName = "";
-            userInfo.LastName = "";
-            userInfo.FantasyTeamName = "";
-            userInfo.FavoriteClub = "";
-            userInfo.Country = "";
-            userInfo.Email = "";
-            userInfo.Username = "";
-            userInfo.Password = "";
-            userInfo.Gender = "";
-            userInfo.Birthdate = "";
-            
+            //userInfo.FirstName = "";
+            //userInfo.MiddleName = "";
+            //userInfo.LastName = "";
+            //userInfo.FantasyTeamName = "";
+            //userInfo.FavoriteClub = "";
+            //userInfo.Country = "";
+            //userInfo.Email = "";
+            //userInfo.Username = "";
+            //userInfo.Password = "";
+            //userInfo.Gender = "";
+            //userInfo.Birthdate = "";
 
             // Response.Redirect("/Index");
         }
@@ -113,5 +78,7 @@ namespace FantasyPL.Pages
         public string Gender { get; set; }
         public string? Birthdate { get; set; }
         public char UserType { get; set;}
+
+        public int Balance { get; set; }
     }
 }

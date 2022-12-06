@@ -164,7 +164,7 @@ div iframe {
     bottom:15%;
 }
 
-#countrylabel, #favclublabel, #birthdaylabel, #genderlabel, #clublabel, #citylabel, #playerlabel{
+#countrylabel, #favclublabel, #birthdaylabel, #genderlabel, #clublabel, #citylabel, #playerlabel, #clublabel2, #nationalityLabel, #positionlabel{
     transform: translate(0, -2.5em)
 }
 
@@ -196,7 +196,7 @@ div.form {
     flex-direction:row;
     justify-content:center;
     align-items: center;
-    height: 70px;
+    height: 50px;
 }
 
 .flexcontainerdown {
