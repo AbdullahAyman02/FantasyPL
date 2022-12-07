@@ -31,6 +31,22 @@
 		</select>
 	</div>
 	<div class="txt_field">
+		<label for="position" id="positionlabel">Position</label>
+		<select id="position" name="position" class="form-control" value='@GlobalVar.playerQueried.Position'>
+		@foreach (var position in GlobalVar.Positions)
+		{
+			@if (GlobalVar.playerQueried.Position == position)
+			{
+					<option value="@position" selected>@position</option>
+			}
+			else
+			{
+					<option value="@position">@position</option>
+			}
+		}
+		</select>
+	</div>
+	<div class="txt_field">
 		<label for="player2" id="playerlabel">Player</label>
 		<select id="player2" name="player2" class="form-control" value='@GlobalVar.playerQueried.Fname'>
 		@foreach (var player in GlobalVar.clubPlayers)

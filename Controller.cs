@@ -324,6 +324,7 @@ namespace FantasyPL.Pages
                             player.Debut_Year = reader.GetInt32(10);
                             player.Contract_Length = reader.GetInt32(11);
                             player.Points = reader.GetInt32(12);
+                            player.Position = reader.GetString(13);
                         }
                         reader.Close();
                         return player;
@@ -364,6 +365,7 @@ namespace FantasyPL.Pages
                             player.Debut_Year = reader.GetInt32(10);
                             player.Contract_Length = reader.GetInt32(11);
                             player.Points = reader.GetInt32(12);
+                            player.Position = reader.GetString(13);
                             GlobalVar.clubPlayers.Add(player);
                         }
                         reader.Close();
@@ -381,13 +383,14 @@ namespace FantasyPL.Pages
         {
             try
             {
-                String query = "UPDATE Players SET FNAME = @fname, MNAME = @mname, LNAME = @lname, PRICE = @price, AGE = @age, HEIGHT = @height, WEIGHT = @weight, NATIONALITY = @nationality, DEBUT_YEAR = @year, CONTRACT_LENGTH = @contract, Points = @points WHERE CLUB_ABBREVIATION = @abbr AND PLAYER_NO = @number";
+                String query = "UPDATE Players SET FNAME = @fname, MNAME = @mname, LNAME = @lname, PRICE = @price, AGE = @age, HEIGHT = @height, WEIGHT = @weight, NATIONALITY = @nationality, DEBUT_YEAR = @year, CONTRACT_LENGTH = @contract, Points = @points, POSITION = @pos WHERE CLUB_ABBREVIATION = @abbr AND PLAYER_NO = @number";
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
                     command.Parameters.AddWithValue("@abbr", p.Club_Abbreviation);
                     command.Parameters.AddWithValue("@number", p.Player_Number);
                     command.Parameters.AddWithValue("@fname", p.Fname);
                     command.Parameters.AddWithValue("@mname", p.Mname);
+                    command.Parameters.AddWithValue("@pos", p.Position);
                     command.Parameters.AddWithValue("@lname", p.Lname);
                     command.Parameters.AddWithValue("@price", p.Price);
                     command.Parameters.AddWithValue("@age", p.Age);
@@ -480,6 +483,103 @@ namespace FantasyPL.Pages
             {
                 Console.WriteLine(e.Message);
                 return null;
+            }
+        }
+
+        public string InsertFTplayer(string username, string club_abbr, int player_no)
+        {
+            try
+            {
+                String query = "INSERT INTO FANTASY_TEAM values(@username, @abbr, @number)";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@abbr", club_abbr);
+                    command.Parameters.AddWithValue("@number", player_no);
+                    if (dBManager.ExecuteNonQuery(command) > 0)
+                    {
+                        SelectPlayersByUsername(username);
+                        return "Player was added Successfully";
+                    }
+                    else
+                    {
+                        return "An error has occurred";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public string DeleteFTplayer(string username, string club_abbr, int player_no)
+        {
+            try
+            {
+                String query = "DELETE FROM FANTASY_TEAM WHERE USERNAME = @username AND CLUB_ABBREVIATION = @abbr AND PLAYER_NO = @number";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@abbr", club_abbr);
+                    command.Parameters.AddWithValue("@number", player_no);
+                    if (dBManager.ExecuteNonQuery(command) > 0)
+                    {
+                        SelectPlayersByUsername(username);
+                        return "Player was deleted Successfully";
+                    }
+                    else
+                    {
+                        return "An error has occurred";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public void SelectPlayersByUsername(string Username)
+        {
+            try
+            {
+                String query = "SELECT P.* FROM Players P, FANTASY_TEAM F WHERE F.Username = @username AND F.CLUB_ABBREVIATION = P.CLUB_ABBREVIATION AND F.PLAYER_NO = P.PLAYER_NO";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@username", Username);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        GlobalVar.userPlayers.Clear();
+                        while (reader.Read())
+                        {
+                            player player = new player();
+                            player.Club_Abbreviation = reader.GetString(0);
+                            player.Player_Number = reader.GetInt32(1);
+                            player.Fname = reader.GetString(2);
+                            player.Mname = reader.GetString(3);
+                            player.Lname = reader.GetString(4);
+                            player.Price = reader.GetInt32(5);
+                            player.Age = reader.GetInt32(6);
+                            player.Height = reader.GetInt32(7);
+                            player.Weight = reader.GetInt32(8);
+                            player.Nationality = reader.GetString(9);
+                            player.Debut_Year = reader.GetInt32(10);
+                            player.Contract_Length = reader.GetInt32(11);
+                            player.Points = reader.GetInt32(12);
+                            player.Position = reader.GetString(13);
+                            GlobalVar.userPlayers.Add(player);
+                        }
+                        reader.Close();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return;
             }
         }
 

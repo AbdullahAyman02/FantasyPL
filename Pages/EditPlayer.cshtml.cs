@@ -55,6 +55,7 @@ namespace FantasyPL.Pages
             playerinfo.Debut_Year = Convert.ToInt16(Request.Form["debut"]);
             playerinfo.Contract_Length = Convert.ToInt16(Request.Form["contract"]);
             playerinfo.Points = Convert.ToInt16(Request.Form["points"]);
+            playerinfo.Position = Request.Form["position"];
             Message = controller.UpdatePlayer(playerinfo);
             if (Message == "Player was added Successfully")
             {

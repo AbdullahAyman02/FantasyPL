@@ -164,7 +164,7 @@ div iframe {
     bottom:15%;
 }
 
-#countrylabel, #favclublabel, #birthdaylabel, #genderlabel, #clublabel, #citylabel, #playerlabel, #clublabel2, #nationalityLabel, #positionlabel{
+#countrylabel, #favclublabel, #birthdaylabel, #genderlabel, #clublabel, #citylabel, #playerlabel, #clublabel2, #nationalityLabel, #positionlabel, #playerlabel2 {
     transform: translate(0, -2.5em)
 }
 
@@ -173,7 +173,7 @@ div.form {
     top: 40%;
     left: 50%;
     height: 80%;
-    overflow-y: auto
+    overflow-y: auto;
 }
 
 .name, .group{
@@ -216,9 +216,4 @@ table {
     padding: 10px;
     width:max-content;
     text-decoration:none;
-}
-
-#Abood {
-    width:30px;
-    height:20px;
 }

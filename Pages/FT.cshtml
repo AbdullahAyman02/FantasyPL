@@ -1,0 +1,74 @@
+﻿@page
+@model FantasyPL.Pages.FTModel
+@{
+}
+<h1>FANTASY TEAM</h1>
+<div class="flexcontainerdown">
+    <div>
+        <form method="post">
+            @if (Model.Message.Length > 0)
+            {
+                    <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                        <string>@Model.Message</string>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>
+            }
+            <div class="txt_field">
+                <label for="player" id="playerlabel">Player</label>
+                <select id="player" name="player" class="form-control">
+                    @foreach (var player in GlobalVar.listPlayers)
+                    {
+                        @if (GlobalVar.userPlayers.Find(x => (x.Player_Number == player.Player_Number && x.Club_Abbreviation == player.Club_Abbreviation)) == null)
+                        {
+                            <option value='@player.Club_Abbreviation @player.Player_Number'>@player.Club_Abbreviation - @player.Player_Number - @player.Fname @player.Mname @player.Lname - @player.Position - Points:@player.Points - Price:@player.Price</option>
+                        }
+                    }
+                </select>
+            </div>
+            <table class="table">
+                <tr>Player Details</tr>
+                <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Fname</th>
+                    <th>Mname</th>
+                    <th>Lname</th>
+                    <th>Player Number</th>
+                    <th>Club Abbreviation</th>
+                    <th>Points</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                    @foreach(var player in GlobalVar.userPlayers){
+                    <tr>
+                    <td>@player.Position</td>
+                    <td>@player.Fname</td>
+                    <td>@player.Mname</td>
+                    <td>@player.Lname</td>
+                    <td>@player.Player_Number</td>
+                    <td>@player.Club_Abbreviation</td>
+                    <td>@player.Points</td>
+                    <td>@player.Price</td>
+                     </tr>
+                    }
+                </tbody>
+            </table>
+    
+             <input type="submit" value="Insert Player"/>
+   
+            <div class="txt_field">
+                @*MyClass result = list.Find(x => x.GetId() == "xy");*@
+                <label for="player2" id="playerlabel2">Player</label>
+                <select id="player2" name="player2" class="form-control">
+                    @foreach (var player in GlobalVar.userPlayers)
+                    {
+                             <option value="@player.Club_Abbreviation @player.Player_Number">@player.Club_Abbreviation - @player.Player_Number - @player.Fname @player.Mname @player.Lname - @player.Position - Points:@player.Points - Price:@player.Price</option>
+                    }
+                </select>
+            </div>
+            <input type="submit" name="Delete Player" id="Delete Player" value="Delete Player"/>
+        </form>
+</div>
+</div>
