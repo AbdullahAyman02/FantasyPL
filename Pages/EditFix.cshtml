@@ -1,0 +1,119 @@
+﻿@page
+@model FantasyPL.Pages.EditFixModel
+@{
+}
+<br/>
+<br />
+<div class="center form">
+<h3>Update a Fixture</h3>
+<form method="post">
+		@if (@Model.Message.Length > 0)
+		{
+				<div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+					<string>@Model.Message</string>
+					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+				</div>
+		}
+	<div class="txt_field">
+		<label for="fix" id="clublabel">Fixture</label>
+		<select id="fix" name="fix" class="form-control" >
+		@foreach (var fix in GlobalVar.listFixtures)
+		{
+			@if (GlobalVar.fixtureQueried.ID == fix.ID)
+			{
+					<option value="@fix.ID" selected>@fix.HomeSide vs @fix.AwaySide</option>
+			}
+			else
+			{
+					<option value="@fix.ID">@fix.HomeSide vs @fix.AwaySide</option>
+			}
+		}
+		</select>
+	</div>
+	<div class="txt_field">
+				<label for="gameweek" id="clublabel2">Gameweek</label>
+				<select id="gameweek" name="gameweek" class="form-control">
+				@for (int i = 1; i <= 38; i++)
+				{
+					if (i == GlobalVar.fixtureQueried.Gameweek)
+					{
+						<option value="@i" selected>@i</option>
+					}
+					else
+					{
+						<option value="@i">@i</option> 
+					}
+				}
+				</select>
+			</div>
+			<div class="txt_field">
+		<label for="date" id="birthdaylabel">Date</label>
+		<input type="text" id="date" value='@GlobalVar.fixtureQueried.Date' name="date">
+	</div>
+	<div class="txt_field">
+	 <input type="text" name='time' value='@GlobalVar.fixtureQueried.StartTime'/>
+	 <label>Fixture Start Time</label>
+	</div>
+	<div class="txt_field">
+		<label for="club" id="citylabel">Home Side</label>      
+		<select id="club" name="club" class="form-control">
+				@foreach (var club in GlobalVar.listClubs)
+				{	
+					if (club.Name_Abbreviation == GlobalVar.fixtureQueried.HomeSide)
+					{
+						<option Value="@club.Name_Abbreviation" selected>@club.Name</option>
+					}
+					else
+					{
+						<option Value="@club.Name_Abbreviation">@club.Name</option>
+					}
+				}
+		 </select>
+	</div>
+	<div class="txt_field">
+		<label for="club1" id="playerlabel2">Away Side</label>      
+		<select id="club1" name="club1" class="form-control">
+				@foreach (var club in GlobalVar.listClubs)
+				{
+					if (club.Name_Abbreviation == GlobalVar.fixtureQueried.AwaySide)
+					{
+								<option Value="@club.Name_Abbreviation" selected>@club.Name</option>
+					}
+					else
+					{
+								<option Value="@club.Name_Abbreviation">@club.Name</option>
+					}
+				}
+		 </select>
+	</div>
+	<div class="txt_field">
+		<label for="referee" id="positionlabel">Referee</label>      
+		<select id="referee" name="referee" class="form-control">
+				@foreach (var referee in GlobalVar.listReferees)
+				{
+					
+					if (referee.FName == GlobalVar.fixtureQueried.Referee)
+					{
+												<option Value="@referee.ID" selected>@referee.FName</option>
+					}
+					else
+					{
+												<option Value="@referee.ID">@referee.FName</option>
+					}
+				}
+		 </select>
+	</div>
+	
+	<input type="submit" name="Update" value="Update"/>
+	<input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display:none"/>
+</form>
+</div>
+@section scripts{ 
+	<script>
+		$(function () {
+			$("#fix").on("change", function() {
+				$("#Refresh").click()
+			});
+		});
+	</script>
+}

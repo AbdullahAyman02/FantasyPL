@@ -28,10 +28,7 @@
 		    <label>Last Name</label>
 	    </div>
     </div>
-    <div class="txt_field">
-        <input type="text" name='FTname' value='@Model.userInfo.FantasyTeamName' required/>
-	    <label>Fantasy Team Name</label>
-    </div>
+    
     <div class="txt_field">
         <label for="country" id="countrylabel">Country</label>      
         <select id="country" name="country" class="form-control" value='@Model.userInfo.Country'>
@@ -41,15 +38,22 @@
             }
          </select>
 </div>
-<div class="txt_field">
-	<label for="favorite_club" id="favclublabel">Favorite Club</label>
-	<select id="favorite_club" name="favorite_club" value='@Model.userInfo.FavoriteClub' class="form-control">
-        @foreach (var club in GlobalVar.listClubs)
+        @if (GlobalVar.isAdmin == false)
         {
-            <option Value="@club.Name_Abbreviation">@club.Name</option>
+            <div class="txt_field">
+                <input type="text" name='FTname' value='@Model.userInfo.FantasyTeamName' required />
+                <label>Fantasy Team Name</label>
+            </div>
+            <div class="txt_field">
+                <label for="favorite_club" id="favclublabel">Favorite Club</label>
+                <select id="favorite_club" name="favorite_club" value='@Model.userInfo.FavoriteClub' class="form-control">
+                    @foreach (var club in GlobalVar.listClubs)
+                    {
+                        <option Value="@club.Name_Abbreviation">@club.Name</option>
+                    }
+                </select>
+            </div>
         }
-	</select>
-</div>
 <div class="txt_field">
 	<input type="text" name='Email' value='@Model.userInfo.Email' required/>
 	<label>Email</label>

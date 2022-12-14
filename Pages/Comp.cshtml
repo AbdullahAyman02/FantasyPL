@@ -1,0 +1,59 @@
+﻿@page
+@model FantasyPL.Pages.CompModel
+@{
+}
+
+
+<div class="center form">
+	<div>
+	<form method="post">
+		<h3>Competitions</h3>
+		@if (GlobalVar.LoggedInUser.UserType != 'A')
+		{
+        <div class="txt_field">
+        <label for="club" id="clublabel">Competition</label>      
+        <select id="club" name="comp" class="form-control">
+			@foreach(var comp in GlobalVar.userComp){
+					@if(GlobalVar.compQueried.Id == comp.Id){
+						<option value="@comp.Id" selected>@comp.Name</option>
+					}else{
+						<option value="@comp.Id">@comp.Name</option>
+					}
+			}
+        </select>
+		</div>
+		<table class="table">
+			<tr>Rankings</tr>
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Points</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach(var user in GlobalVar.compParticipants)
+				{
+				<tr>
+					<td>@user.Username</td>
+					<td>@user.Points</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		<input type="submit" value="Submit"/>
+		}
+			<div class="flexcontainer">
+					<a class="club_link" asp-area="" asp-page="/CreateComp">Create Competition</a> @*both*@
+					@if (GlobalVar.LoggedInUser.UserType == 'A')
+					{
+						<a class="club_link" asp-area="" asp-page="/DeleteComp">Delete Competition</a>	@*Admin*@
+						<a class="club_link" asp-area="" asp-page="/deleteClub">Remove User from Competition</a>	@*Admin*@
+					} else {
+					<a class="club_link" asp-area="" asp-page="/JoinComp">Join Competition</a>	@*Fan*@
+					<a class="club_link" asp-area="" asp-page="/ExitComp">Exit Competition</a>	@*Fan*@
+					}
+			</div>
+
+	</form>
+</div>
+</div>

@@ -2,9 +2,8 @@
 @model FantasyPL.Pages.FTModel
 @{
 }
-<h1>FANTASY TEAM</h1>
-<div class="flexcontainerdown">
-    <div>
+<div class="center form">
+    <h3>Your Fantasy Team</h3>
         <form method="post">
             @if (Model.Message.Length > 0)
             {
@@ -70,5 +69,4 @@
             </div>
             <input type="submit" name="Delete Player" id="Delete Player" value="Delete Player"/>
         </form>
-</div>
 </div>

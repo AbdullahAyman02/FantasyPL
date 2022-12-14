@@ -20,13 +20,23 @@ namespace FantasyPL.Pages
 
         public void OnPost()
         {
-            userInfo.Birthdate = null;
             userInfo.FirstName = Request.Form["Fname"];
             userInfo.MiddleName = Request.Form["Mname"];
             userInfo.LastName = Request.Form["Lname"];
-            userInfo.FantasyTeamName = Request.Form["FTname"];
             userInfo.Country = Request.Form["country"];
-            userInfo.FavoriteClub = Request.Form["favorite_club"];
+            if (GlobalVar.isAdmin == false)
+            {
+                userInfo.FantasyTeamName = Request.Form["FTname"];
+                userInfo.FavoriteClub = Request.Form["favorite_club"];
+                userInfo.Balance = 100;
+                userInfo.UserType = 'F';
+            } else
+            {
+                // userInfo.FantasyTeamName = DBNull.Value;
+                userInfo.FavoriteClub = "null";
+                userInfo.Balance = 0;
+                userInfo.UserType = 'A';
+            }
             userInfo.Email = Request.Form["Email"];
             userInfo.Username = Request.Form["username"];
             string password = Request.Form["password"];
@@ -37,14 +47,11 @@ namespace FantasyPL.Pages
             userInfo.Password = hashedPassword;
             userInfo.Gender = Request.Form["gender"];
             userInfo.Birthdate = Request.Form["birthday"];
-            userInfo.UserType = 'F';
-            userInfo.Balance = 100;
+            userInfo.Points = 0;
 
             //save data
             Message = controller.InsertUser(userInfo);
 
-            if(userInfo.FirstName.Length == 0)
-                return;
 
             //successMessage = "You have been Registered Successfully!!!!!!!";
 
@@ -69,16 +76,16 @@ namespace FantasyPL.Pages
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string FantasyTeamName { get; set; }
+        public string? FantasyTeamName { get; set; }
         public string Country { get; set; }
-        public string FavoriteClub { get; set; }
+        public string? FavoriteClub { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Gender { get; set; }
         public string? Birthdate { get; set; }
         public char UserType { get; set;}
-
-        public int Balance { get; set; }
+        public int Points { get; set; }
+        public int? Balance { get; set; }
     }
 }

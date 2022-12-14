@@ -1,0 +1,115 @@
+﻿@page
+@model FantasyPL.Pages.fixtureModel
+@{
+}
+<div class="center form">
+        <form method="post">
+            <h3>Fixtures</h3>
+            @if (Model.Message.Length > 0)
+            {
+                <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                    <string>@Model.Message</string>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+            }
+            <div class="txt_field">
+                <label for="club2" id="clublabel2">Gameweek</label>
+                <select id="club2" name="club2" class="form-control">
+                    @for(int i = 1; i <= 38; i++)
+                    {
+                        if(i == GlobalVar.week){
+                            <option value="@i" selected>@i</option>
+                        } else {
+                            <option value="@i">@i</option> 
+                        }
+                    }
+                </select>
+            </div>
+            <div class="txt_field">
+                <label for="fixture" id="playerlabel">Fixtures</label>
+                <select id="fixture" name="fixture" class="form-control">
+                    @foreach (var fixture in GlobalVar.weekFixtures)
+                    {
+                        @if(fixture.ID == GlobalVar.fixtureQueried.ID){
+                            <option value="@fixture.ID" selected>@fixture.HomeSide vs @fixture.AwaySide - Starting at: @fixture.Date @fixture.StartTime</option>
+                        }
+                        else{
+                            <option value="@fixture.ID">@fixture.HomeSide vs @fixture.AwaySide - Starting at: @fixture.Date @fixture.StartTime</option>
+                        }
+                    }
+                </select>
+            </div>
+            <table class="table">
+                <tr>Fixture Details</tr>
+                <thead>
+                <tr>
+                    <th>Gameweek</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>Home Side</th>
+                    <th>Away Side</th>
+                    <th>Home Score</th>
+                    <th>Away Score</th>
+                    <th>Stadium</th>
+                    <th>Referee</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>@GlobalVar.fixtureQueried.Gameweek</td>
+                    <td>@GlobalVar.fixtureQueried.Date</td>
+                    <td>@GlobalVar.fixtureQueried.StartTime</td>
+                    <td>@GlobalVar.fixtureQueried.HomeSide</td>
+                    <td>@GlobalVar.fixtureQueried.AwaySide</td>
+                    <td>@GlobalVar.fixtureQueried.HomeScore</td>
+                    <td>@GlobalVar.fixtureQueried.AwayScore</td>
+                    <td>@GlobalVar.fixtureQueried.Stadium</td>
+                    <td>@GlobalVar.fixtureQueried.Referee</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <tr>Fixture Events</tr>
+                <thead>
+                <tr>
+                    <th>Event Type</th>
+                    <th>Minute</th>
+                    <th>Club</th>
+                    <th>Player</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                    @foreach(var e in GlobalVar.fixtureEvents)
+                    {
+                    <tr>
+                    <td>@e.EventType</td>
+                    <td>@e.Minute</td>
+                    <td>@e.ClubAbbreviation</td>
+                    <td>@e.Player</td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            <input type="submit" value="Submit"/>
+            <input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display: none"/>
+            @if (GlobalVar.LoggedInUser.UserType == 'A')
+            {
+                <div class="flexcontainer">
+                    <a class="club_link" asp-area="" asp-page="/InsertFE">Insert Fixture</a>
+                    <a class="club_link" asp-area="" asp-page="/EditFix">Edit Fixture</a>
+                    <a class="club_link" asp-area="" asp-page="/DeleteFE">Delete Fixture</a>
+                </div>
+            }
+        </form>
+</div>
+@section scripts{ 
+	<script>
+		$(function () {
+			$("#club2").on("change", function() {
+				$("#Refresh").click()
+			});
+		});
+	</script>
+}

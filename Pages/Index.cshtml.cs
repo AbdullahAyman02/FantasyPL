@@ -6,6 +6,16 @@ using System.Text;
 
 namespace FantasyPL.Pages
 {
+    public class StoredProcedures
+    {
+        public static string GetParticipants = "GetParticipants";
+        public static string GetCompetitionsForUser = "GetCompetitionsForUser";
+        public static string CreateCompetition = "CreateCompetition";
+        public static string JoinCompetition = "JoinCompetition";
+        public static string ExitCompetition = "ExitCompetition";
+        public static string DeleteCompetition = "DeleteCompetition";
+
+    }
     public static class GlobalVar
     {
         public static List<Club> listClubs = new List<Club>();
@@ -15,6 +25,20 @@ namespace FantasyPL.Pages
         public static User LoggedInUser = new User();
         public static player playerQueried = new player();
         public static List<player> clubPlayers = new List<player>();
+        public static List<Fixture> weekFixtures = new List<Fixture>();
+        public static List<Fixture> listFixtures = new List<Fixture>();
+        public static Fixture fixtureQueried = new Fixture();
+        public static List<Stadium> listStadiums = new List<Stadium>();
+        public static List<Referee> listReferees = new List<Referee>();
+        public static Fixture fixture_in_insert_event = new Fixture();
+        public static bool HA = false;      //true for home side, false for away side
+        public static bool isAdmin = false; //registering admin user or fan user
+        public static int week = 1;
+        public static Competitions compQueried = new Competitions();
+        public static List<User> compParticipants = new List<User>();
+        public static List<Competitions> userComp = new List<Competitions>();
+        public static List<string> EventTypes = new List<string> { "Goal", "Assist", "Save", "Red Card", "Yellow Card", "Tackle", "End", "Start"};
+        public static List<MEvent> fixtureEvents = new List<MEvent>();
         public static List<string> Positions = new List<string> { "Attacker", "Midfielder", "Defender", "GoalKeeper" };
         public static List<string> Cities = new List<string> { "London", "Birmingham", "Bournemouth", "Brighton & Hove", "Burnley", "Liverpool", "Leicester", "Manchester", "Newcastle", "Norwich", "Sheffield", "Southampton", "London", "Watford", "London", "Wolverhampton"};
         public static List<string> Countries = new List<string> { "Afghanistan", "Åland Islands","Albania" ,"Algeria","American Samoa" ,"Andorra","Angola" ,"Anguilla","Antarctica","Antigua and Barbuda"
@@ -258,6 +282,7 @@ namespace FantasyPL.Pages
         public string successMessage = "";
         public string errorMessage = "";
         private readonly ILogger<IndexModel> _logger;
+        Controller controller = new Controller();
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -266,41 +291,22 @@ namespace FantasyPL.Pages
 
         public void OnGet()
         {
-
+            GlobalVar.isAdmin = false;
+            GlobalVar.LoggedInUser = null;
         }
 
         public void OnPost()
         {
             userInfo.Username = Request.Form["Username"];
-            string password = Request.Form["Password"];
-            var sha = SHA256.Create();
-            var byteArr = Encoding.Default.GetBytes(password);
-            var hashedPasswordByte = sha.ComputeHash(byteArr);
-            string hashedPassword = Convert.ToBase64String(hashedPasswordByte);
-            userInfo.Password = hashedPassword;
-            try
+            userInfo.Password = Request.Form["Password"];
+            GlobalVar.LoggedInUser = controller.LogIn(userInfo.Username, userInfo.Password);
+            if(GlobalVar.LoggedInUser != null)
             {
-                DBManager dBManager = new();
-                string sql = "SELECT * FROM Users WHERE USERNAME = @Username AND PASSWORD = @Password";
-                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
-                {
-                    command.Parameters.AddWithValue("@Username", userInfo.Username);
-                    command.Parameters.AddWithValue("@Password", userInfo.Password);
-                    SqlDataReader reader = dBManager.ExecuteReader(command);
-                    if(!reader.HasRows)
-                        errorMessage = "User not registered";
-                    while (reader.Read()) {
-                        GlobalVar.LoggedInUser.Username = reader.GetString(0);
-                        GlobalVar.LoggedInUser.UserType = reader.GetString(7)[0];
-                        successMessage = "Logged in successfully";
-                        Response.Redirect("/clubs");
-                    }
-                    reader.Close();
-                }
-            } catch (Exception ex)
+                successMessage = "Logged in successfully";
+                Response.Redirect("/clubs");
+            } else
             {
-                errorMessage = ex.Message;
-                successMessage = "";
+                errorMessage = "User not registered";
             }
         }
     }

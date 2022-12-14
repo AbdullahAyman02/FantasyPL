@@ -28,6 +28,13 @@ namespace FantasyPL.Pages
             string[] value = Request.Form["player"].ToString().Split(" ");
             string abbr = value[0];
             int no = Convert.ToInt32(value[1]);
+            player p = controller.SelectPlayer(abbr, no);
+            int count = controller.CountPositionforUsername(GlobalVar.LoggedInUser.Username, p.Position);
+            if ((p.Position == "GoalKeeper" && (count >= 1)) || (p.Position != "GoalKeeper" && (count >= 4)) || GlobalVar.userPlayers.Count >= 11)
+            {
+                Message = "Cannot Add Player either because your team is full or you have selected max no. of players for this position already";
+                return;
+            }
             Message = controller.InsertFTplayer(GlobalVar.LoggedInUser.Username, abbr, no);
         }
     }

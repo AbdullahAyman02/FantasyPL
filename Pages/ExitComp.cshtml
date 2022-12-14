@@ -1,0 +1,28 @@
+﻿@page
+@model FantasyPL.Pages.ExitCompModel
+@{
+}
+<div class="center form">
+	<div>
+		<form method="post">
+			<h3>Exit a Competition</h3>
+			@if (Model.Message.Length > 0)
+			{
+				<div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+					<string>@Model.Message</string>
+					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+				</div>
+			}
+			<div class="txt_field">
+				<label for="club" id="clublabel">Competition</label>
+				<select id="club" name="comp" class="form-control">
+					@foreach (var comp in GlobalVar.userComp)
+					{
+						<option value="@comp.Id">@comp.Name</option>
+					}
+				</select>
+			</div>
+			<input type="submit" value="Exit" />
+		</form>
+	</div>
+</div>
