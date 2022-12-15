@@ -9,10 +9,12 @@ namespace FantasyPL.Pages
         public string Message = "";
         public void OnGet()
         {
+            controller.GetNewCompetitions(GlobalVar.LoggedInUser.Username);
         }
         public void OnPost()
         {
-            Message = controller.JoinCompetition(Request.Form["name"], Request.Form["password"]);
+            Message = controller.JoinCompetition(Convert.ToInt32(Request.Form["comp"]), Request.Form["password"]);
+            controller.GetNewCompetitions(GlobalVar.LoggedInUser.Username);
         }
     }
 }

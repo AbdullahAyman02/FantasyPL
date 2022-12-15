@@ -13,8 +13,13 @@
             </div>
         }
         <div class="txt_field">
-            <input type="text" name='name' required />
-            <label>Competition Name</label>
+        <label for="comp" id="clublabel">Competition</label>      
+        <select id="comp" name="comp" class="form-control">
+                @foreach (var comp in GlobalVar.newComp)
+                {
+                    <option value="@comp.Id">@comp.Name</option>
+                }
+        </select>
         </div>
         <div class="txt_field">
             <input type="password" name='password' />

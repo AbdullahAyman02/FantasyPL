@@ -47,7 +47,7 @@
 					@if (GlobalVar.LoggedInUser.UserType == 'A')
 					{
 						<a class="club_link" asp-area="" asp-page="/DeleteComp">Delete Competition</a>	@*Admin*@
-						<a class="club_link" asp-area="" asp-page="/deleteClub">Remove User from Competition</a>	@*Admin*@
+						<a class="club_link" asp-area="" asp-page="/RemoveFromComp">Remove User from Competition</a>	@*Admin*@
 					} else {
 					<a class="club_link" asp-area="" asp-page="/JoinComp">Join Competition</a>	@*Fan*@
 					<a class="club_link" asp-area="" asp-page="/ExitComp">Exit Competition</a>	@*Fan*@

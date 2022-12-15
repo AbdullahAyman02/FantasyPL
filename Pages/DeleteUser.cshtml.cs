@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FantasyPL.Pages
 {
-    public class DeleteCompModel : PageModel
+    public class DeleteUserModel : PageModel
     {
         Controller controller = new Controller();
         public string Message = "";
         public void OnGet()
         {
-            controller.GetAllCompetitions();
+            controller.GetAllUsers();
         }
         public void OnPost()
         {
-            Message = controller.DeleteCompetition(Convert.ToInt32(Request.Form["comp"]));
-            controller.GetAllCompetitions();
+            Message = controller.DeleteUser(Request.Form["user"]);
+            controller.GetAllUsers();
         }
     }
 }

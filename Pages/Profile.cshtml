@@ -25,13 +25,13 @@
             <label>Enter your new password again:</label>
         </div>
         <input type="submit" value="Submit" />
-        @if (GlobalVar.LoggedInUser.UserType == 'A')
-        {
-            <div class="flexcontainer">
-                <a class="club_link" asp-area="" asp-page="/Register">Create Admin Account</a>
-            </div>
-        }
+        
         <div class="flexcontainer">
+            @if (GlobalVar.LoggedInUser.UserType == 'A')
+        {
+            <a class="club_link" asp-area="" asp-page="/Register">Create Admin Account</a>
+            <a class="club_link" asp-area="" asp-page="/DeleteUser">Delete User</a>
+        }
             <a class="club_link" asp-area="" asp-page="/Index">Logout</a>
         </div>
     </form>

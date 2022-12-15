@@ -1,0 +1,48 @@
+﻿@page
+@model FantasyPL.Pages.RemoveFromCompModel
+@{
+}
+<div class="center form">
+    <h3>Remove Participant from Competition</h3>
+    <form method="post">
+        @if (Model.Message.Length > 0)
+        {
+            <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                <string>@Model.Message</string>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+        <div class="txt_field">
+        <label for="comp" id="clublabel">Competition</label>      
+        <select id="comp" name="comp" class="form-control">
+			@foreach(var comp in GlobalVar.listComp){
+					@if(GlobalVar.compQueried.Id == comp.Id){
+						<option value="@comp.Id" selected>@comp.Name</option>
+					}else{
+						<option value="@comp.Id">@comp.Name</option>
+					}
+			}
+        </select>
+		</div>
+        <div class="txt_field">
+            <label for="participant" id="playerlabel">Participant</label>
+            <select id="participant" name="participant" class="form-control">
+                @foreach (var comp in GlobalVar.compParticipants)
+                {
+                    <option value="@comp.Username">@comp.Username</option>
+                }
+            </select>
+        </div>
+        <input type="submit" value="Remove From Competition" />
+        <input type="submit" id="Refresh" value="Refresh" name = "Refresh" style="display:none"/>
+    </form>
+</div>
+@section scripts{ 
+        <script>
+            $(function () {
+                $("#comp").on("change", function() {
+                    $("#Refresh").click()
+                });
+            });
+        </script>
+}

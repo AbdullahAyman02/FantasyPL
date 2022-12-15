@@ -10,9 +10,12 @@ namespace FantasyPL.Pages
         {
             controller.UpdateCompetitionsByUsername(GlobalVar.LoggedInUser.Username);
             if (GlobalVar.userComp.Count > 0)
+            {
                 GlobalVar.compQueried = GlobalVar.userComp[0];
+                controller.GetParticipantsInCompetition(GlobalVar.userComp[0].Id);
+            }
             else
-                GlobalVar.compQueried = null;
+                GlobalVar.compParticipants.Clear();
         }
         public void OnPost()
         {

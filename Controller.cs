@@ -89,8 +89,14 @@ namespace FantasyPL.Pages
                 return null;
             }
         }
+
         public string InsertUser(User userInfo)
         {
+            var sha = SHA256.Create();
+            var byteArr = Encoding.Default.GetBytes(userInfo.Password);
+            var hashedPasswordByte = sha.ComputeHash(byteArr);
+            string hashedPassword = Convert.ToBase64String(hashedPasswordByte);
+            userInfo.Password = hashedPassword;
             try
             {
                 String sql = "INSERT INTO Users " +
@@ -108,10 +114,20 @@ namespace FantasyPL.Pages
                     command.Parameters.AddWithValue("@UserType", userInfo.UserType);
                     command.Parameters.AddWithValue("@Gender", userInfo.Gender);
                     command.Parameters.AddWithValue("@Country", userInfo.Country);
-                    command.Parameters.AddWithValue("@FantasyTeamName", userInfo.FantasyTeamName);
-                    command.Parameters.AddWithValue("@FavoriteClub", userInfo.FavoriteClub);
-                    command.Parameters.AddWithValue("@Balance", userInfo.Balance);
-                    command.Parameters.AddWithValue("@Points", userInfo.Points);
+                    if (GlobalVar.isAdmin == true) {
+                        command.Parameters.AddWithValue("@FantasyTeamName", DBNull.Value);
+                        command.Parameters.AddWithValue("@FavoriteClub", DBNull.Value);
+                        command.Parameters.AddWithValue("@Balance", DBNull.Value);
+                        command.Parameters.AddWithValue("@Points", DBNull.Value);
+                    }
+                    else {
+
+                        command.Parameters.AddWithValue("@FantasyTeamName", userInfo.FantasyTeamName);
+                        command.Parameters.AddWithValue("@FavoriteClub", userInfo.FavoriteClub);
+                        command.Parameters.AddWithValue("@Balance", userInfo.Balance);
+                        command.Parameters.AddWithValue("@Points", userInfo.Points);
+                    }
+
                     if (dBManager.ExecuteNonQuery(command) > 0)
                     {
                         return "User was added Successfully";
@@ -126,6 +142,39 @@ namespace FantasyPL.Pages
             {
                 Console.WriteLine(ex.Message);
                 return null;
+            }
+        }
+
+        public void GetAllUsers()
+        {
+            string proc = StoredProcedures.GetAllUsers;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                GlobalVar.listUser.Clear();
+                while (reader.Read())
+                {
+                    User u = new User();
+                    u.Username = reader.GetString(0);
+                    GlobalVar.listUser.Add(u);
+                }
+                reader.Close();
+            }
+        }
+
+        public string DeleteUser(string username)
+        {
+            string proc = StoredProcedures.DeleteUser;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@username", username);
+            if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
+            {
+                return "User deleted successfully";
+            }
+            else
+            {
+                return "An error has occurred";
             }
         }
 
@@ -193,13 +242,13 @@ namespace FantasyPL.Pages
             }
         }
 
-        public Club SelectClubByName(string Name)
+        public Club SelectClubByName(string abbr)
         {
             try {
-                String query = "SELECT * FROM Clubs WHERE NAME = @name";
+                String query = "SELECT * FROM Clubs WHERE Name_Abbreviation = @abbr";
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
-                    command.Parameters.AddWithValue("@name", Name);
+                    command.Parameters.AddWithValue("@abbr", abbr);
                     using (SqlDataReader reader = dBManager.ExecuteReader(command))
                     {
                         Club club = new Club();
@@ -968,29 +1017,6 @@ namespace FantasyPL.Pages
             }
         }
 
-        public void UpdateStadiumsList()
-        {
-            String query = "SELECT * FROM Stadiums";
-            using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
-            {
-                using (SqlDataReader reader = dBManager.ExecuteReader(command))
-                {
-                    GlobalVar.listStadiums.Clear();
-                    while (reader.Read())
-                    {
-                        Stadium stadium = new Stadium();
-                        stadium.name = reader.GetString(0);
-                        stadium.capacity = reader.GetInt32(1);
-                        stadium.city = reader.GetString(2);
-                        stadium.size = reader.GetInt32(3);
-                        stadium.clubAbbreviation = reader.GetString(4);
-                        GlobalVar.listStadiums.Add(stadium);
-                    }
-                    reader.Close();
-                }
-            }
-        }
-
         public void UpdateRefereesList()
         {
             String query = "SELECT * FROM Referee";
@@ -1099,10 +1125,44 @@ namespace FantasyPL.Pages
                     command.Parameters.AddWithValue("@abbr", abbr);
                     using (SqlDataReader reader = dBManager.ExecuteReader(command))
                     {
-                        reader.Read();
-                        string stadium = reader.GetString(0);
-                        reader.Close();
-                        return stadium;
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            string stadium = reader.GetString(0);
+                            reader.Close();
+                            return stadium;
+                        }
+                        else
+                            return "-";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public string SelectManagerByAbbr(string abbr)
+        {
+            try
+            {
+                String query = "SELECT FNAME FROM Manager WHERE CLUB_MANAGED = @abbr";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@abbr", abbr);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            string stadium = reader.GetString(0);
+                            reader.Close();
+                            return stadium;
+                        }
+                        else
+                            return "-";
                     }
                 }
             }
@@ -1267,7 +1327,7 @@ namespace FantasyPL.Pages
             
         }
 
-        public String JoinCompetition(string name, string password)
+        public String JoinCompetition(int id, string password)
         {
             var sha = SHA256.Create();
             var byteArr = Encoding.Default.GetBytes(password);
@@ -1277,7 +1337,7 @@ namespace FantasyPL.Pages
             string proc = StoredProcedures.JoinCompetition;
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@username", GlobalVar.LoggedInUser.Username);
-            Parameters.Add("@name", name);
+            Parameters.Add("@id", id);
             Parameters.Add("@password", password);
             if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
             {
@@ -1290,16 +1350,16 @@ namespace FantasyPL.Pages
             }
         }
 
-        public String ExitCompetition(int id)
+        public String ExitCompetition(string username, int id)
         {
             string proc = StoredProcedures.ExitCompetition;
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@username", GlobalVar.LoggedInUser.Username);
+            Parameters.Add("@username", username);
             Parameters.Add("@id", id);
             if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
             {
                 UpdateCompetitionsByUsername(GlobalVar.LoggedInUser.Username);
-                return "You exited successfully";
+                return "User exited successfully";
             }
             else
             {
@@ -1307,22 +1367,263 @@ namespace FantasyPL.Pages
             }
         }
 
-        public String DeleteCompetition(string name)
+        public String DeleteCompetition(int id)
         {
             string proc = StoredProcedures.DeleteCompetition;
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
-            Parameters.Add("@name", name);
+            Parameters.Add("@id", id);
             if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
             {
                 return "Competition deleted successfully";
             }
             else
             {
-                return "This competition does not exit!";
+                return "An error has occurred";
             }
         }
 
-        public void TerminateConnection()
+        public void GetAllCompetitions()
+        {
+            string proc = StoredProcedures.GetAllCompetitions;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                GlobalVar.listComp.Clear();
+                while (reader.Read())
+                {
+                    Competitions c = new();
+                    c.Id = reader.GetInt32(0);
+                    c.Name = reader.GetString(1);
+                    c.Password = reader.GetString(2);
+                    c.Capacity = reader.GetInt32(3);
+                    GlobalVar.listComp.Add(c);
+                }
+                reader.Close();
+            }
+        }
+
+        public void GetNewCompetitions(string username)
+        {
+            string proc = StoredProcedures.GetNewCompetitions;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@username", username);
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                GlobalVar.newComp.Clear();
+                while (reader.Read())
+                {
+                    Competitions c = new();
+                    c.Id = reader.GetInt32(0);
+                    c.Name = reader.GetString(1);
+                    c.Password = reader.GetString(2);
+                    c.Capacity = reader.GetInt32(3);
+                    GlobalVar.newComp.Add(c);
+                }
+                reader.Close();
+            }
+        }
+
+        public void UpdateStadiumsList()
+        {
+            string proc = StoredProcedures.GetNewStadiums;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                GlobalVar.listStadiums.Clear();
+                while (reader.Read())
+                {
+                    Stadium stadium = new Stadium();
+                    stadium.name = reader.GetString(0);
+                    stadium.capacity = reader.GetInt32(1);
+                    stadium.city = reader.GetString(2);
+                    stadium.size = reader.GetInt32(3);
+                    GlobalVar.listStadiums.Add(stadium);
+                }
+                reader.Close();
+            }
+        }
+
+		public void UpdateAllStadiums()
+		{
+			string proc = StoredProcedures.GetStadiums;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+			{
+				GlobalVar.allStadiums.Clear();
+				while (reader.Read())
+				{
+					Stadium stadium = new Stadium();
+					stadium.name = reader.GetString(0);
+					stadium.capacity = reader.GetInt32(1);
+					stadium.city = reader.GetString(2);
+					stadium.size = reader.GetInt32(3);
+					GlobalVar.allStadiums.Add(stadium);
+				}
+				reader.Close();
+			}
+		}
+
+		public String DeleteStadium(string name)
+		{
+			string proc = StoredProcedures.DeleteStadium;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			Parameters.Add("@name", name);
+			if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
+			{
+				return "Stadium deleted successfully";
+			}
+			else
+			{
+				return "An error has occurred";
+			}
+		}
+
+		public void UpdateManagersList()
+		{
+			string proc = StoredProcedures.GetNewManager;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+			{
+				GlobalVar.listManagers.Clear();
+				while (reader.Read())
+				{
+					Manager man = new();
+					man.ID = reader.GetInt32(0);
+					man.FName = reader.GetString(1);
+					man.MName = reader.GetString(2);
+					man.LName = reader.GetString(3);
+					GlobalVar.listManagers.Add(man);
+				}
+				reader.Close();
+			}
+		}
+
+		public void UpdateAllManagers()
+		{
+			string proc = StoredProcedures.GetManagers;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+			{
+				GlobalVar.allManagers.Clear();
+				while (reader.Read())
+				{
+					Manager man = new();
+					man.ID = reader.GetInt32(0);
+					man.FName = reader.GetString(1);
+					man.MName = reader.GetString(2);
+					man.LName = reader.GetString(3);
+					GlobalVar.allManagers.Add(man);
+				}
+				reader.Close();
+			}
+		}
+
+		public String DeleteManager(int id)
+		{
+			string proc = StoredProcedures.DeleteManager;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			Parameters.Add("@id", id);
+			if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
+			{
+				return "Manager deleted successfully";
+			}
+			else
+			{
+				return "An error has occurred";
+			}
+		}
+		public int SetStadium(string club_abbr, string name)
+        {
+            string proc = StoredProcedures.SetStadium;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@abbr", club_abbr);
+            Parameters.Add("@name", name);
+            return dBManager.ExecuteNonQuery(proc, Parameters);
+        }
+
+		public int SetManager(string club_abbr, int id)
+		{
+			string proc = StoredProcedures.SetManager;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			Parameters.Add("@abbr", club_abbr);
+			Parameters.Add("@id", id);
+			return dBManager.ExecuteNonQuery(proc, Parameters);
+		}
+
+		public int lastManID()
+        {
+            try
+            {
+                String query = "SELECT TOP 1 ID FROM Manager ORDER BY ID DESC";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        if (reader.HasRows)
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            reader.Close();
+                            return Convert.ToInt32(dt.Rows[0][0]);
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return 0;
+            }
+        }
+
+		public string InsertStadium(string name, int capacity, string city, int size)
+		{
+			string proc = StoredProcedures.InsertStadium;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			Parameters.Add("@name", name);
+			Parameters.Add("@capacity", capacity);
+			Parameters.Add("@city", city);
+			Parameters.Add("@size", size);
+
+			if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
+			{
+				return "Stadium added successfully";
+			}
+			else
+			{
+				return "An error has occured";
+			}
+		}
+
+		public string InsertManager(Manager m)
+		{
+			string proc = StoredProcedures.InsertManager;
+			Dictionary<string, object> Parameters = new Dictionary<string, object>();
+			Parameters.Add("@id", m.ID);
+			Parameters.Add("@fname", m.FName);
+			Parameters.Add("@mname", m.MName);
+			Parameters.Add("@lname", m.LName);
+			Parameters.Add("@age", m.age);
+			Parameters.Add("@nationality", m.nationality);
+			Parameters.Add("@competitionswon", m.competitions_won);
+			Parameters.Add("@exp", m.experience_in_years);
+
+			if (dBManager.ExecuteNonQuery(proc, Parameters) > 0)
+			{
+				return "Manager added successfully";
+			}
+			else
+			{
+				return "An error has occured";
+			}
+
+		}
+		public void TerminateConnection()
         {
         dBManager.CloseConnection();
         }

@@ -41,6 +41,24 @@
          </select>
 	</div>
 	<div class="txt_field">
+        <label for="stadium" id="citylabel">Stadium</label>      
+        <select id="stadium" name="stadium" class="form-control">
+            @foreach (var stadium in GlobalVar.listStadiums)
+            {
+					<option Value="@stadium.name">@stadium.name</option>
+            }
+         </select>
+	</div>
+	<div class="txt_field">
+			<label for="manager" id="citylabel">Manager</label>      
+			<select id="manager" name="manager" class="form-control">
+				@foreach (var manager in GlobalVar.listManagers)
+				{
+					<option Value="@manager.ID">@manager.FName @manager.MName @manager.LName</option>
+				}
+			 </select>
+	</div>
+	<div class="txt_field">
 		<input type="text" name='number_of_trophies' value='@Model.clubInfo.Number_of_Trophies' required/>
 		<label>Number of Trophies</label>
 	</div>

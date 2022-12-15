@@ -1,0 +1,52 @@
+﻿@page
+@model FantasyPL.Pages.AddManModel
+@{
+}
+<div class="center form">
+	<h3>Add a Manager</h3>
+	<form method="post">
+		@if (Model.Message.Length > 0)
+		{
+			<div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+				<string>@Model.Message</string>
+				<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+			</div>
+		}
+		<div class="name">
+		<div class="txt_field">
+			<input type="text" name='fname' value='@Model.ManInfo.FName' required/>
+			<label>Manager's First Name</label>
+		</div>
+			<div class="txt_field">
+				<input type="text" name='mname' value='@Model.ManInfo.MName' required />
+				<label>Manager's Middle Name</label>
+			</div>
+		<div class="txt_field">
+			<input type="text" name='lname' value='@Model.ManInfo.LName' required/>
+			<label>Manager's Last Name</label>
+		</div>
+	</div>
+		<div class="txt_field">
+			<input type="number" name='age' min="18" value='@Model.ManInfo.age' required />
+			<label>Age</label>
+		</div>
+		<div class="txt_field">
+			<label for="nationality" id="citylabel">Nationality</label>
+			<select id="nationality" name="nationality" class="form-control" value='@Model.ManInfo.nationality'>
+				@foreach (var country in GlobalVar.Countries)
+				{
+					<option Value="@country">@country</option>
+				}
+			</select>
+		</div>
+		<div class="txt_field">
+			<input type="number" name='competitions_won' min="0" value='@Model.ManInfo.competitions_won' required />
+			<label>Competitions Won</label>
+		</div>
+		<div class="txt_field">
+			<input type="number" name='experience' min="0" value='@Model.ManInfo.experience_in_years' required />
+			<label>Experience In Years</label>
+		</div>
+		<input type="submit" value="Insert" />
+	</form>
+</div>

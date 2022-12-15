@@ -11,9 +11,9 @@
         <select id="club" name="club" class="form-control" value='@GlobalVar.clubQueried.Name'>
 			@foreach(var club in GlobalVar.listClubs){
 					@if(GlobalVar.clubQueried.Name == club.Name){
-						<option value="@club.Name" selected>@club.Name</option>
+						<option value="@club.Name_Abbreviation" selected>@club.Name</option>
 					}else{
-						<option value="@club.Name">@club.Name</option>
+						<option value="@club.Name_Abbreviation">@club.Name</option>
 					}
 			}
         </select>
@@ -24,6 +24,8 @@
 				<tr>
 					<th>Name</th>
 					<th>Club Abbrv.</th>
+					<th>Stadium</th>
+					<th>Manager</th>
 					<th>Est. Year</th>
 					<th>City</th>
 					<th>No. of Trophies</th>
@@ -41,6 +43,8 @@
 				<tr>
 					<td>@GlobalVar.clubQueried.Name</td>
 					<td>@GlobalVar.clubQueried.Name_Abbreviation</td>
+					<td>@GlobalVar.clubQueried.Stadium</td>
+					<td>@GlobalVar.clubQueried.Manager</td>
 					<td>@GlobalVar.clubQueried.Establishment_year</td>
 					<td>@GlobalVar.clubQueried.City</td>
 					<td>@GlobalVar.clubQueried.Number_of_Trophies</td>
@@ -65,6 +69,10 @@
 						<a class="club_link" asp-area="" asp-page="/InsertClub">Insert Club</a>
 						<a class="club_link" asp-area="" asp-page="/EditClub">Edit Club</a>
 						<a class="club_link" asp-area="" asp-page="/deleteClub">Delete Club</a>
+						<a class="club_link" asp-area="" asp-page="/AddStadium">Add Stadium</a>
+						<a class="club_link" asp-area="" asp-page="/DeleteStadium">Delete Stadium</a>
+						<a class="club_link" asp-area="" asp-page="/AddMan">Add Manager</a>
+						<a class="club_link" asp-area="" asp-page="/deleteMan">Delete Manager</a>
 			</div>
 		}
 	</form>

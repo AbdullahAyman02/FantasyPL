@@ -1,0 +1,38 @@
+﻿@page
+@model FantasyPL.Pages.AddStadiumModel
+@{
+}
+<div class="center form">
+<h3>Add a Stadium</h3>
+<form method="post">
+        @if (Model.Message.Length > 0)
+        {
+            <div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+                <string>@Model.Message</string>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+	<div class="txt_field">
+	 <input type="text" name='name' value='@Model.stadiumInfo.name' required/>
+	 <label>Stadium Name</label>
+	</div>
+	<div class="txt_field">
+	 <input type="number" name='capacity' min="1" value='@Model.stadiumInfo.capacity' required/>
+	 <label>Capacity</label>
+	</div>
+    <div class="txt_field">
+        <label for="city" id="citylabel">City</label>      
+        <select id="city" name="city" class="form-control" value='@Model.stadiumInfo.city'>
+            @foreach (var city in GlobalVar.Cities)
+            {
+				<option Value="@city">@city</option>
+            }
+         </select>
+	</div>
+	<div class="txt_field">
+	 <input type="number" name='size' value='@Model.stadiumInfo.size' required/>
+	 <label>Size</label>
+	</div>
+	<input type="submit" value="Insert"/>
+</form>
+</div>

@@ -1,9 +1,9 @@
 ﻿@page
-@model FantasyPL.Pages.DeleteCompModel
+@model FantasyPL.Pages.DeleteUserModel
 @{
 }
 <div class="center form">
-    <h3>Delete a Competition</h3>
+    <h3>Delete a User</h3>
     <form method="post">
         @if (Model.Message.Length > 0)
         {
@@ -13,14 +13,14 @@
             </div>
         }
         <div class="txt_field">
-        <label for="comp" id="clublabel">Competition</label>      
-        <select id="comp" name="comp" class="form-control">
-                @foreach (var comp in GlobalVar.listComp)
+            <label for="user" id="clublabel">Username</label>
+            <select id="user" name="user" class="form-control">
+                @foreach (var u in GlobalVar.listUser)
                 {
-                        <option value="@comp.Id">@comp.Name</option>
+                    <option value="@u.Username">@u.Username</option>
                 }
-        </select>
+            </select>
         </div>
-        <input type="submit" value="Delete" />
+        <input type="submit" value="Delete User" />
     </form>
 </div>

@@ -32,19 +32,12 @@ namespace FantasyPL.Pages
                 userInfo.UserType = 'F';
             } else
             {
-                // userInfo.FantasyTeamName = DBNull.Value;
-                userInfo.FavoriteClub = "null";
-                userInfo.Balance = 0;
                 userInfo.UserType = 'A';
             }
             userInfo.Email = Request.Form["Email"];
             userInfo.Username = Request.Form["username"];
-            string password = Request.Form["password"];
-            var sha = SHA256.Create();
-            var byteArr = Encoding.Default.GetBytes(password);
-            var hashedPasswordByte = sha.ComputeHash(byteArr);
-            string hashedPassword = Convert.ToBase64String(hashedPasswordByte);
-            userInfo.Password = hashedPassword;
+            userInfo.Password = Request.Form["password"];
+            
             userInfo.Gender = Request.Form["gender"];
             userInfo.Birthdate = Request.Form["birthday"];
             userInfo.Points = 0;

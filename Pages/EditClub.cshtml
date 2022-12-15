@@ -20,10 +20,10 @@
 			@foreach (var club in GlobalVar.listClubs)
 			{
 				if(club.Name == GlobalVar.clubQueried.Name){
-						<option selected Value="@club.Name">@club.Name</option>
+						<option selected Value="@club.Name_Abbreviation">@club.Name</option>
 				}
 				else{
-						<option Value="@club.Name">@club.Name</option>
+						<option Value="@club.Name_Abbreviation">@club.Name</option>
 				}
 			}
 		</select>

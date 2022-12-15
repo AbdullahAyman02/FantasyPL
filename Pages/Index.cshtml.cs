@@ -14,6 +14,20 @@ namespace FantasyPL.Pages
         public static string JoinCompetition = "JoinCompetition";
         public static string ExitCompetition = "ExitCompetition";
         public static string DeleteCompetition = "DeleteCompetition";
+        public static string GetAllCompetitions = "GetAllCompetitions";
+        public static string GetNewCompetitions = "GetNewCompetitions";
+        public static string DeleteUser = "DeleteUser";
+        public static string GetAllUsers = "GetAllUsers";
+        public static string SetStadium = "SetStadium";
+        public static string SetManager = "SetManager";
+        public static string GetNewStadiums = "GetFreeStadium";
+        public static string GetStadiums = "GetStadiums";
+        public static string DeleteStadium = "DeleteStadium";
+        public static string GetNewManager = "GetFreeManager";
+        public static string GetManagers = "GetManagers";
+        public static string DeleteManager = "DeleteManager";
+        public static string InsertStadium = "InsertStadium";
+        public static string InsertManager = "InsertManager";
 
     }
     public static class GlobalVar
@@ -29,6 +43,9 @@ namespace FantasyPL.Pages
         public static List<Fixture> listFixtures = new List<Fixture>();
         public static Fixture fixtureQueried = new Fixture();
         public static List<Stadium> listStadiums = new List<Stadium>();
+        public static List<Stadium> allStadiums = new List<Stadium>();
+        public static List<Manager> listManagers = new List<Manager>();
+        public static List<Manager> allManagers = new List<Manager>();
         public static List<Referee> listReferees = new List<Referee>();
         public static Fixture fixture_in_insert_event = new Fixture();
         public static bool HA = false;      //true for home side, false for away side
@@ -37,6 +54,9 @@ namespace FantasyPL.Pages
         public static Competitions compQueried = new Competitions();
         public static List<User> compParticipants = new List<User>();
         public static List<Competitions> userComp = new List<Competitions>();
+        public static List<Competitions> listComp = new List<Competitions>();
+        public static List<Competitions> newComp = new List<Competitions>();
+        public static List<User> listUser = new List<User>();
         public static List<string> EventTypes = new List<string> { "Goal", "Assist", "Save", "Red Card", "Yellow Card", "Tackle", "End", "Start"};
         public static List<MEvent> fixtureEvents = new List<MEvent>();
         public static List<string> Positions = new List<string> { "Attacker", "Midfielder", "Defender", "GoalKeeper" };

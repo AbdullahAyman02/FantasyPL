@@ -15,6 +15,8 @@ namespace FantasyPL.Pages
 
         public void OnGet()
         {
+            controller.UpdateStadiumsList();
+            controller.UpdateManagersList();
         }
         public void OnPost()
         {
@@ -26,6 +28,13 @@ namespace FantasyPL.Pages
             clubInfo.Owner_Fname = Request.Form["owner_fname"];
             clubInfo.Owner_Lname = Request.Form["owner_lname"];
             Message = controller.InsertClub(clubInfo);
+            if(Message == "Club was added Successfully")
+            {
+                controller.SetStadium(clubInfo.Name_Abbreviation, Request.Form["stadium"]);
+                controller.SetManager(clubInfo.Name_Abbreviation, Convert.ToInt32(Request.Form["manager"]));
+                controller.UpdateStadiumsList();
+                controller.UpdateManagersList();
+            }
             controller.UpdateClubsList();
         }
     }

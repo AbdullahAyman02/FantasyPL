@@ -14,7 +14,7 @@ namespace FantasyPL.Pages
         }
         public void OnPost()
         {
-            Message = controller.ExitCompetition(Convert.ToInt32(Request.Form["comp"]));
+            Message = controller.ExitCompetition( GlobalVar.LoggedInUser.Username, Convert.ToInt32(Request.Form["comp"]));
         }
     }
 }
