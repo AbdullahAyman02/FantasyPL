@@ -11,8 +11,14 @@ namespace FantasyPL.Pages
         {
             controller.UpdateClubsList();
             controller.UpdatePlayersList();
-            GlobalVar.playerQueried = GlobalVar.listPlayers[0];
-            controller.SelectPlayersByClubAbbr(GlobalVar.playerQueried.Club_Abbreviation);
+            if (GlobalVar.listPlayers.Count > 0)
+            {
+                GlobalVar.playerQueried = GlobalVar.listPlayers[0];
+                controller.SelectPlayersByClubAbbr(GlobalVar.playerQueried.Club_Abbreviation);
+            }
+            else
+                GlobalVar.playerQueried = new();
+			
         }
         public void OnPost()
         {

@@ -12,6 +12,7 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
             }
+            
             <div class="txt_field">
                 <label for="player" id="playerlabel">Player</label>
                 <select id="player" name="player" class="form-control">
@@ -24,6 +25,10 @@
                     }
                 </select>
             </div>
+        <div class="flexcontainer">
+            <label for="player" id="playerlabel" style="color:black">Balance: </label>
+            <label for="player" id="playerlabel" style="color:red">@GlobalVar.LoggedInUser.Balance</label>
+        </div>
             <table class="table">
                 <tr>Player Details</tr>
                 <thead>

@@ -35,7 +35,13 @@ namespace FantasyPL.Pages
                 Message = "Cannot Add Player either because your team is full or you have selected max no. of players for this position already";
                 return;
             }
+            if(controller.GetPriceOfPlayer(abbr, no) > controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username))
+            {
+                Message = "You do not have enough balance.";
+                return;
+            }
             Message = controller.InsertFTplayer(GlobalVar.LoggedInUser.Username, abbr, no);
+            GlobalVar.LoggedInUser.Balance = controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username);
         }
     }
 }

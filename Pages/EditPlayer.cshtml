@@ -77,19 +77,19 @@
 		</div>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='price' value='@GlobalVar.playerQueried.Price' required/>
+	 <input type="number" name='price' min="0" value='@GlobalVar.playerQueried.Price' required/>
 	 <label>Price</label>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='age' value='@GlobalVar.playerQueried.Age' required/>
+	 <input type="number" name='age' min="15" value='@GlobalVar.playerQueried.Age' required/>
 	 <label>Age</label>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='height' value='@GlobalVar.playerQueried.Height' required/>
+	 <input type="number" name='height' min="100" value='@GlobalVar.playerQueried.Height' required/>
 	 <label>Height</label>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='weight' value='@GlobalVar.playerQueried.Weight' required/>
+	 <input type="number" name='weight' min="50" value='@GlobalVar.playerQueried.Weight' required/>
 	 <label>Weight</label>
 	</div>
 	<div class="txt_field">
@@ -109,16 +109,16 @@
 		 </select>
 	</div>
 	<div class="txt_field">
-		<input type="text" name='debut' value='@GlobalVar.playerQueried.Debut_Year' required/>
+		<input type="number" name='debut' min="1990" value='@GlobalVar.playerQueried.Debut_Year' required/>
 		<label>Debut Year</label>
 	</div>
 	<div class="name">
 		<div class="txt_field">
-			<input type="text" name='contract' value='@GlobalVar.playerQueried.Contract_Length' required/>
+			<input type="number" name='contract' min="0" value='@GlobalVar.playerQueried.Contract_Length' required/>
 			<label>Contract Length</label>
 		</div>
 		<div class="txt_field">
-			<input type="text" name='points' value='@GlobalVar.playerQueried.Points' required/>
+			<input type="number" name='points' min="0" value='@GlobalVar.playerQueried.Points' required/>
 			<label>Points</label>
 		</div>
 	</div>

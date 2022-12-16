@@ -46,6 +46,8 @@ namespace FantasyPL.Pages
                         {
                             u.Username = reader.GetString(0);
                             u.UserType = reader.GetString(7)[0];
+                            if(u.UserType == 'F')
+                                u.Balance = reader.GetInt32(12);
                         }
                         reader.Close();
                         return u;
@@ -354,9 +356,16 @@ namespace FantasyPL.Pages
 
         public string DeleteClub(string Name)
         {
+            //UpdateFixtureEvents(Fixture_ID);
+            SelectPlayersByClubAbbr(Name);
+            while (GlobalVar.clubPlayers.Count > 0)
+            {
+                DeletePlayer(Name,GlobalVar.clubPlayers[0].Player_Number);
+                GlobalVar.clubPlayers.RemoveAt(0);
+            }
             try
             {
-                string query = "DELETE FROM Clubs WHERE NAME = @name";
+                string query = "DELETE FROM Clubs WHERE NAME_ABBREVIATION = @name";
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
                     command.Parameters.AddWithValue("@name", Name);
@@ -1623,6 +1632,64 @@ namespace FantasyPL.Pages
 			}
 
 		}
+
+        public int GetBalanceOfUser(string username)
+        {
+            try
+            {
+                String sql = "select balance from users where username = @user";
+
+                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@user", username);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        reader.Read();
+                        int balance = reader.GetInt32(0);
+                        reader.Close();
+                        return balance;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
+
+
+
+
+        public int GetPriceOfPlayer(string club_abbr,int player_no)
+        {
+            try
+            {
+                String query = "SELECT PRICE FROM PLAYERS WHERE CLUB_ABBREVIATION = @club_abbr AND PLAYER_NO = @player_no";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@club_abbr", club_abbr);
+                    command.Parameters.AddWithValue("@player_no", player_no);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        int price = 0;
+                        while (reader.Read())
+                        {
+                            price = reader.GetInt32(0);
+                        }
+                        reader.Close();
+                        return price;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return -1;
+            }
+        }
+
 		public void TerminateConnection()
         {
         dBManager.CloseConnection();

@@ -79,6 +79,6 @@ namespace FantasyPL.Pages
         public string? Birthdate { get; set; }
         public char UserType { get; set;}
         public int Points { get; set; }
-        public int? Balance { get; set; }
+        public int Balance { get; set; }
     }
 }
