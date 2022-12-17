@@ -1,3 +1,4 @@
+using AspNetCore.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,6 +18,11 @@ namespace FantasyPL.Pages
         public void OnPost()
         { 
             string clubAbbr = Request.Form["club3"];
+            if(clubAbbr == null)
+            {
+                Message = "Please Specify a Club.";
+                return;
+            }
             int playerNo = Convert.ToInt16(Request.Form["number"]);
             playerinfo.Club_Abbreviation = clubAbbr;
             playerinfo.Player_Number = playerNo;

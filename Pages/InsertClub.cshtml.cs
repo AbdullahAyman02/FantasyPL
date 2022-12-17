@@ -27,7 +27,15 @@ namespace FantasyPL.Pages
             clubInfo.Number_of_Trophies = Convert.ToInt32(Request.Form["number_of_trophies"]);
             clubInfo.Owner_Fname = Request.Form["owner_fname"];
             clubInfo.Owner_Lname = Request.Form["owner_lname"];
-            Message = controller.InsertClub(clubInfo);
+            clubInfo.Stadium = Request.Form["stadium"];
+            clubInfo.Manager = Request.Form["manager"];
+
+            if(clubInfo.Manager == null || clubInfo.Stadium == null)
+            {
+                Message = "Please select a stadium and a manager. If either list is empty, insert new ones first";
+                return;
+            }
+			Message = controller.InsertClub(clubInfo);
             if(Message == "Club was added Successfully")
             {
                 controller.SetStadium(clubInfo.Name_Abbreviation, Request.Form["stadium"]);

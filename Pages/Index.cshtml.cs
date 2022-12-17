@@ -60,7 +60,7 @@ namespace FantasyPL.Pages
         public static List<string> EventTypes = new List<string> { "Goal", "Assist", "Save", "Red Card", "Yellow Card", "Tackle", "End", "Start"};
         public static List<MEvent> fixtureEvents = new List<MEvent>();
         public static List<string> Positions = new List<string> { "Attacker", "Midfielder", "Defender", "GoalKeeper" };
-        public static List<string> Cities = new List<string> { "London", "Birmingham", "Bournemouth", "Brighton & Hove", "Burnley", "Liverpool", "Leicester", "Manchester", "Newcastle", "Norwich", "Sheffield", "Southampton", "London", "Watford", "London", "Wolverhampton"};
+        public static List<string> Cities = new List<string> { "London", "Birmingham", "Bournemouth", "Brighton & Hove", "Burnley", "Liverpool", "Leicester", "Manchester", "Newcastle", "Norwich", "Sheffield", "Southampton", "Watford", "Wolverhampton"};
         public static List<string> Countries = new List<string> { "Afghanistan", "Åland Islands","Albania" ,"Algeria","American Samoa" ,"Andorra","Angola" ,"Anguilla","Antarctica","Antigua and Barbuda"
 ,"Argentina"
 ,"Armenia"

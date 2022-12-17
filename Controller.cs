@@ -325,7 +325,7 @@ namespace FantasyPL.Pages
         {
             try
             {
-                String query = "UPDATE Clubs SET NAME_ABBREVIATION = @abbr, ESTABLISHMENT_YEAR = @year, CITY = @city, NUMBER_OF_TROPHIES = @trophies, OWNER_FNAME = @fname, OWNER_LNAME = @LNAME WHERE NAME = @name";
+                String query = "UPDATE Clubs SET NAME_ABBREVIATION = @abbr, ESTABLISHMENT_YEAR = @year, CITY = @city, NUMBER_OF_TROPHIES = @trophies, OWNER_FNAME = @fname, OWNER_LNAME = @LNAME WHERE NAME_ABBREVIATION = @name";
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
                     command.Parameters.AddWithValue("@name", club.Name);
@@ -1687,6 +1687,29 @@ namespace FantasyPL.Pages
             {
                 Console.WriteLine(e.ToString());
                 return -1;
+            }
+        }
+
+        public DataTable GetStadiumInfo()
+        {
+            string query = "Select * From Stadiums";
+            using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+            {
+                using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                {
+                    DataTable dt = new DataTable();
+                    if (reader.HasRows)
+                    {
+                        dt.Load(reader);
+                        reader.Close();
+                        return dt;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return dt;
+                    }
+                }
             }
         }
 

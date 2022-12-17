@@ -19,11 +19,11 @@
 	 <label>Club Name</label>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='name_abbreviation' value='@Model.clubInfo.Name_Abbreviation' required/>
+	 <input type="text" name='name_abbreviation' maxlength="3" minlength="3" value='@Model.clubInfo.Name_Abbreviation' required/>
 	 <label>Club Name Abbreviation</label>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='establishment_year' value='@Model.clubInfo.Establishment_year' required/>
+	 <input type="number" name='establishment_year' min="1800" value='@Model.clubInfo.Establishment_year' required/>
 	 <label>Establishment Year</label>
 	</div>
     <div class="txt_field">
@@ -59,7 +59,7 @@
 			 </select>
 	</div>
 	<div class="txt_field">
-		<input type="text" name='number_of_trophies' value='@Model.clubInfo.Number_of_Trophies' required/>
+		<input type="number" min="0" name='number_of_trophies' value='@Model.clubInfo.Number_of_Trophies' required/>
 		<label>Number of Trophies</label>
 	</div>
 	<div class="name">

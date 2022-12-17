@@ -23,6 +23,7 @@ namespace FantasyPL.Pages
                 string abbr1 = value1[0];
                 int no1 = Convert.ToInt32(value1[1]);
                 Message = controller.DeleteFTplayer(GlobalVar.LoggedInUser.Username, abbr1, no1);
+                GlobalVar.LoggedInUser.Balance = controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username);
                 return;
             }
             string[] value = Request.Form["player"].ToString().Split(" ");

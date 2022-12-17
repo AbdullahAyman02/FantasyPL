@@ -27,8 +27,9 @@ namespace FantasyPL.Pages
             clubInfo.Owner_Fname = Request.Form["owner_fname"];
             clubInfo.Owner_Lname = Request.Form["owner_lname"];
             Message = controller.UpdateClub(clubInfo);
-            controller.UpdateClubsList();
-        }
+			controller.UpdateClubsList();
+			GlobalVar.clubQueried = controller.SelectClubByName(Request.Form["name_abbreviation"]);
+		}
 
 
     }
