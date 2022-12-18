@@ -12,8 +12,17 @@ namespace FantasyPL.Pages
             controller.UpdateFixturesList();
             controller.UpdateStadiumsList();
             controller.UpdateRefereesList();
-            GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
-        }
+			if (GlobalVar.listFixtures.Count > 0)
+			{
+				GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
+				controller.UpdateFixtureEvents(GlobalVar.fixtureQueried.ID);
+			}
+			else
+			{
+				GlobalVar.fixtureQueried = new();
+				GlobalVar.fixtureEvents.Clear();
+			}
+		}
 
         public void OnPost()
         {

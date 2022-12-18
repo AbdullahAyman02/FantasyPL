@@ -1,0 +1,62 @@
+﻿@page
+@model FantasyPL.Pages.InsertRefModel
+@{
+}
+<br/>
+<br />
+<div class="center form">
+<h3>Insert a Referee</h3>
+<form method="post">
+		@if (Model.Message.Length > 0)
+		{
+				<div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+					<string>@Model.Message</string>
+					<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+				</div>
+		}
+	
+	<div class="name">
+		<div class="txt_field">
+			<input type="text" name='Fname' value='@GlobalVar.refereeQueried.FName' required/>
+			<label>First Name</label>
+		</div>
+		<div class="txt_field">
+				<input type="text" name='Mname' value='@GlobalVar.refereeQueried.MName' required />
+			<label>Middle Name</label>
+		</div>
+		<div class="txt_field">
+				<input type="text" name='Lname' value='@GlobalVar.refereeQueried.LName' required />
+			<label>Last Name</label>
+		</div>
+	</div>
+	
+	<div class="txt_field">
+			<input type="number" name='age' min="15" value='@GlobalVar.refereeQueried.Age' require d/>
+	 <label>Age</label>
+	</div>
+
+	<div class="txt_field">
+		<label for="nationality" id="nationalityLabel">Nationality</label>
+			<select id="nationality" name="nationality" class="form-control" value='@GlobalVar.refereeQueried.Nationality'>
+				@foreach (var country in GlobalVar.Countries)
+				{
+					if (country == GlobalVar.refereeQueried.Nationality)
+					{
+						<option Value="@country" selected>@country</option>
+					}
+					else
+					{
+						<option Value="@country">@country</option>
+					}
+				}
+		 </select>
+	</div>
+
+	<div class="txt_field">
+		<input type="number" name='exp' min="0" value='@GlobalVar.refereeQueried.Experience' required/>
+		<label>Experience in years</label>
+	</div>
+
+	<input type="submit" name="Insert" value="Insert Referee"/>
+</form>
+</div>

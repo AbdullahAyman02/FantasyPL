@@ -10,9 +10,15 @@ namespace FantasyPL.Pages
         public void OnGet()
         {
             controller.UpdateFixturesList();
-            controller.UpdateFixtureEvents(GlobalVar.listFixtures[0].ID);
+
             if (GlobalVar.listFixtures.Count > 0)
+            {
                 GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
+				controller.UpdateFixtureEvents(GlobalVar.listFixtures[0].ID);
+                return;
+			}
+            GlobalVar.fixtureQueried = new() ;
+			GlobalVar.fixtureEvents.Clear();
         }
         public void OnPost()
         {
@@ -27,10 +33,15 @@ namespace FantasyPL.Pages
             if (btnvalue != null)
             {
                 Message = controller.DeleteFixture(Convert.ToInt32(Request.Form["fix"]));
-                controller.UpdateFixtureEvents(Convert.ToInt32(GlobalVar.listFixtures[0].ID));
-                if(GlobalVar.listFixtures.Count > 0)
-                    GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
-                return;
+				if (GlobalVar.listFixtures.Count > 0)
+				{
+					GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
+					controller.UpdateFixtureEvents(GlobalVar.listFixtures[0].ID);
+					return;
+				}
+				GlobalVar.fixtureQueried = new();
+				GlobalVar.fixtureEvents.Clear();
+				return;
             }
             Message = controller.DeleteEventofFixture(Convert.ToInt32(Request.Form["fix"]), Convert.ToInt32(Request.Form["evt"]));
         }

@@ -15,10 +15,19 @@ namespace FantasyPL.Pages
             controller.UpdateStadiumsList();
             controller.UpdateRefereesList();
             controller.UpdateFixturesList();
-            GlobalVar.fixture_in_insert_event = GlobalVar.listFixtures[0];
-            GlobalVar.HA = true;
-            controller.SelectPlayersByClubAbbr(GlobalVar.fixture_in_insert_event.HomeSide);
-        }
+            if (GlobalVar.listFixtures.Count > 0)
+            {
+                GlobalVar.fixture_in_insert_event = GlobalVar.listFixtures[0];
+
+                controller.SelectPlayersByClubAbbr(GlobalVar.fixture_in_insert_event.HomeSide);
+            }
+            else
+            {
+                GlobalVar.fixture_in_insert_event = new();
+                GlobalVar.clubPlayers.Clear();
+            }
+			GlobalVar.HA = true;
+		}
         public void OnPost()
         {
             Message = "";

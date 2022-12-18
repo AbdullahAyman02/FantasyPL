@@ -97,9 +97,11 @@
             @if (GlobalVar.LoggedInUser.UserType == 'A')
             {
                 <div class="flexcontainer">
+                    <a class="club_link" asp-area="" asp-page="/InsertRef">Insert Referee</a>
                     <a class="club_link" asp-area="" asp-page="/InsertFE">Insert Fixture</a>
                     <a class="club_link" asp-area="" asp-page="/EditFix">Edit Fixture</a>
                     <a class="club_link" asp-area="" asp-page="/DeleteFE">Delete Fixture</a>
+                    <a class="club_link" asp-area="" asp-page="DeleteRef">Delete Referee</a>
                 </div>
             }
         </form>

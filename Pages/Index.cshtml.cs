@@ -42,6 +42,7 @@ namespace FantasyPL.Pages
         public static List<Fixture> weekFixtures = new List<Fixture>();
         public static List<Fixture> listFixtures = new List<Fixture>();
         public static Fixture fixtureQueried = new Fixture();
+        public static Referee refereeQueried = new Referee();
         public static List<Stadium> listStadiums = new List<Stadium>();
         public static List<Stadium> allStadiums = new List<Stadium>();
         public static List<Manager> listManagers = new List<Manager>();

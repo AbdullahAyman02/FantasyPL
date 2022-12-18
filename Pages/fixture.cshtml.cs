@@ -11,8 +11,16 @@ namespace FantasyPL.Pages
         { 
             GlobalVar.week = 1;
             controller.UpdateFixturesByWeek(GlobalVar.week);
-            GlobalVar.fixtureQueried = GlobalVar.weekFixtures[0];
-            GlobalVar.fixtureEvents.Clear();
+            if (GlobalVar.weekFixtures.Count > 0)
+            {
+                GlobalVar.fixtureQueried = GlobalVar.weekFixtures[0];
+                controller.UpdateFixtureEvents(GlobalVar.fixtureQueried.ID);
+            }
+            else
+            {
+                GlobalVar.fixtureQueried = new();
+                GlobalVar.fixtureEvents.Clear();
+            }
         }
 
         public void OnPost()

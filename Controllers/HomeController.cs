@@ -43,5 +43,25 @@ namespace FantasyPL.Controllers
             return File(res.MainStream, "application/pdf");
             //button href
         }
+
+        public IActionResult FavClub()
+        {
+            var dt = new DataTable();
+            dt = controller.FavClub();//
+
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\FavClub.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));//
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("FavClub", dt);//
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+            //button href
+        }
     }
 }

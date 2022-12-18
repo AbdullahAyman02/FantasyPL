@@ -13,26 +13,47 @@
             </div>
         }
         <div class="txt_field">
-            <input type="password" name='old' required/>
+            <input type="password" name='old'/>
             <label>Enter your old password:</label>
         </div>
         <div class="txt_field">
-            <input type="password" name='new1' required/>
+            <input type="password" name='new1'/>
             <label>Enter your new password:</label>
         </div>
         <div class="txt_field">
-            <input type="password" name='new2' required/>
+            <input type="password" name='new2'/>
             <label>Enter your new password again:</label>
         </div>
         <input type="submit" value="Submit" />
         
-        <div class="flexcontainer">
+        
             @if (GlobalVar.LoggedInUser.UserType == 'A')
         {
+            <div class="flexcontainer">
             <a class="club_link" asp-area="" asp-page="/Register">Create Admin Account</a>
             <a class="club_link" asp-area="" asp-page="/DeleteUser">Delete User</a>
+            </div>
+        } else {
+            <div class="txt_field">
+                <label for="favorite_club" id="favclublabel">Favorite Club</label>
+                <select id="favorite_club" name="favorite_club" class="form-control">
+                    <option Value="-">-</option>
+                    @foreach (var club in GlobalVar.listClubs)
+                    {
+                        if(club.Name_Abbreviation == @Model.FavClub){
+                            <option Value="@club.Name_Abbreviation" selected>@club.Name</option>
+                        }
+                        else {
+                            <option Value="@club.Name_Abbreviation">@club.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <input type="submit" id="club" name="club" value="Update"/>
         }
+        <div class="flexcontainer">
             <a class="club_link" asp-area="" asp-page="/Index">Logout</a>
         </div>
+            
     </form>
 </div>

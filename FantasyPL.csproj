@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Reports\FavClub.rdlc" />
     <Content Remove="wwwroot\Reports\Report1.rdlc" />
   </ItemGroup>
 
@@ -25,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Reports\FavClub.rdlc" />
     <None Include="wwwroot\Reports\Report1.rdlc" />
   </ItemGroup>
 
@@ -40,6 +42,11 @@
     <None Update="ReportDataSet\DataSet1.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\FavClub.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>FavClub.Designer.cs</LastGenOutput>
       <Generator>MSDataSetGenerator</Generator>
     </None>
   </ItemGroup>

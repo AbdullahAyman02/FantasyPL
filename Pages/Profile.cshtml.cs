@@ -7,17 +7,31 @@ namespace FantasyPL.Pages
     {
         public string Message = "";
         Controller controller = new Controller();
+        public string FavClub = "";
 
         public void OnGet()
         {
             GlobalVar.isAdmin = true;
+            FavClub = controller.GetFavClub(GlobalVar.LoggedInUser.Username);
+            controller.UpdateClubsList();
         }
 
         public void OnPost()
         {
+            string btnvalue = Request.Form["club"];
+            if (btnvalue != null)
+            {
+                Message = controller.UpdateFavClub(GlobalVar.LoggedInUser.Username, Request.Form["favorite_club"]);
+                FavClub = Request.Form["favorite_club"];
+                return;
+            }
             string oldPass = Request.Form["old"];
             string newPass1 = Request.Form["new1"];
             string newPass2 = Request.Form["new2"];
+            if(oldPass == null || newPass1 == null || newPass2== null) {
+                Message = "Please fill the empty fields";
+                return;
+            }
             if(controller.LogIn(GlobalVar.LoggedInUser.Username, oldPass) == null)
             {
                 Message = "Wrong password";
@@ -29,6 +43,7 @@ namespace FantasyPL.Pages
                 return;
             }
             Message = controller.ChangePassword(GlobalVar.LoggedInUser.Username, newPass1);
+            
         }
     }
 }

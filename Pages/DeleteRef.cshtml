@@ -1,0 +1,28 @@
+﻿@page
+@model FantasyPL.Pages.DeleteRefModel
+@{
+}
+<br/>
+<br />
+<div class="center form">
+<h3>Delete a Referee</h3>
+<form method="post">
+		@if (Model.Message.Length > 0)
+		{
+					<div class='alert alert-warning alert-dimsmissiable fade show flexcontainer' role='alert'>
+						<string>@Model.Message</string>
+						<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+					</div>
+		}
+	<div class="txt_field">
+		<label for="referee" id="clublabel">Referee</label>      
+		<select id="referee" name="referee" class="form-control">
+				@foreach (var referee in GlobalVar.listReferees)
+				{
+							<option value="@referee.ID">@referee.FName @referee.MName @referee.LName</option>
+				}
+		</select>
+	</div>
+	<input type="submit" value="Delete Referee"/>
+</form>
+</div>

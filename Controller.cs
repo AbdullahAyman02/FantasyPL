@@ -125,8 +125,11 @@ namespace FantasyPL.Pages
                     else {
 
                         command.Parameters.AddWithValue("@FantasyTeamName", userInfo.FantasyTeamName);
-                        command.Parameters.AddWithValue("@FavoriteClub", userInfo.FavoriteClub);
-                        command.Parameters.AddWithValue("@Balance", userInfo.Balance);
+                        if(userInfo.FavoriteClub != "-")
+                            command.Parameters.AddWithValue("@FavoriteClub", userInfo.FavoriteClub);
+                        else
+							command.Parameters.AddWithValue("@FavoriteClub", DBNull.Value);
+						command.Parameters.AddWithValue("@Balance", userInfo.Balance);
                         command.Parameters.AddWithValue("@Points", userInfo.Points);
                     }
 
@@ -1713,7 +1716,178 @@ namespace FantasyPL.Pages
             }
         }
 
-		public void TerminateConnection()
+		public DataTable FavClub()
+		{
+			string query = "Select * From Users";
+			using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+			{
+				using (SqlDataReader reader = dBManager.ExecuteReader(command))
+				{
+					DataTable dt = new DataTable();
+					if (reader.HasRows)
+					{
+						dt.Load(reader);
+						reader.Close();
+						return dt;
+					}
+					else
+					{
+						reader.Close();
+						return dt;
+					}
+				}
+			}
+		}
+
+		public int lastRefID()
+        {
+            try
+            {
+                String query = "SELECT TOP 1 ID FROM Referee ORDER BY ID DESC";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        if (reader.HasRows)
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            reader.Close();
+                            return Convert.ToInt32(dt.Rows[0][0]);
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return 0;
+            }
+        }
+
+        public string InsertReferee(Referee referee)
+        {
+            try
+            {
+                String sql = "INSERT INTO Referee " +
+                             "VALUES(@ID, @fname, @mname, @lname, @age, @nationality, @exp)";
+
+                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@ID", referee.ID);
+                    command.Parameters.AddWithValue("@fname", referee.FName);
+                    command.Parameters.AddWithValue("@mname", referee.MName);
+                    command.Parameters.AddWithValue("@lname", referee.LName);
+                    command.Parameters.AddWithValue("@age", referee.Age);
+                    command.Parameters.AddWithValue("@nationality", referee.Nationality);
+                    command.Parameters.AddWithValue("@exp", referee.Experience);
+                    if (dBManager.ExecuteNonQuery(command) > 0)
+                    {
+                        return "Referee was added Successfully";
+                    }
+                    else
+                    {
+                        return "An error has occurred";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public String DeleteReferee(int id)
+        {
+            string query = "DELETE FROM Referee WHERE ID = @id";
+            using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                if (dBManager.ExecuteNonQuery(command) > 0)
+                {
+                    UpdateFixturesList();
+                    return "Referee deleted successfully";
+                }
+                else
+                {
+                    return "An error has occurred";
+                }
+            }
+        }
+
+        public string GetFavClub(string username)
+        {
+            try
+            {
+                String query = "SELECT CLUB_SUPPORTED FROM USERS WHERE USERNAME = @name";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@name", username);
+
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        if (reader.HasRows)
+                        {
+                            string club = "";
+                            reader.Read();
+                            if (reader["CLUB_SUPPORTED"] != DBNull.Value)
+                                club = reader.GetString(0);
+                            else
+                                club = "-";
+  
+                            reader.Close();
+                            return club;
+                        }
+                        else
+                        {
+                            return "-";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public string UpdateFavClub(string username, string abbr)
+        {
+            try
+            {
+                String query = "UPDATE Users SET CLUB_SUPPORTED = @abbr WHERE USERNAME = @name";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@name", username);
+                    if(abbr != "-")
+                        command.Parameters.AddWithValue("@abbr", abbr);
+                    else
+                        command.Parameters.AddWithValue("@abbr", DBNull.Value);
+
+                    if (dBManager.ExecuteNonQuery(command) > 0)
+                    {
+                        return "Favorite Club was Updated Successfully";
+                    }
+                    else
+                    {
+                        return "An error has occurred";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public void TerminateConnection()
         {
         dBManager.CloseConnection();
         }
