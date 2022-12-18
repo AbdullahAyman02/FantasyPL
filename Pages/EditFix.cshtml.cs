@@ -37,11 +37,11 @@ namespace FantasyPL.Pages
             int gameweek = Convert.ToInt32(Request.Form["gameweek"]);
             string home = Request.Form["club"];
             string away = Request.Form["club1"];
-            string Stadium = Request.Form["stadium"];
+            string Stadium = controller.SelectStadiumByAbbr(home);
             int referee = Convert.ToInt32(Request.Form["referee"]);
             string date = Request.Form["date"];
             string time = Request.Form["time"];
-            controller.UpdateFixture(FID, gameweek, date, time, home, away, Stadium, referee);
+            Message = controller.UpdateFixture(FID, gameweek, date, time, home, away, Stadium, referee);
         }
     }
 }

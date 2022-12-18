@@ -118,6 +118,7 @@ namespace FantasyPL.Pages
 ,"Ecuador"
 ,"Egypt"
 ,"El Salvador"
+,"England"
 ,"Equatorial Guinea"
 ,"Eritrea"
 ,"Estonia"

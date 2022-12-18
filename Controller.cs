@@ -1718,7 +1718,7 @@ namespace FantasyPL.Pages
 
 		public DataTable FavClub()
 		{
-			string query = "Select * From Users";
+			string query = "Select * From Users Where User_type != 'A'";
 			using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
 			{
 				using (SqlDataReader reader = dBManager.ExecuteReader(command))
