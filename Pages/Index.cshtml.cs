@@ -28,7 +28,7 @@ namespace FantasyPL.Pages
         public static string DeleteManager = "DeleteManager";
         public static string InsertStadium = "InsertStadium";
         public static string InsertManager = "InsertManager";
-
+        public static string MostGC = "MostGC";
     }
     public static class GlobalVar
     {

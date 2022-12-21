@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\Reports\FavClub.rdlc" />
+    <Content Remove="wwwroot\Reports\MostGC.rdlc" />
     <Content Remove="wwwroot\Reports\Report1.rdlc" />
   </ItemGroup>
 
@@ -27,12 +28,18 @@
 
   <ItemGroup>
     <None Include="wwwroot\Reports\FavClub.rdlc" />
+    <None Include="wwwroot\Reports\MostGC.rdlc" />
     <None Include="wwwroot\Reports\Report1.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="ReportDataSet\DataSet1.Designer.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ReportDataSet\MostGC.Designer.cs">
+      <DependentUpon>MostGC.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -47,6 +54,11 @@
     <None Update="ReportDataSet\FavClub.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>FavClub.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\MostGC.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>MostGC.Designer.cs</LastGenOutput>
       <Generator>MSDataSetGenerator</Generator>
     </None>
   </ItemGroup>

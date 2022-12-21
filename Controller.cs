@@ -1887,9 +1887,33 @@ namespace FantasyPL.Pages
             }
         }
 
+        public DataTable MostGCByClub(string abbr)
+        {
+            string proc = StoredProcedures.MostGC;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@abbr", abbr);
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                DataTable dt = new DataTable();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                    reader.Close();
+                    return dt;
+                }
+                else
+                {
+                    reader.Close();
+                    return dt;
+                }
+            }
+            
+        }
+
         public void TerminateConnection()
         {
         dBManager.CloseConnection();
         }
+        
     }
 }

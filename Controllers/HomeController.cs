@@ -6,7 +6,7 @@ using FantasyPL.Pages;
 //using System.Windows.Forms;
 
 namespace FantasyPL.Controllers
-{ 
+{
     public class HomeController : Microsoft.AspNetCore.Mvc.Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -63,6 +63,26 @@ namespace FantasyPL.Controllers
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");
             //button href
+        }
+
+        public IActionResult MostGCByClub()
+        {
+            var dt = new DataTable();
+            dt = controller.MostGCByClub(GlobalVar.clubQueried.Name_Abbreviation);
+
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\MostGC.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("prm1", GlobalVar.clubQueried.Name);//
+            parameters.Add("prm2", DateTime.Now.ToString("dd-MMM-yyyy"));
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("MostGC", dt);//
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
         }
     }
 }
