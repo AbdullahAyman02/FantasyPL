@@ -12,6 +12,7 @@ namespace FantasyPL.Pages
             controller.UpdateFixturesList();
             controller.UpdateStadiumsList();
             controller.UpdateRefereesList();
+            
 			if (GlobalVar.listFixtures.Count > 0)
 			{
 				GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
@@ -37,11 +38,23 @@ namespace FantasyPL.Pages
             int gameweek = Convert.ToInt32(Request.Form["gameweek"]);
             string home = Request.Form["club"];
             string away = Request.Form["club1"];
+            if (home == away)
+            {
+                Message = "Home club cannot be the same as the away club";
+                return;
+            }
             string Stadium = controller.SelectStadiumByAbbr(home);
             int referee = Convert.ToInt32(Request.Form["referee"]);
             string date = Request.Form["date"];
             string time = Request.Form["time"];
+            if (date == "" || time == "")
+            {
+                Message = "You must specify date and time.";
+                return;
+            }
             Message = controller.UpdateFixture(FID, gameweek, date, time, home, away, Stadium, referee);
+            GlobalVar.fixtureQueried = controller.SelectFixture(FID);
+            controller.UpdateFixturesList();
         }
     }
 }

@@ -97,13 +97,19 @@
             @if (GlobalVar.LoggedInUser.UserType == 'A')
             {
                 <div class="flexcontainer">
-                    <a class="club_link" asp-area="" asp-page="/InsertRef">Insert Referee</a>
                     <a class="club_link" asp-area="" asp-page="/InsertFE">Insert Fixture</a>
                     <a class="club_link" asp-area="" asp-page="/EditFix">Edit Fixture</a>
                     <a class="club_link" asp-area="" asp-page="/DeleteFE">Delete Fixture</a>
+                </div>
+                <div class="flexcontainer">
+                    <a class="club_link" asp-area="" asp-page="/InsertRef">Insert Referee</a>
+                    <a class="club_link" asp-area="" asp-page="/InsertEvent">Insert Events</a>
                     <a class="club_link" asp-area="" asp-page="DeleteRef">Delete Referee</a>
                 </div>
             }
+            <div class="flexcontainer">
+                <a style="background-color:black; color:white" class="club_link" href="../Home/WeeklyPP" target="_self">Player Points</a>
+            </div>
         </form>
 </div>
 @section scripts{ 

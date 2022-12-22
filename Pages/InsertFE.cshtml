@@ -25,7 +25,7 @@
 			</div>
 	<div class="txt_field">
 		<label for="date" id="birthdaylabel">Date</label>
-		<input type="date" id="date" value='@Model.fixtureInfo.Date' name="date">
+			<input type="date" id="date" min="2022-08-06" max="2023-05-28" value='@Model.fixtureInfo.Date' name="date">
 	</div>
 	<div class="txt_field">
 	 <input type="time" name='time' value='@Model.fixtureInfo.StartTime'/>
@@ -59,75 +59,6 @@
 		 </select>
 	</div>
 	<input type="submit" value="Insert Fixture"/>
-	<div class="txt_field">
-		<label for="fixture" id="favclublabel">Fixture</label>      
-		<select id="fixture" name="fixture" class="form-control" value='@Model.eventInfo.FixtureID'>
-				@foreach (var fixture in GlobalVar.listFixtures)
-				{
-					@if (fixture.ID == GlobalVar.fixture_in_insert_event.ID)
-					{
-									<option value="@fixture.ID" selected>@fixture.HomeSide vs @fixture.AwaySide</option>
-					}
-					else
-					{
-									<option value="@fixture.ID">@fixture.HomeSide vs @fixture.AwaySide</option>
-					}
-				}
-		 </select>
-	</div>
-	<div class="txt_field">
-		<label for="event" id="genderlabel">Event Type</label>      
-		<select id="event" name="event" class="form-control" value='@Model.eventInfo.EventType'>
-				@foreach (var type in GlobalVar.EventTypes)
-				{	
-					<option Value="@type">@type</option>
-				}
-		 </select>
-	</div>
-	<div class="txt_field">
-	 <input type="number" name='minute' min = "0" value='@Model.eventInfo.Minute' required/>
-	 <label>Event Minute</label>
-	</div>
-	<div class="txt_field">
-		<label for="club_abbr" id="nationalityLabel">Club</label>      
-		<select id="club_abbr" name="club_abbr" class="form-control" value='@Model.eventInfo.ClubAbbreviation'>
-				@if(@GlobalVar.HA == true){
-				<option Value="@GlobalVar.fixture_in_insert_event.HomeSide" selected>@GlobalVar.fixture_in_insert_event.HomeSide</option>
-				} else{
-				<option Value="@GlobalVar.fixture_in_insert_event.HomeSide">@GlobalVar.fixture_in_insert_event.HomeSide</option>
-				}
-				@if(@GlobalVar.HA == false){
-				<option Value="@GlobalVar.fixture_in_insert_event.AwaySide" selected>@GlobalVar.fixture_in_insert_event.AwaySide</option>
-				} else{
-				<option Value="@GlobalVar.fixture_in_insert_event.AwaySide">@GlobalVar.fixture_in_insert_event.AwaySide</option>
-				}
-		 </select>
-	</div>
-	<div class="txt_field">
-		<label for="event_player" id="playerlabel2">Player</label>      
-		<select id="event_player" name="event_player" class="form-control" value='@Model.eventInfo.Player'>
-				@foreach (var player in GlobalVar.clubPlayers)
-				{	
-					<option value="@player.Player_Number">@player.Fname @player.Mname @player.Lname</option>
-				}
-		 </select>
-	</div>
-	<input type="submit" name="insert" id="insert"  value="Insert Event"/>
-	<input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display: none"/>
-	<input type="submit" name="Refresh2" id="Refresh2" value="Refresh2" style="Display: none"/>
 </form>
 </div>
-@section scripts{ 
-	<script>
-		$(function () {
-			$("#club_abbr").on("change", function() {
-				$("#Refresh").click()
-			});
-		});
-		$(function () {
-			$("#fixture").on("change", function() {
-				$("#Refresh2").click()
-			});
-		});
-	</script>
-}
+

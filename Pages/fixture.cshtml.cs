@@ -21,6 +21,7 @@ namespace FantasyPL.Pages
                 GlobalVar.fixtureQueried = new();
                 GlobalVar.fixtureEvents.Clear();
             }
+            GlobalVar.fixture_in_insert_event = null;
         }
 
         public void OnPost()

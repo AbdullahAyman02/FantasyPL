@@ -29,11 +29,11 @@
 		</select>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='name_abbreviation' id='name_abbreviation' value='@GlobalVar.clubQueried.Name_Abbreviation' required/>
+			<input type="text" name='name_abbreviation' id='name_abbreviation' maxlength="3" minlength="3" value='@GlobalVar.clubQueried.Name_Abbreviation' required />
 	 <label>Club Name Abbreviation</label>
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='establishment_year' value='@GlobalVar.clubQueried.Establishment_year' required/>
+	 <input type="number" name='establishment_year' min="1800" value='@GlobalVar.clubQueried.Establishment_year' required/>
 	 <label>Establishment Year</label>
 	</div>
     <div class="txt_field">
@@ -53,7 +53,7 @@
          </select>
 	</div>
 	<div class="txt_field">
-		<input type="text" name='number_of_trophies' value='@GlobalVar.clubQueried.Number_of_Trophies' required/>
+		<input type="number" name='number_of_trophies' min="0" value='@GlobalVar.clubQueried.Number_of_Trophies' required/>
 		<label>Number of Trophies</label>
 	</div>
 	<div class="name">

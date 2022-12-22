@@ -30,6 +30,15 @@
             @if (GlobalVar.LoggedInUser.UserType == 'A')
         {
             <div class="flexcontainer">
+             @if (GlobalVar.statusFT)
+            {
+                    <input type="submit" id="toggle" name="toggle" value="Toggle Fantasy Team Accessibility" style="background-color:green" />
+            } else
+            {
+                    <input type="submit" id="toggle" name="toggle" value="Toggle Fantasy Team Accessibility" style="background-color:red" />
+            }
+            </div>
+            <div class="flexcontainer">
             <a class="club_link" asp-area="" asp-page="/Register">Create Admin Account</a>
             <a class="club_link" asp-area="" asp-page="/DeleteUser">Delete User</a>
             </div>
@@ -49,8 +58,9 @@
                     }
                 </select>
             </div>
-            <input type="submit" id="club" name="club" value="Update"/>
+            <input type="submit" id="club" name="club" value="Update" />
         }
+     
         <div class="flexcontainer">
             <a class="club_link" asp-area="" asp-page="/Index">Logout</a>
         </div>

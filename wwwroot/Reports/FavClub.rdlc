@@ -91,9 +91,10 @@
           <Image Name="Image1">
             <Source>Embedded</Source>
             <Value>c26fa447ad926ebaa605fced3399e976</Value>
-            <Sizing>Fit</Sizing>
-            <Height>8.53899in</Height>
-            <Width>6.93827in</Width>
+            <Sizing>Clip</Sizing>
+            <Left>1.73457in</Left>
+            <Height>7.74466in</Height>
+            <Width>4.70496in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -104,18 +105,18 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.41203in</Width>
+                  <Width>1.89499in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.16023in</Width>
+                  <Width>2.64319in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.66383in</Width>
+                  <Width>1.14679in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.31667in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -207,7 +208,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.31667in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -311,7 +312,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.41203in</Size>
+                    <Size>1.89499in</Size>
                     <CellContents>
                       <Textbox Name="Textbox41">
                         <CanGrow>true</CanGrow>
@@ -357,7 +358,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>1.41203in</Size>
+                    <Size>1.89499in</Size>
                     <CellContents>
                       <Textbox Name="CLUB_SUPPORTED11">
                         <CanGrow>true</CanGrow>
@@ -395,10 +396,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>FavClub</DataSetName>
-            <Top>1.29799in</Top>
-            <Left>0.46763in</Left>
-            <Height>0.5in</Height>
-            <Width>5.64812in</Width>
+            <Top>1.16466in</Top>
+            <Left>0.3843in</Left>
+            <Height>0.63333in</Height>
+            <Width>7.57996in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -417,6 +418,7 @@
                     <Value>Club Supporters</Value>
                     <Style>
                       <FontSize>28pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -442,26 +444,113 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="prm1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!prm1.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>prm1</rd:DefaultName>
+            <Top>1.63246cm</Top>
+            <Left>17.7292cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>8.53899in</Height>
+        <Height>19.67143cm</Height>
         <Style />
       </Body>
-      <Width>6.93827in</Width>
+      <Width>20.58903cm</Width>
       <Page>
-        <PageHeight>11.69in</PageHeight>
-        <PageWidth>8.27in</PageWidth>
-        <LeftMargin>0.75in</LeftMargin>
-        <RightMargin>0.75in</RightMargin>
-        <TopMargin>0.75in</TopMargin>
-        <BottomMargin>0.75in</BottomMargin>
+        <PageFooter>
+          <Height>0.97367cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="PageNumber">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!PageNumber</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.17639cm</Top>
+              <Left>17.9832cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.5cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="prm1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>prm1</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
@@ -620,6 +709,6 @@ XrJIXF4BAroot3FH8ryrKNWY1C+ZQZXYtmu/SF3Gy2BXR6C47VHNYPUBsSCIcWg1oIDyx2mIifmxa8Ds
 VtISSXYuh/aEQBXKNEsF3YT/AMC2FG1WggAdqWbP3iQjSZGG3XS2mLSmW78MVYMPYAR2IqjwxJCMKqAR3BT3th19W4HWCdVzxaflD4lbZ0JZcP8AUbXUqvC22PlP1qCtaavFv6i227/huJhcHVrAfj3n+OBKeq/HrCWdI2YwbUYSrLFJ8dJXqqHHqfl+jiJTjmCkowu9P7gpT95lxuGRekVIrXGxk8pfhQJ7vWfP6OpSDhD2f6GbP7woPBCaKNjyPByvBNRrPnMvg0dvMDHrbLhDBjQjIW77SkKtsLflACLeoZlquAcqGVWh2PMYB9DHvHj4tgczTZhWG8DOHaLKmCzd5voGbXBNV95neHHXZe009dtoaqJM218/VrC+SB070yeUX8RuqTOHWwPymLrdWLvXT6QgU0IB0AwRsHaZx6LtMnAVoMS3XHMCjHr7PaGv+KAcbl3/AAOP0O3rlZYbf0WoC65lwtqeKi1BtZezcG2+IglItGZTvL9XNsNo3XeaMTDh3FB2ltlBDhUmu6GeMw3Eyi51mbyixftLLrEvPvD1blLpcMaFox8TZsqK3ylt0RxGLLhIbPeO5ohqZ+6FlFMpZ5lvTEvGsS8WGPVKmesSyn9EXmVKlQM7mbu/aV3ld5WZXeU3io2tXXtFzK7yu8pqrh/oGm7GN9fqAf7CJ/IfyO/5H+U/k5/g/9k=</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>13e750e0-22d4-4429-92a0-09679fd053d0</rd:ReportID>
 </Report>

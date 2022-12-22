@@ -29,9 +29,11 @@ namespace FantasyPL.Pages
         public static string InsertStadium = "InsertStadium";
         public static string InsertManager = "InsertManager";
         public static string MostGC = "MostGC";
+        public static string WeeklyPP = "WeeklyPP";
     }
     public static class GlobalVar
     {
+        public static bool statusFT = false;        //decides if in a gameweek or not to change fantasy teams for users
         public static List<Club> listClubs = new List<Club>();
         public static List<player> listPlayers = new List<player>();
         public static List<player> userPlayers = new List<player>();
@@ -58,7 +60,7 @@ namespace FantasyPL.Pages
         public static List<Competitions> listComp = new List<Competitions>();
         public static List<Competitions> newComp = new List<Competitions>();
         public static List<User> listUser = new List<User>();
-        public static List<string> EventTypes = new List<string> { "Goal", "Assist", "Save", "Red Card", "Yellow Card", "Tackle", "End", "Start"};
+        public static List<string> EventTypes = new List<string> { "Goal", "Assist", "Save", "Red Card", "Yellow Card", "Tackle"};
         public static List<MEvent> fixtureEvents = new List<MEvent>();
         public static List<string> Positions = new List<string> { "Attacker", "Midfielder", "Defender", "GoalKeeper" };
         public static List<string> Cities = new List<string> { "London", "Birmingham", "Bournemouth", "Brighton & Hove", "Burnley", "Liverpool", "Leicester", "Manchester", "Newcastle", "Norwich", "Sheffield", "Southampton", "Watford", "Wolverhampton"};

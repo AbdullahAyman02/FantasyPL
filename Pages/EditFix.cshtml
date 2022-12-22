@@ -48,10 +48,10 @@
 			</div>
 			<div class="txt_field">
 		<label for="date" id="birthdaylabel">Date</label>
-		<input type="text" id="date" value='@GlobalVar.fixtureQueried.Date' name="date">
+			<input type="date" id="date" min="2022-08-06" max="2023-05-28" value='@Convert.ToDateTime(GlobalVar.fixtureQueried.Date).ToString("yyyy-MM-dd")' name="date">
 	</div>
 	<div class="txt_field">
-	 <input type="text" name='time' value='@GlobalVar.fixtureQueried.StartTime'/>
+	 <input type="time" name='time' value='@GlobalVar.fixtureQueried.StartTime'/>
 	 <label>Fixture Start Time</label>
 	</div>
 	<div class="txt_field">
@@ -77,11 +77,11 @@
 				{
 					if (club.Name_Abbreviation == GlobalVar.fixtureQueried.AwaySide)
 					{
-								<option Value="@club.Name_Abbreviation" selected>@club.Name</option>
+						<option Value="@club.Name_Abbreviation" selected>@club.Name</option>
 					}
 					else
 					{
-								<option Value="@club.Name_Abbreviation">@club.Name</option>
+						<option Value="@club.Name_Abbreviation">@club.Name</option>
 					}
 				}
 		 </select>
@@ -94,11 +94,11 @@
 					
 					if (referee.FName == GlobalVar.fixtureQueried.Referee)
 					{
-												<option Value="@referee.ID" selected>@referee.FName</option>
+						<option Value="@referee.ID" selected>@referee.FName</option>
 					}
 					else
 					{
-												<option Value="@referee.ID">@referee.FName</option>
+						<option Value="@referee.ID">@referee.FName</option>
 					}
 				}
 		 </select>

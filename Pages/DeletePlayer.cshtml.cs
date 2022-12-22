@@ -30,6 +30,8 @@ namespace FantasyPL.Pages
                 controller.SelectPlayersByClubAbbr(Request.Form["club3"]);
                 if (GlobalVar.clubPlayers.Count > 0)
                     GlobalVar.playerQueried = GlobalVar.clubPlayers[0];
+                else
+                    GlobalVar.playerQueried.Club_Abbreviation = Request.Form["club3"];
                 return;
             }
 

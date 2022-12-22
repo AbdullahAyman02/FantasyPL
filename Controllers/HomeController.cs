@@ -55,7 +55,7 @@ namespace FantasyPL.Controllers
             var path = $"{_webHostEnv.WebRootPath}\\Reports\\FavClub.rdlc";//
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            //parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));//
+            parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));//
 
             LocalReport localReport = new LocalReport(path);
             localReport.AddDataSource("FavClub", dt);//
@@ -80,6 +80,26 @@ namespace FantasyPL.Controllers
 
             LocalReport localReport = new LocalReport(path);
             localReport.AddDataSource("MostGC", dt);//
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+        }
+
+        public IActionResult WeeklyPP()
+        {
+            var dt = new DataTable();
+            dt = controller.WeeklyPP(GlobalVar.week);
+
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\WeeklyPP.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("prm1", GlobalVar.week.ToString());//
+            parameters.Add("prm2", DateTime.Now.ToString("dd-MMM-yyyy"));
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("WeeklyPP", dt);//
 
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");

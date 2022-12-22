@@ -12,6 +12,8 @@ namespace FantasyPL.Pages
         {
             controller.UpdatePlayersList();
             controller.SelectPlayersByUsername(GlobalVar.LoggedInUser.Username);
+            GlobalVar.statusFT = controller.GetFT();
+            GlobalVar.LoggedInUser.Points = controller.GetPoints(GlobalVar.LoggedInUser.Username);
         }
 
         public void OnPost()
@@ -30,19 +32,26 @@ namespace FantasyPL.Pages
             string abbr = value[0];
             int no = Convert.ToInt32(value[1]);
             player p = controller.SelectPlayer(abbr, no);
-            int count = controller.CountPositionforUsername(GlobalVar.LoggedInUser.Username, p.Position);
+            if (controller.GetPriceOfPlayer(abbr, no) > controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username))
+            {
+                Message = "You do not have enough balance.";
+                return;
+            }
+            int count = controller.CountPositionforUsername(GlobalVar.LoggedInUser.Username, "GoalKeeper");
+            if ((p.Position != "GoalKeeper" && !(count >= 1)) && GlobalVar.userPlayers.Count >= 10)
+            {
+                Message = "You need to have 1 GoalKeeper in your team";
+                return;
+            }
+            count = controller.CountPositionforUsername(GlobalVar.LoggedInUser.Username, p.Position);
             if ((p.Position == "GoalKeeper" && (count >= 1)) || (p.Position != "GoalKeeper" && (count >= 4)) || GlobalVar.userPlayers.Count >= 11)
             {
                 Message = "Cannot Add Player either because your team is full or you have selected max no. of players for this position already";
                 return;
             }
-            if(controller.GetPriceOfPlayer(abbr, no) > controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username))
-            {
-                Message = "You do not have enough balance.";
-                return;
-            }
             Message = controller.InsertFTplayer(GlobalVar.LoggedInUser.Username, abbr, no);
             GlobalVar.LoggedInUser.Balance = controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username);
+            GlobalVar.LoggedInUser.Points = controller.GetPoints(GlobalVar.LoggedInUser.Username);
         }
     }
 }

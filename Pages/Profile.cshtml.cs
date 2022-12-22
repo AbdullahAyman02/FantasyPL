@@ -14,6 +14,7 @@ namespace FantasyPL.Pages
             GlobalVar.isAdmin = true;
             FavClub = controller.GetFavClub(GlobalVar.LoggedInUser.Username);
             controller.UpdateClubsList();
+            GlobalVar.statusFT = controller.GetFT();
         }
 
         public void OnPost()
@@ -23,6 +24,13 @@ namespace FantasyPL.Pages
             {
                 Message = controller.UpdateFavClub(GlobalVar.LoggedInUser.Username, Request.Form["favorite_club"]);
                 FavClub = Request.Form["favorite_club"];
+                return;
+            }
+            string btnvalue1 = Request.Form["toggle"];
+            if (btnvalue1 != null)
+            {
+                controller.ToggleFT();
+                GlobalVar.statusFT = controller.GetFT();
                 return;
             }
             string oldPass = Request.Form["old"];

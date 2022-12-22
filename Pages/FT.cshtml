@@ -12,7 +12,8 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
             }
-            
+            @if (GlobalVar.statusFT)
+            {
             <div class="txt_field">
                 <label for="player" id="playerlabel">Player</label>
                 <select id="player" name="player" class="form-control">
@@ -25,14 +26,22 @@
                     }
                 </select>
             </div>
+            }
         <div class="flexcontainer">
-            <label for="player" id="playerlabel" style="color:black">Balance: </label>
-            <label for="player" id="playerlabel" style="color:red">@GlobalVar.LoggedInUser.Balance</label>
+            <div style="margin: 5px">
+                <label style="color:black">Points: </label>
+                <label style="color:#0000FF">@GlobalVar.LoggedInUser.Points</label>
+            </div>
+            <div style="margin: 5px">
+                <label style="color:black">Balance: </label>
+                <label style="color:red">@GlobalVar.LoggedInUser.Balance</label>
+            </div>
         </div>
             <table class="table">
                 <tr>Player Details</tr>
                 <thead>
                 <tr>
+                    <th>Number</th>
                     <th>Position</th>
                     <th>Fname</th>
                     <th>Mname</th>
@@ -44,9 +53,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                
                     @foreach(var player in GlobalVar.userPlayers){
                     <tr>
+                    <td>@player.Count</td>
                     <td>@player.Position</td>
                     <td>@player.Fname</td>
                     <td>@player.Mname</td>
@@ -59,19 +68,20 @@
                     }
                 </tbody>
             </table>
-    
-             <input type="submit" value="Insert Player"/>
-   
+        @if (GlobalVar.statusFT) {
+            <input type="submit" value="Insert Player"/>
+
             <div class="txt_field">
                 @*MyClass result = list.Find(x => x.GetId() == "xy");*@
                 <label for="player2" id="playerlabel2">Player</label>
                 <select id="player2" name="player2" class="form-control">
                     @foreach (var player in GlobalVar.userPlayers)
                     {
-                             <option value="@player.Club_Abbreviation @player.Player_Number">@player.Club_Abbreviation - @player.Player_Number - @player.Fname @player.Mname @player.Lname - @player.Position - Points:@player.Points - Price:@player.Price</option>
+                        <option value="@player.Club_Abbreviation @player.Player_Number">@player.Club_Abbreviation - @player.Player_Number - @player.Fname @player.Mname @player.Lname - @player.Position - Points:@player.Points - Price:@player.Price</option>
                     }
                 </select>
             </div>
             <input type="submit" name="Delete Player" id="Delete Player" value="Delete Player"/>
+        }
         </form>
 </div>

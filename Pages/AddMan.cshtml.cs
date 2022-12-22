@@ -16,8 +16,16 @@ namespace FantasyPL.Pages
         {
             ManInfo.ID = controller.lastManID() + 1;
             ManInfo.FName = Request.Form["fname"];
+            bool result = ManInfo.FName.All(Char.IsLetter);
             ManInfo.MName = Request.Form["mname"];
+            bool result1 = ManInfo.MName.All(Char.IsLetter);
             ManInfo.LName = Request.Form["lname"];
+            bool result2 = ManInfo.LName.All(Char.IsLetter);
+            if (!result || !result1 || !result2)
+            {
+                Message = "Name must contain letters only";
+                return;
+            }
             ManInfo.age = Convert.ToInt32(Request.Form["age"]);
             ManInfo.nationality = Request.Form["nationality"];
             ManInfo.competitions_won = Convert.ToInt32(Request.Form["competitions_won"]);

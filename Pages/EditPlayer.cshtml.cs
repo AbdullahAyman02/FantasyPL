@@ -45,8 +45,16 @@ namespace FantasyPL.Pages
             playerinfo.Club_Abbreviation = clubAbbr;
             playerinfo.Player_Number = playerNo;
             playerinfo.Fname = Request.Form["Fname"];
+            var result = playerinfo.Fname.All(Char.IsLetter);
             playerinfo.Mname = Request.Form["Mname"];
+            var result1 = playerinfo.Mname.All(Char.IsLetter);
             playerinfo.Lname = Request.Form["Lname"];
+            var result2 = playerinfo.Lname.All(Char.IsLetter);
+            if (!result || !result1 || !result2)
+            {
+                Message = "Name must contain letters only";
+                return;
+            }
             playerinfo.Price = Convert.ToInt32(Request.Form["price"]);
             playerinfo.Age = Convert.ToInt16(Request.Form["age"]);
             playerinfo.Height = Convert.ToInt16(Request.Form["height"]);

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Reflection.PortableExecutable;
 using System.Security.Cryptography;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using AspNetCore.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace FantasyPL.Pages
 {
@@ -46,8 +47,11 @@ namespace FantasyPL.Pages
                         {
                             u.Username = reader.GetString(0);
                             u.UserType = reader.GetString(7)[0];
-                            if(u.UserType == 'F')
+                            if (u.UserType == 'F')
+                            {
                                 u.Balance = reader.GetInt32(12);
+                                u.Points = reader.GetInt32(13);
+                            }
                         }
                         reader.Close();
                         return u;
@@ -684,6 +688,7 @@ namespace FantasyPL.Pages
                     using (SqlDataReader reader = dBManager.ExecuteReader(command))
                     {
                         GlobalVar.userPlayers.Clear();
+                        int i = 1;
                         while (reader.Read())
                         {
                             player player = new player();
@@ -701,6 +706,7 @@ namespace FantasyPL.Pages
                             player.Contract_Length = reader.GetInt32(11);
                             player.Points = reader.GetInt32(12);
                             player.Position = reader.GetString(13);
+                            player.Count = i++;
                             GlobalVar.userPlayers.Add(player);
                         }
                         reader.Close();
@@ -729,7 +735,7 @@ namespace FantasyPL.Pages
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return 0;
+                return -1;
             }
         }
 
@@ -916,9 +922,18 @@ namespace FantasyPL.Pages
                     command.Parameters.AddWithValue("@EID", EID);
                     command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@min", min);
-                    command.Parameters.AddWithValue("@abbr", abbr);
-                    command.Parameters.AddWithValue("@pno", pno);
-                    if (dBManager.ExecuteNonQuery(command) > 0)
+                    if (abbr == "-")
+                    {
+                        command.Parameters.AddWithValue("@abbr", DBNull.Value);
+                    } else
+                    {
+						command.Parameters.AddWithValue("@abbr", abbr);
+					}
+                    if(pno == -1)
+                        command.Parameters.AddWithValue("@pno", DBNull.Value);
+                    else
+						command.Parameters.AddWithValue("@pno", pno);
+					if (dBManager.ExecuteNonQuery(command) > 0)
                     {
                         return "Event was added Successfully";
                     }
@@ -1112,7 +1127,7 @@ namespace FantasyPL.Pages
                     if (dBManager.ExecuteNonQuery(command) > 0)
                     {
                         UpdatePlayersList();
-                        return "Player was edited Successfully";
+                        return "Fixture was edited Successfully";
                     }
                     else
                     {
@@ -1661,6 +1676,73 @@ namespace FantasyPL.Pages
             }
         }
 
+        public int GetConfiguration()
+        {
+            try
+            {
+                String sql = "select * from AllowEditConfig";
+
+                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
+                {
+                    
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        reader.Read();
+                        int config = reader.GetInt32(0);
+                        reader.Close();
+                        return config;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
+        public bool GetFT()
+        {
+            try
+            {
+                String sql = "select * from AllowEditConfig";
+
+                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
+                {
+
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        reader.Read();
+                        bool config = reader.GetBoolean(0);
+                        reader.Close();
+                        return config;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        public void ToggleFT()
+        {
+            try
+            {
+                String sql = "update AllowEditConfig set Config =  case when Config = 1 then 0 else 1 end";
+
+                using (SqlCommand command = new SqlCommand(sql, dBManager.myConnection))
+                {
+                    dBManager.ExecuteNonQuery(command);
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
 
 
 
@@ -1820,6 +1902,7 @@ namespace FantasyPL.Pages
             }
         }
 
+
         public string GetFavClub(string username)
         {
             try
@@ -1854,6 +1937,49 @@ namespace FantasyPL.Pages
             {
                 Console.WriteLine(ex.Message);
                 return null;
+            }
+        }
+
+        public bool HasStartEvent(int fixId)
+        {
+            try
+            {
+                String query = "SELECT Event_id from match_events where fixture_id = @fixId and event_type = 'Start' ";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("fixId", fixId);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        return reader.HasRows;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+
+        public bool HasEndEvent(int fixId)
+        {
+            try
+            {
+                String query = "SELECT Event_id from match_events where fixture_id = @fixId and event_type = 'End' ";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("fixId", fixId);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        return reader.HasRows;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
             }
         }
 
@@ -1907,7 +2033,58 @@ namespace FantasyPL.Pages
                     return dt;
                 }
             }
-            
+        }
+
+        public int GetPoints(string username)
+        {
+			try
+			{
+				String query = "SELECT Points from Users where USERNAME = @username";
+				using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+				{
+					command.Parameters.AddWithValue("@username", username);
+					using (SqlDataReader reader = dBManager.ExecuteReader(command))
+					{
+                        int p = -1;
+
+						while (reader.Read())
+                        {
+                            p = reader.GetInt32(0);
+                            
+                        }
+                        reader.Close();
+
+                        return p;
+                    }
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				return -1;
+			}
+		}
+
+        public DataTable WeeklyPP(int fix)
+        {
+            string proc = StoredProcedures.WeeklyPP;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            Parameters.Add("@fix", fix);
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                DataTable dt = new DataTable();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                    reader.Close();
+                    return dt;
+                }
+                else
+                {
+                    reader.Close();
+                    return dt;
+                }
+            }
         }
 
         public void TerminateConnection()

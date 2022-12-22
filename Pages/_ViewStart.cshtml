@@ -1,6 +1,6 @@
 ﻿@{
     var routeUrl = ViewContext.RouteData.Values["Page"].ToString();
-    var pages = new List<string> { "InsertRef", "DeleteRef", "fixture", "InsertFE", "FT", "clubs", "ViewClubLB", "ViewPlayerLB", "player", "FT", "Fixtures", "Profile", "InsertClub", "DeleteClub", "EditClub", "EditPlayer", "DeletePlayer", "InsertPlayer", "EditFix", "DeleteFE", "Profile", "Register", "Comp", "CreateComp", "JoinComp", "ExitComp", "DeleteComp", "RemoveFromComp", "DeleteUser", "AddStadium", "DeleteStadium", "AddMan", "DeleteMan" };
+    var pages = new List<string> { "InsertEvent", "InsertRef", "DeleteRef", "fixture", "InsertFE", "FT", "clubs", "ViewClubLB", "ViewPlayerLB", "player", "FT", "Fixtures", "Profile", "InsertClub", "DeleteClub", "EditClub", "EditPlayer", "DeletePlayer", "InsertPlayer", "EditFix", "DeleteFE", "Profile", "Register", "Comp", "CreateComp", "JoinComp", "ExitComp", "DeleteComp", "RemoveFromComp", "DeleteUser", "AddStadium", "DeleteStadium", "AddMan", "DeleteMan" };
     //if routeUrl contains any of pages,the page will use _Layout as Layout page,the other pages will use _Layout1 ad Layout page
     if (pages.Any(routeUrl.Contains))
     {

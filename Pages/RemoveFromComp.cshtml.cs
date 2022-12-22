@@ -10,7 +10,8 @@ namespace FantasyPL.Pages
         public void OnGet()
         {
             controller.GetAllCompetitions();
-            GlobalVar.compQueried.Id = 0;
+            GlobalVar.compQueried = new() ;
+			GlobalVar.compQueried.Id = 0;
             if (GlobalVar.listComp.Count > 0)
                 controller.GetParticipantsInCompetition(GlobalVar.listComp[0].Id);
             else

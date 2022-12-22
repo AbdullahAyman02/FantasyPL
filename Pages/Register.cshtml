@@ -78,7 +78,7 @@
 </div>
     <div class="txt_field">
         <label for="birthday" id="birthdaylabel">Birthday</label>
-        <input type="date" id="birthday" value='@Model.userInfo.Birthdate' name="birthday" required>
+                <input type="date" id="birthday" value='@Model.userInfo.Birthdate' min="1900-01-01" max="@DateTime.Now.ToString("yyyy-MM-dd")" name="birthday" required>
     </div>
 </div>
 

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -21,8 +22,17 @@ namespace FantasyPL.Pages
         public void OnPost()
         {
             userInfo.FirstName = Request.Form["Fname"];
+            bool result = userInfo.FirstName.All(Char.IsLetter);
             userInfo.MiddleName = Request.Form["Mname"];
+            bool result1 = userInfo.MiddleName.All(Char.IsLetter);
             userInfo.LastName = Request.Form["Lname"];
+            bool result2 = userInfo.LastName.All(Char.IsLetter);
+            if (!result || !result1 || !result2)
+            {
+                Message = "Name must contain letters";
+                return;
+            }
+
             userInfo.Country = Request.Form["country"];
             if (GlobalVar.isAdmin == false)
             {
@@ -35,6 +45,14 @@ namespace FantasyPL.Pages
                 userInfo.UserType = 'A';
             }
             userInfo.Email = Request.Form["Email"];
+            try
+            {
+                MailAddress address = new MailAddress(userInfo.Email);
+            } catch(FormatException)
+            {
+                Message = "Wrong Email Format";
+                return;
+            }
             userInfo.Username = Request.Form["username"];
             userInfo.Password = Request.Form["password"];
             

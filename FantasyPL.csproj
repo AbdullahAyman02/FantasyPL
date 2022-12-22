@@ -11,6 +11,7 @@
     <Content Remove="wwwroot\Reports\FavClub.rdlc" />
     <Content Remove="wwwroot\Reports\MostGC.rdlc" />
     <Content Remove="wwwroot\Reports\Report1.rdlc" />
+    <Content Remove="wwwroot\Reports\WeeklyPP.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <None Include="wwwroot\Reports\FavClub.rdlc" />
     <None Include="wwwroot\Reports\MostGC.rdlc" />
     <None Include="wwwroot\Reports\Report1.rdlc" />
+    <None Include="wwwroot\Reports\WeeklyPP.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +44,11 @@
       <DependentUpon>MostGC.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ReportDataSet\WeeklyPP.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WeeklyPP.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -59,6 +66,11 @@
     <None Update="ReportDataSet\MostGC.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>MostGC.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\WeeklyPP.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>WeeklyPP.Designer.cs</LastGenOutput>
       <Generator>MSDataSetGenerator</Generator>
     </None>
   </ItemGroup>
