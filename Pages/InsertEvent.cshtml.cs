@@ -19,10 +19,13 @@ namespace FantasyPL.Pages
 			{
 				GlobalVar.fixture_in_insert_event = GlobalVar.listFixtures[0];
 				controller.SelectPlayersByClubAbbr(GlobalVar.fixture_in_insert_event.HomeSide);
+				controller.UpdateFixtureEvents(GlobalVar.listFixtures[0].ID, 2);
 			}
 			else
 			{
+				GlobalVar.fixture_in_insert_event = new();
 				GlobalVar.clubPlayers.Clear();
+				GlobalVar.fixtureEvents.Clear();
 			}
 			GlobalVar.HA = true;
 			hasStart = controller.HasStartEvent(GlobalVar.fixture_in_insert_event.ID);
@@ -39,13 +42,14 @@ namespace FantasyPL.Pages
 				//GlobalVar.fixtureQueried = controller.SelectFixture(Convert.ToInt32(Request.Form["fixture"]));
 				GlobalVar.fixture_in_insert_event = controller.SelectFixture(Convert.ToInt32(Request.Form["fixture"]));
 				controller.SelectPlayersByClubAbbr(GlobalVar.fixture_in_insert_event.HomeSide);
+				controller.UpdateFixtureEvents(Convert.ToInt32(Request.Form["fixture"]), 2);
 				return;
 			}
 			string btnvalue = Request.Form["Refresh"];
 			if (btnvalue != null)
 			{
 				controller.SelectPlayersByClubAbbr(Request.Form["club_abbr"]);
-				GlobalVar.HA = GlobalVar.fixtureQueried.HomeSide == Request.Form["club_abbr"];
+				GlobalVar.HA = GlobalVar.fixture_in_insert_event.HomeSide == Request.Form["club_abbr"];
 				return;
 			}
 			string btnvalue1 = Request.Form["Insert"];
@@ -64,6 +68,7 @@ namespace FantasyPL.Pages
 				int min = Convert.ToInt32(Request.Form["minute"]);
 				int EID = controller.lastEventID(FID) + 1;
 				Message = controller.InsertEvent(FID, EID, type, min, clubAbbr, playerNo);
+				controller.UpdateFixtureEvents(FID,2);
 				return;
 			}
 			string btnvalue3 = Request.Form["end"];
@@ -71,9 +76,9 @@ namespace FantasyPL.Pages
 			{
 				int FID = Convert.ToInt32(Request.Form["fixture"]);
 				string minu = Request.Form["minute"];
-				if (minu == "")
+				if (minu == "" || Convert.ToInt32(minu) < controller.lastEventMin(FID))
 				{
-					Message = "Please Specify a Minute.";
+					Message = "Please Specify a Minute that is after all previous events.";
 					return;
 				}
 				int min = Convert.ToInt32(Request.Form["minute"]);
@@ -89,6 +94,21 @@ namespace FantasyPL.Pages
 				int EID = controller.lastEventID(FID) + 1;
 				Message = controller.InsertEvent(FID, EID, "Start", 0, "-", -1);
 				hasStart = controller.HasStartEvent(Convert.ToInt32(Request.Form["fixture"]));
+				return;
+			}
+			string btnvalue5 = Request.Form["Refresh1"];
+			if (btnvalue5 != null)
+			{
+				GlobalVar.fixtureQueried = controller.SelectFixture(Convert.ToInt32(Request.Form["fixture"]));
+				controller.UpdateFixtureEvents(Convert.ToInt32(Request.Form["fixture"]),2);
+				return;
+			}
+			
+			string btnvalue6 = Request.Form["DeleteEvent"];
+			if (btnvalue6 != null)
+			{
+				Message = controller.DeleteEventofFixture(Convert.ToInt32(Request.Form["fixture"]), Convert.ToInt32(Request.Form["evt"]));
+				controller.UpdateFixtureEvents(Convert.ToInt32(Request.Form["fixture"]),2);
 				return;
 			}
 		}

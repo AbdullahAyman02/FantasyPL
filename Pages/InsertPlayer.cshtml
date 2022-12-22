@@ -97,13 +97,13 @@
 		 </select>
 	</div>
 	<div class="txt_field">
-		<input type="number" name='debut' min="1950" value='1950' required/>
+			<input type="number" name='debut' min="1950" value='1950' max="@DateTime.Now.Year" required/>
 		<label>Debut Year</label>
 	</div>
 	<div class="name">
 		<div class="txt_field">
-			<input type="number" name='contract' min="0" value='0' required/>
-			<label>Contract End Length</label>
+			<input type="number" name='contract' min="@DateTime.Now.Year" max="@DateTime.Now.Year + 15" value='@DateTime.Now.Year' required/>
+			<label>Contract End Year</label>
 		</div>
 		<div class="txt_field">
 			<input type="number" name='points' min="0" value='0' required/>

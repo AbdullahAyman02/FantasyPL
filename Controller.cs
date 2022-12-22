@@ -750,6 +750,7 @@ namespace FantasyPL.Pages
                     using (SqlDataReader reader = dBManager.ExecuteReader(command))
                     {
                         GlobalVar.weekFixtures.Clear();
+                        int refID = 0;
                         while (reader.Read())
                         {
                             Fixture fixture = new Fixture();
@@ -767,9 +768,20 @@ namespace FantasyPL.Pages
                                 fixture.AwayScore = "-";
                             fixture.HomeSide = reader.GetString(6);
                             fixture.AwaySide = reader.GetString(7);
+                            if (reader["STADIUM"] != DBNull.Value)
+                                fixture.Stadium = reader.GetString(8);
+                            else
+                                fixture.Stadium = "-";
+                            if (reader["REFEREE_ID"] != DBNull.Value)
+                                fixture.refID = reader.GetInt32(9);
+                            else
+                                fixture.refID = 0;
                             GlobalVar.weekFixtures.Add(fixture);
                         }
                         reader.Close();
+                        foreach(var fix in GlobalVar.weekFixtures) {
+                            fix.Referee = GetRefereeName(fix.refID);
+                        }
                     }
                 }
             }
@@ -807,11 +819,18 @@ namespace FantasyPL.Pages
             }
         }
 
-        public void UpdateFixtureEvents(int id)
+        public void UpdateFixtureEvents(int id, int option = 1)
         {
             try
             {
-                String query = "SELECT * FROM Match_Events WHERE FIXTURE_ID = @id ORDER BY MINUTE ASC";
+                String query = "";
+                if (option == 1)
+                {
+                    query = "SELECT * FROM Match_Events WHERE FIXTURE_ID = @id ORDER BY MINUTE ASC";
+                } else
+                {
+					query = "SELECT * FROM Match_Events WHERE FIXTURE_ID = @id AND EVENT_TYPE NOT IN ('END', 'START') ORDER BY MINUTE ASC";
+				}
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
                     command.Parameters.AddWithValue("@id", id);
@@ -868,7 +887,7 @@ namespace FantasyPL.Pages
                     using (SqlDataReader reader = dBManager.ExecuteReader(command))
                     {
                         Fixture fixture = new Fixture();
-                        int refID = 1;
+                        int refID = 0;
                         while (reader.Read())
                         {
                             fixture.ID = reader.GetInt32(0);
@@ -896,8 +915,6 @@ namespace FantasyPL.Pages
                         }
                         reader.Close();
                         fixture.Referee = GetRefereeName(refID);
-                        if (fixture.Referee == "")
-                            fixture.Referee = "-";
                         return fixture;
                     }
                 }
@@ -967,6 +984,37 @@ namespace FantasyPL.Pages
                             reader.Close();
                             return Convert.ToInt32(dt.Rows[0][0]);
                         } else
+                        {
+                            return 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return 0;
+            }
+        }
+
+        public int lastEventMin(int FID)
+        {
+            try
+            {
+                String query = "SELECT TOP 1 MINUTE FROM Match_Events WHERE FIXTURE_ID = @FID ORDER BY MINUTE DESC";
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@FID", FID);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        if (reader.HasRows)
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            reader.Close();
+                            return Convert.ToInt32(dt.Rows[0][0]);
+                        }
+                        else
                         {
                             return 0;
                         }
@@ -1373,7 +1421,7 @@ namespace FantasyPL.Pages
             }
             else
             {
-                return "Invalid Competition Details";
+                return "Invalid Competition Details or the Competition is full";
             }
         }
 
@@ -2035,7 +2083,30 @@ namespace FantasyPL.Pages
             }
         }
 
-        public int GetPoints(string username)
+        public DataTable CompUser()
+        {
+            string query = "SELECT u.username, email, fname, mname, lname, birthdate, gender, country, fantasy_team_name, club_supported, competition_name FROM Users u, Participates_In p, Competitions c where u.USER_TYPE = 'F' AND u.USERNAME = p.USERNAME AND c.ID = p.COMPETITION_ID";
+            using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+            {
+                using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                {
+                    DataTable dt = new DataTable();
+                    if (reader.HasRows)
+                    {
+                        dt.Load(reader);
+                        reader.Close();
+                        return dt;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        return dt;
+                    }
+                }
+            }
+        }
+
+		public int GetPoints(string username)
         {
 			try
 			{

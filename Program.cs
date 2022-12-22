@@ -9,17 +9,15 @@ builder.WebHost.UseWebRoot("wwwroot");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-app.UseStaticFiles();
+//app.UseExceptionHandler("/Error");
+app.UseDeveloperExceptionPage();
 
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

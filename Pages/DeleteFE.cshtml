@@ -2,7 +2,7 @@
 @model FantasyPL.Pages.DeleteFEModel
 @{
 }
-<h1>Delete a Fixture or Event</h1>
+<h1>Delete a Fixture</h1>
 <div class="flexcontainerdown">
     <div>
     <form method="post">
@@ -19,35 +19,15 @@
                 @foreach (var fix in GlobalVar.listFixtures)
                 {
                     @if(fix.ID == GlobalVar.fixtureQueried.ID){
-                        <option value="@fix.ID" selected>@fix.HomeSide vs @fix.AwaySide</option>
+                        <option value="@fix.ID" selected>Gameweek: @fix.Gameweek - @fix.HomeSide vs @fix.AwaySide</option>
                     }
                     else {
-                        <option value="@fix.ID">@fix.HomeSide vs @fix.AwaySide</option>
+                            <option value="@fix.ID">Gameweek: @fix.Gameweek - @fix.HomeSide vs @fix.AwaySide</option>
                     }
                 }
         </select>
     </div>
     <input type="submit" name="DeleteFixture" id="DeleteFixture" value="Delete Fixture"/>
-    <div class="txt_field">
-        <label for="evt" id="playerlabel">Event</label>
-        <select id="evt" name="evt" class="form-control">
-            @foreach (var evt in GlobalVar.fixtureEvents)
-            {
-                        <option value="@evt.ID">@evt.EventType Minute:@evt.Minute Club:@evt.ClubAbbreviation Player:@evt.Player</option>
-            }
-        </select>
-    </div>
-    <input type="submit" name="DeleteEvent" id="DeleteEvent" value="Delete Event"/>
-    <input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display: none"/>
 </form>
 </div>
 </div>
-@section scripts{ 
-    <script>
-        $(function () {
-            $("#fix").on("change", function() {
-                $("#Refresh").click()
-            });
-        });
-    </script>
-}

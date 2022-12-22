@@ -104,5 +104,25 @@ namespace FantasyPL.Controllers
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");
         }
+
+        public IActionResult CompUser()
+        {
+            var dt = new DataTable();
+            dt = controller.CompUser();
+            
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\CompUser.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("CompUser", dt);//
+            
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+        }
     }
 }

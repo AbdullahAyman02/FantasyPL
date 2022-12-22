@@ -34,6 +34,7 @@ namespace FantasyPL.Pages
                 return;
             }
             GlobalVar.fixtureQueried = controller.SelectFixture(Convert.ToInt32(Request.Form["fixture"]));
+            GlobalVar.fixtureQueried.Gameweek = Convert.ToInt32(Request.Form["club2"]);
             controller.UpdateFixtureEvents(Convert.ToInt32(Request.Form["fixture"]));
         }
     }
@@ -50,6 +51,7 @@ namespace FantasyPL.Pages
         public string AwaySide { get; set; }
         public string Stadium { get; set; }
         public string Referee { get; set; }
+        public int refID { get; set; }
     }
 
     public class MEvent

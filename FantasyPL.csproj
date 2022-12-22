@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,12 +7,6 @@
     <UserSecretsId>18cc6c6c-4c63-485f-abff-7226dbcd086a</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\Reports\FavClub.rdlc" />
-    <Content Remove="wwwroot\Reports\MostGC.rdlc" />
-    <Content Remove="wwwroot\Reports\Report1.rdlc" />
-    <Content Remove="wwwroot\Reports\WeeklyPP.rdlc" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
@@ -28,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Reports\CompUser.rdlc" />
     <None Include="wwwroot\Reports\FavClub.rdlc" />
     <None Include="wwwroot\Reports\MostGC.rdlc" />
     <None Include="wwwroot\Reports\Report1.rdlc" />
@@ -35,6 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ReportDataSet\CompUser.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CompUser.xsd</DependentUpon>
+    </Compile>
     <Compile Update="ReportDataSet\DataSet1.Designer.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -53,6 +53,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ReportDataSet\CompUser.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>CompUser.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
     <None Update="ReportDataSet\DataSet1.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>

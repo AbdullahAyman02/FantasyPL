@@ -109,13 +109,13 @@
 		 </select>
 	</div>
 	<div class="txt_field">
-		<input type="number" name='debut' min="1950" value='@GlobalVar.playerQueried.Debut_Year' required/>
+			<input type="number" name='debut' min="1950" max="@DateTime.Now.Year" value='@GlobalVar.playerQueried.Debut_Year' required />
 		<label>Debut Year</label>
 	</div>
 	<div class="name">
 		<div class="txt_field">
-			<input type="number" name='contract' min="0" value='@GlobalVar.playerQueried.Contract_Length' required/>
-			<label>Contract End Length</label>
+			<input type="number" name='contract' min="@DateTime.Now.Year" max="@DateTime.Now.Year + 15" value='@GlobalVar.playerQueried.Contract_Length' required/>
+			<label>Contract End Year</label>
 		</div>
 		<div class="txt_field">
 			<input type="number" name='points' min="0" value='@GlobalVar.playerQueried.Points' required/>
