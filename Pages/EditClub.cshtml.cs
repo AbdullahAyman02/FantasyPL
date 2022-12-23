@@ -20,8 +20,7 @@ namespace FantasyPL.Pages
                 return;
             }
             clubInfo.Name = Request.Form["club"];
-            clubInfo.Name_Abbreviation = Request.Form["name_abbreviation"];
-            var match1 = clubInfo.Name_Abbreviation.All(Char.IsLetter);
+            clubInfo.Name_Abbreviation = Request.Form["club"];
             clubInfo.Establishment_year = Convert.ToInt32(Request.Form["establishment_year"]);
             clubInfo.City = Request.Form["city"];
             clubInfo.Number_of_Trophies = Convert.ToInt32(Request.Form["number_of_trophies"]);
@@ -29,14 +28,14 @@ namespace FantasyPL.Pages
             var match2 = clubInfo.Owner_Fname.All(Char.IsLetter);
             clubInfo.Owner_Lname = Request.Form["owner_lname"];
             var match3 = clubInfo.Owner_Lname.All(Char.IsLetter);
-            if(!match1 || !match2 || !match3)
+            if(!match2 || !match3)
             {
                 Message = "Name must contain letters only";
                 return;
             }
             Message = controller.UpdateClub(clubInfo);
 			controller.UpdateClubsList();
-			GlobalVar.clubQueried = controller.SelectClubByName(Request.Form["name_abbreviation"]);
+			GlobalVar.clubQueried = controller.SelectClubByName(Request.Form["club"]);
 		}
 
 

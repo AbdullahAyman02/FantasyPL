@@ -37,6 +37,7 @@ namespace FantasyPL.Pages
 
             string club_abbr = Request.Form["club3"];
             int player_no = Convert.ToInt32(Request.Form["player"]);
+            controller.DeleteFTplayer(club_abbr, player_no);
             Message = controller.DeletePlayer(club_abbr, player_no);
             if (Message == "Player was Deleted Successfully")
             {

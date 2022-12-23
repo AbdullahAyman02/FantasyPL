@@ -345,6 +345,7 @@ namespace FantasyPL.Pages
                     if (dBManager.ExecuteNonQuery(command) > 0)
                     {
                         UpdateClubsList();
+                        
                         return "Club was edited Successfully";
                     }
                     else
@@ -363,10 +364,13 @@ namespace FantasyPL.Pages
 
         public string DeleteClub(string Name)
         {
-            //UpdateFixtureEvents(Fixture_ID);
+            //DeletePlayers
             SelectPlayersByClubAbbr(Name);
             while (GlobalVar.clubPlayers.Count > 0)
             {
+                //Update user balance here
+                //Delete from Fantasy Team first
+                DeleteFTplayer(Name, GlobalVar.clubPlayers[0].Player_Number);
                 DeletePlayer(Name,GlobalVar.clubPlayers[0].Player_Number);
                 GlobalVar.clubPlayers.RemoveAt(0);
             }
@@ -379,7 +383,7 @@ namespace FantasyPL.Pages
                     if (dBManager.ExecuteNonQuery(command) > 0)
                     {
                         UpdateClubsList();
-                        return "Club was deleted Successfully"; 
+                        return "Club was deleted Successfully";
                     }
                     else
                     {
@@ -390,7 +394,34 @@ namespace FantasyPL.Pages
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                return "An error has occured";
+            }
+        }
+
+        public int CheckFixtures(string club)
+        {
+            try
+            {
+                String query = "select count(*) from Fixtures where (@club = Fixtures.HOME_SIDE or @club= Fixtures.AWAY_SIDE)"; 
+                using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
+                {
+                    command.Parameters.AddWithValue("@club", club);
+                    using (SqlDataReader reader = dBManager.ExecuteReader(command))
+                    {
+                        int result = -1;
+                        while (reader.Read())
+                        {
+                            result = reader.GetInt32(0);
+                        }
+                        reader.Close();
+                        return result;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return -1;
             }
         }
 
@@ -649,11 +680,19 @@ namespace FantasyPL.Pages
             }
         }
 
-        public string DeleteFTplayer(string username, string club_abbr, int player_no)
+        public string DeleteFTplayer(string club_abbr, int player_no, string username = "")
         {
             try
             {
-                String query = "DELETE FROM FANTASY_TEAM WHERE USERNAME = @username AND CLUB_ABBREVIATION = @abbr AND PLAYER_NO = @number";
+                String query = "";
+                if (username != "")
+                {
+                    query = "DELETE FROM FANTASY_TEAM WHERE USERNAME = @username AND CLUB_ABBREVIATION = @abbr AND PLAYER_NO = @number";
+
+                } else
+                {
+                    query = "DELETE FROM FANTASY_TEAM WHERE CLUB_ABBREVIATION = @abbr AND PLAYER_NO = @number";
+                }
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
                     command.Parameters.AddWithValue("@username", username);

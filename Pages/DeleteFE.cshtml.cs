@@ -23,6 +23,11 @@ namespace FantasyPL.Pages
             string btnvalue = Request.Form["DeleteFixture"];
             if (btnvalue != null)
             {
+                if(controller.HasStartEvent(Convert.ToInt32(Request.Form["fix"])) && !controller.HasEndEvent(Convert.ToInt32(Request.Form["fix"])))
+                {
+                    Message = "Fixture started but did not end yet!";
+                    return;
+                }
                 Message = controller.DeleteFixture(Convert.ToInt32(Request.Form["fix"]));
 				if (GlobalVar.listFixtures.Count > 0)
 				{

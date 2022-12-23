@@ -13,7 +13,13 @@ namespace FantasyPL.Pages
         
         public void OnPost()
         {
-            Message = controller.DeleteClub(Request.Form["club"]);
+            int result = controller.CheckFixtures(Request.Form["club"]);
+            if (result == -1)
+                Message = "An error has occured";
+            else if(result == 0)
+                Message = controller.DeleteClub(Request.Form["club"]);
+            else
+                Message = "Cannot delete a club because it has fixtures";
         }
     }
 }
