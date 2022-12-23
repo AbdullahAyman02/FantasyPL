@@ -94,7 +94,9 @@ namespace FantasyPL.Pages
 				int EID = controller.lastEventID(FID) + 1;
 				Message = controller.InsertEvent(FID, EID, "Start", 0, "-", -1);
 				hasStart = controller.HasStartEvent(Convert.ToInt32(Request.Form["fixture"]));
-				return;
+				if (controller.GetFT() == true)
+					controller.ToggleFT();
+                return;
 			}
 			string btnvalue5 = Request.Form["Refresh1"];
 			if (btnvalue5 != null)
