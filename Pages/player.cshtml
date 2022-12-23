@@ -88,6 +88,8 @@
             <input type="submit" name="Refresh" id="Refresh" value="Refresh" style="Display: none"/>
             <div class="flexcontainer">
                 <a class="club_link" asp-area="" asp-page="/ViewPlayerLB">View Leaderboard</a>
+                <a style="background-color:black; color:white" class="club_link" href="../Home/SelectedTimes" target="_self">Selection count of Players</a>
+                <a style="background-color:black; color:white" class="club_link" href="../Home/PlayersStats" target="_self">Statistics</a>
             </div>
             @if (GlobalVar.LoggedInUser.UserType == 'A')
             {

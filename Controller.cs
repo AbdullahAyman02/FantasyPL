@@ -2085,7 +2085,7 @@ namespace FantasyPL.Pages
 
         public DataTable CompUser()
         {
-            string query = "SELECT u.username, email, fname, mname, lname, birthdate, gender, country, fantasy_team_name, club_supported, competition_name FROM Users u, Participates_In p, Competitions c where u.USER_TYPE = 'F' AND u.USERNAME = p.USERNAME AND c.ID = p.COMPETITION_ID";
+            string query = "SELECT u.username, email, fname, mname, lname, birthdate, gender, country, fantasy_team_name, club_supported, competition_name \r\nFROM Users u left outer join Participates_In p on u.USERNAME=p.USERNAME left outer join Competitions c on c.ID = p.COMPETITION_ID\r\nwhere u.USER_TYPE = 'F'";
             using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
             {
                 using (SqlDataReader reader = dBManager.ExecuteReader(command))
@@ -2141,6 +2141,69 @@ namespace FantasyPL.Pages
             string proc = StoredProcedures.WeeklyPP;
             Dictionary<string, object> Parameters = new Dictionary<string, object>();
             Parameters.Add("@fix", fix);
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                DataTable dt = new DataTable();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                    reader.Close();
+                    return dt;
+                }
+                else
+                {
+                    reader.Close();
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable PercentComp()
+        {
+            string proc = StoredProcedures.PercentComp;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                DataTable dt = new DataTable();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                    reader.Close();
+                    return dt;
+                }
+                else
+                {
+                    reader.Close();
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable SelectedTimes()
+        {
+            string proc = StoredProcedures.SelectedTimes;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
+            using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
+            {
+                DataTable dt = new DataTable();
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                    reader.Close();
+                    return dt;
+                }
+                else
+                {
+                    reader.Close();
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable PlayersStats()
+        {
+            string proc = StoredProcedures.PlayersStats;
+            Dictionary<string, object> Parameters = new Dictionary<string, object>();
             using (SqlDataReader reader = dBManager.ExecuteReader(proc, Parameters))
             {
                 DataTable dt = new DataTable();

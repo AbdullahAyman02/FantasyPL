@@ -56,24 +56,24 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.81043in</Width>
+                  <Width>1.25543in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.13793in</Width>
+                  <Width>1.58293in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.57959in</Width>
+                  <Width>1.02459in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.58793in</Width>
+                  <Width>1.03293in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.11748in</Width>
+                  <Width>2.56248in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.29583in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -99,7 +99,7 @@
                           <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>2pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -135,7 +135,7 @@
                           <rd:DefaultName>Textbox3</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>2pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -171,7 +171,7 @@
                           <rd:DefaultName>Textbox5</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>2pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -207,7 +207,7 @@
                           <rd:DefaultName>Textbox7</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>2pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -243,7 +243,7 @@
                           <rd:DefaultName>Textbox9</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                               <Width>2pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -258,7 +258,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.29583in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -281,8 +281,7 @@
                           <rd:DefaultName>NAME</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
-                              <Width>2pt</Width>
+                              <Style>Solid</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -314,8 +313,7 @@
                           <rd:DefaultName>CAPACITY</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
-                              <Width>2pt</Width>
+                              <Style>Solid</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -347,8 +345,7 @@
                           <rd:DefaultName>CITY</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
-                              <Width>2pt</Width>
+                              <Style>Solid</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -380,8 +377,7 @@
                           <rd:DefaultName>SIZE</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
-                              <Width>2pt</Width>
+                              <Style>Solid</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -413,8 +409,7 @@
                           <rd:DefaultName>CLUB_ABBREVIATION</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
-                              <Width>2pt</Width>
+                              <Style>Solid</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -450,9 +445,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>1.21165in</Top>
-            <Left>0.38849in</Left>
-            <Height>0.5in</Height>
-            <Width>5.23336in</Width>
+            <Left>0.20516in</Left>
+            <Height>0.59166in</Height>
+            <Width>7.45836in</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -471,14 +466,16 @@
                     <Style />
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.52101in</Top>
-            <Left>5.30518in</Left>
+            <Left>6.39685in</Left>
             <Height>0.25in</Height>
-            <Width>1in</Width>
+            <Width>1.26667in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -497,7 +494,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Stadium Info</Value>
+                    <Value>Stadium Information</Value>
                     <Style>
                       <FontFamily>Times New Roman</FontFamily>
                       <FontSize>28pt</FontSize>
@@ -511,9 +508,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
             <Top>0.22934in</Top>
-            <Left>2.37862in</Left>
+            <Left>1.57029in</Left>
             <Height>0.54167in</Height>
-            <Width>2.37862in</Width>
+            <Width>3.75362in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border />
@@ -524,21 +521,63 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.38072in</Height>
+        <Height>6.04703cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>7.06777in</Width>
+      <Width>20.40747cm</Width>
       <Page>
-        <PageHeight>11.69in</PageHeight>
-        <PageWidth>8.27in</PageWidth>
-        <LeftMargin>0.75in</LeftMargin>
-        <RightMargin>0.75in</RightMargin>
-        <TopMargin>0.75in</TopMargin>
-        <BottomMargin>0.75in</BottomMargin>
+        <PageFooter>
+          <Height>1.19084cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="PageNumber">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!PageNumber</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.10583cm</Top>
+              <Left>16.96534cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.5cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
@@ -585,6 +624,6 @@ MnzATTMeOOZ8g85MtmnHQim3Bt24vd0lloLfCvmSRsWUTgexUdiP/m1YfbXVCW7x85JoqmqDutOkfmwQ
 6jLc07Qyh0wrEDJGtxtS9VQdF5DH6aDJvtQbFW8jyycHt6DTVt++RzUBJI5sMA59NL+9qZKinErjL4GtZteRsKM9s+mg3O47jxqYyidh+Wse1SmorI5j7H01k3xQYQcDONeViUcVPvnQYXV1yLCTnlyIGtN4c7t+797TQkfLNTlgfoykY/szf21veqUYl2983sM9tRd0+r5rdvK0yQNxZ6hI2+hViARoOi9spVulrRkHNyM9/TSLvLZ8coaaBGhqBn5lGM/qNM20al6ejgEfy8u5OTpjq6KBKRAI1wc+ugrRda6/WKMwzL5kTHCsvcZ+mkK53+sjg+GmtsLU8ScIYzECqrw44C4wOxZcD2P541YbdlFF50ny+hyNRvuC008kMjspLDLAk6CAbzuut8540zHyJJGCBkkknHpkliSfU++tPVCpr4yZpB37dzprv9spxXOOGffJ1jvSRpTjA/l9NAuW6z8yW9WX31uhLTUqBJWw/wCesakXyJiVJ7fXXjuNBJAkpGHz6jQYd6qICoEeGP5a0ugnJydGgNGjRoDRo0aA0aNGgNGjRoP/2Q==</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>8f184436-6132-48c5-8967-a78bf5896736</rd:ReportID>
 </Report>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Stats" targetNamespace="http://tempuri.org/Stats.xsd" xmlns:mstns="http://tempuri.org/Stats.xsd" xmlns="http://tempuri.org/Stats.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Stats" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="Stats" msprop:Generator_DataSetName="Stats">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Club_Abbreviation" msprop:Generator_ColumnPropNameInRow="Club_Abbreviation" msprop:Generator_ColumnPropNameInTable="Club_AbbreviationColumn" msprop:Generator_ColumnVarNameInTable="columnClub_Abbreviation" msprop:Generator_UserColumnName="Club_Abbreviation" type="xs:string" minOccurs="0" />
+              <xs:element name="Player_No" msprop:Generator_ColumnPropNameInRow="Player_No" msprop:Generator_ColumnPropNameInTable="Player_NoColumn" msprop:Generator_ColumnVarNameInTable="columnPlayer_No" msprop:Generator_UserColumnName="Player_No" type="xs:string" minOccurs="0" />
+              <xs:element name="FName" msprop:Generator_ColumnPropNameInRow="FName" msprop:Generator_ColumnPropNameInTable="FNameColumn" msprop:Generator_ColumnVarNameInTable="columnFName" msprop:Generator_UserColumnName="FName" type="xs:string" minOccurs="0" />
+              <xs:element name="MName" msprop:Generator_ColumnPropNameInRow="MName" msprop:Generator_ColumnPropNameInTable="MNameColumn" msprop:Generator_ColumnVarNameInTable="columnMName" msprop:Generator_UserColumnName="MName" type="xs:string" minOccurs="0" />
+              <xs:element name="LName" msprop:Generator_ColumnPropNameInRow="LName" msprop:Generator_ColumnPropNameInTable="LNameColumn" msprop:Generator_ColumnVarNameInTable="columnLName" msprop:Generator_UserColumnName="LName" type="xs:string" minOccurs="0" />
+              <xs:element name="Position" msprop:Generator_ColumnPropNameInRow="Position" msprop:Generator_ColumnPropNameInTable="PositionColumn" msprop:Generator_ColumnVarNameInTable="columnPosition" msprop:Generator_UserColumnName="Position" type="xs:string" minOccurs="0" />
+              <xs:element name="Goals" msprop:Generator_ColumnPropNameInRow="Goals" msprop:Generator_ColumnPropNameInTable="GoalsColumn" msprop:Generator_ColumnVarNameInTable="columnGoals" msprop:Generator_UserColumnName="Goals" type="xs:string" minOccurs="0" />
+              <xs:element name="Assists" msprop:Generator_ColumnPropNameInRow="Assists" msprop:Generator_ColumnPropNameInTable="AssistsColumn" msprop:Generator_ColumnVarNameInTable="columnAssists" msprop:Generator_UserColumnName="Assists" type="xs:string" minOccurs="0" />
+              <xs:element name="Tackles" msprop:Generator_ColumnPropNameInRow="Tackles" msprop:Generator_ColumnPropNameInTable="TacklesColumn" msprop:Generator_ColumnVarNameInTable="columnTackles" msprop:Generator_UserColumnName="Tackles" type="xs:string" minOccurs="0" />
+              <xs:element name="Saves" msprop:Generator_ColumnPropNameInRow="Saves" msprop:Generator_ColumnPropNameInTable="SavesColumn" msprop:Generator_ColumnVarNameInTable="columnSaves" msprop:Generator_UserColumnName="Saves" type="xs:string" minOccurs="0" />
+              <xs:element name="Yellow_Cards" msprop:Generator_ColumnPropNameInRow="Yellow_Cards" msprop:Generator_ColumnPropNameInTable="Yellow_CardsColumn" msprop:Generator_ColumnVarNameInTable="columnYellow_Cards" msprop:Generator_UserColumnName="Yellow_Cards" type="xs:string" minOccurs="0" />
+              <xs:element name="Red_Cards" msprop:Generator_ColumnPropNameInRow="Red_Cards" msprop:Generator_ColumnPropNameInTable="Red_CardsColumn" msprop:Generator_ColumnVarNameInTable="columnRed_Cards" msprop:Generator_UserColumnName="Red_Cards" type="xs:string" minOccurs="0" />
+              <xs:element name="Points" msprop:Generator_ColumnPropNameInRow="Points" msprop:Generator_ColumnPropNameInTable="PointsColumn" msprop:Generator_ColumnVarNameInTable="columnPoints" msprop:Generator_UserColumnName="Points" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

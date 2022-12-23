@@ -7,6 +7,12 @@
     <UserSecretsId>18cc6c6c-4c63-485f-abff-7226dbcd086a</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\Reports\Percent.rdlc" />
+    <Content Remove="wwwroot\Reports\SelectedTimes.rdlc" />
+    <Content Remove="wwwroot\Reports\Stats.rdlc" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
@@ -25,16 +31,14 @@
     <None Include="wwwroot\Reports\CompUser.rdlc" />
     <None Include="wwwroot\Reports\FavClub.rdlc" />
     <None Include="wwwroot\Reports\MostGC.rdlc" />
+    <None Include="wwwroot\Reports\Percent.rdlc" />
     <None Include="wwwroot\Reports\Report1.rdlc" />
+    <None Include="wwwroot\Reports\SelectedTimes.rdlc" />
+    <None Include="wwwroot\Reports\Stats.rdlc" />
     <None Include="wwwroot\Reports\WeeklyPP.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ReportDataSet\CompUser.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CompUser.xsd</DependentUpon>
-    </Compile>
     <Compile Update="ReportDataSet\DataSet1.Designer.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -44,6 +48,11 @@
       <DependentUpon>MostGC.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ReportDataSet\Stats.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Stats.xsd</DependentUpon>
     </Compile>
     <Compile Update="ReportDataSet\WeeklyPP.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -71,6 +80,21 @@
     <None Update="ReportDataSet\MostGC.xsd">
       <SubType>Designer</SubType>
       <LastGenOutput>MostGC.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\Percent.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Percent.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\SelectedTimes.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>SelectedTimes.Designer.cs</LastGenOutput>
+      <Generator>MSDataSetGenerator</Generator>
+    </None>
+    <None Update="ReportDataSet\Stats.xsd">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Stats.Designer.cs</LastGenOutput>
       <Generator>MSDataSetGenerator</Generator>
     </None>
     <None Update="ReportDataSet\WeeklyPP.xsd">

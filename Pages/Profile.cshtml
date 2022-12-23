@@ -27,7 +27,7 @@
         <input type="submit" value="Submit" />
         
         
-            @if (GlobalVar.LoggedInUser.UserType == 'A')
+        @if (GlobalVar.LoggedInUser.UserType == 'A')
         {
             <div class="flexcontainer">
              @if (GlobalVar.statusFT)
@@ -41,7 +41,10 @@
             <div class="flexcontainer">
             <a class="club_link" asp-area="" asp-page="/Register">Create Admin Account</a>
             <a class="club_link" asp-area="" asp-page="/DeleteUser">Delete User</a>
-                <a style="background-color:black; color:white" class="club_link" href="../Home/CompUser" target="_self">User details with Competitions</a>
+            </div>
+            <div class="flexcontainer">
+            <a style="background-color:black; color:white" class="club_link" href="../Home/CompUser" target="_self">User details with Competitions</a>
+            <a style="background-color:black; color:white" class="club_link" href="../Home/PercentComp" target="_self">%Players from Club Supported</a>
             </div>
         } else {
             <div class="txt_field">

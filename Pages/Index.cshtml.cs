@@ -30,6 +30,9 @@ namespace FantasyPL.Pages
         public static string InsertManager = "InsertManager";
         public static string MostGC = "MostGC";
         public static string WeeklyPP = "WeeklyPP";
+        public static string PercentComp = "PercentComp";
+        public static string SelectedTimes = "SelectedTimes";
+        public static string PlayersStats = "PlayersStats";
     }
     public static class GlobalVar
     {

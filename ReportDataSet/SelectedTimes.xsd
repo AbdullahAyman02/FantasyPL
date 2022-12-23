@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SelectedTimes" targetNamespace="http://tempuri.org/SelectedTimes.xsd" xmlns:mstns="http://tempuri.org/SelectedTimes.xsd" xmlns="http://tempuri.org/SelectedTimes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SelectedTimes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="SelectedTimes" msprop:Generator_DataSetName="SelectedTimes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Club_Abbreviation" msprop:Generator_ColumnPropNameInRow="Club_Abbreviation" msprop:Generator_ColumnPropNameInTable="Club_AbbreviationColumn" msprop:Generator_ColumnVarNameInTable="columnClub_Abbreviation" msprop:Generator_UserColumnName="Club_Abbreviation" type="xs:string" minOccurs="0" />
+              <xs:element name="Player_No" msprop:Generator_ColumnPropNameInRow="Player_No" msprop:Generator_ColumnPropNameInTable="Player_NoColumn" msprop:Generator_ColumnVarNameInTable="columnPlayer_No" msprop:Generator_UserColumnName="Player_No" type="xs:string" minOccurs="0" />
+              <xs:element name="FNAME" msprop:Generator_ColumnPropNameInRow="FNAME" msprop:Generator_ColumnPropNameInTable="FNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnFNAME" msprop:Generator_UserColumnName="FNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="MNAME" msprop:Generator_ColumnPropNameInRow="MNAME" msprop:Generator_ColumnPropNameInTable="MNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnMNAME" msprop:Generator_UserColumnName="MNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="LNAME" msprop:Generator_ColumnPropNameInRow="LNAME" msprop:Generator_ColumnPropNameInTable="LNAMEColumn" msprop:Generator_ColumnVarNameInTable="columnLNAME" msprop:Generator_UserColumnName="LNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="Selected_Times" msprop:Generator_ColumnPropNameInRow="Selected_Times" msprop:Generator_ColumnPropNameInTable="Selected_TimesColumn" msprop:Generator_ColumnVarNameInTable="columnSelected_Times" msprop:Generator_UserColumnName="Selected_Times" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

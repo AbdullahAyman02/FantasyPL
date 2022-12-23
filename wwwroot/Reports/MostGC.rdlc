@@ -201,7 +201,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>List</Value>
+                                  <Value>Last</Value>
                                   <Style>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -375,7 +375,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!FNAME.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur Gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -405,7 +407,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!MNAME.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur Gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -435,7 +439,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!LNAME.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur Gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -465,7 +471,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!PLAYER_NO.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur Gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -495,7 +503,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Goals.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur Gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -525,7 +535,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Assists.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur Gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />

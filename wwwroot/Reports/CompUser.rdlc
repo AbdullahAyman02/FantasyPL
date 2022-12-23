@@ -80,7 +80,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.73665in</Width>
+                  <Width>0.86695in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -97,13 +97,16 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>COMP. NAME</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox54</rd:DefaultName>
+                          <RepeatWith>Tablix6</RepeatWith>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -122,7 +125,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.68333in</Height>
+                  <Height>0.57797in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -134,13 +137,51 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!COMPETITION_NAME.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Centaur gorthic</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>COMPETITION_NAME</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.44439in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox25">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Count(Fields!COMPETITION_NAME.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Centaur gorthic</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox25</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -166,7 +207,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>0.87371in</Size>
+                    <Size>1.04568in</Size>
                     <CellContents>
                       <Textbox Name="Textbox58">
                         <CanGrow>true</CanGrow>
@@ -176,13 +217,16 @@
                             <TextRuns>
                               <TextRun>
                                 <Value>USERNAME</Value>
-                                <Style />
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
                               </TextRun>
                             </TextRuns>
                             <Style />
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox58</rd:DefaultName>
+                        <RepeatWith>Tablix6</RepeatWith>
                         <Style>
                           <Border>
                             <Style>Solid</Style>
@@ -201,7 +245,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>0.47371in</Size>
+                        <Size>1.05424in</Size>
                         <CellContents>
                           <Textbox Name="Textbox78">
                             <CanGrow>true</CanGrow>
@@ -211,13 +255,16 @@
                                 <TextRuns>
                                   <TextRun>
                                     <Value>EMAIL</Value>
-                                    <Style />
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
                                   </TextRun>
                                 </TextRuns>
                                 <Style />
                               </Paragraph>
                             </Paragraphs>
                             <rd:DefaultName>Textbox78</rd:DefaultName>
+                            <RepeatWith>Tablix6</RepeatWith>
                             <Style>
                               <Border>
                                 <Style>Solid</Style>
@@ -236,7 +283,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>0.60704in</Size>
+                            <Size>0.79567in</Size>
                             <CellContents>
                               <Textbox Name="Textbox76">
                                 <CanGrow>true</CanGrow>
@@ -246,7 +293,9 @@
                                     <TextRuns>
                                       <TextRun>
                                         <Value>FIRST</Value>
-                                        <Style />
+                                        <Style>
+                                          <FontWeight>Bold</FontWeight>
+                                        </Style>
                                       </TextRun>
                                     </TextRuns>
                                     <Style />
@@ -255,13 +304,16 @@
                                     <TextRuns>
                                       <TextRun>
                                         <Value>NAME</Value>
-                                        <Style />
+                                        <Style>
+                                          <FontWeight>Bold</FontWeight>
+                                        </Style>
                                       </TextRun>
                                     </TextRuns>
                                     <Style />
                                   </Paragraph>
                                 </Paragraphs>
                                 <rd:DefaultName>Textbox76</rd:DefaultName>
+                                <RepeatWith>Tablix6</RepeatWith>
                                 <Style>
                                   <Border>
                                     <Style>Solid</Style>
@@ -280,7 +332,7 @@
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>0.60704in</Size>
+                                <Size>0.72901in</Size>
                                 <CellContents>
                                   <Textbox Name="Textbox74">
                                     <CanGrow>true</CanGrow>
@@ -290,7 +342,9 @@
                                         <TextRuns>
                                           <TextRun>
                                             <Value>MIDDLE</Value>
-                                            <Style />
+                                            <Style>
+                                              <FontWeight>Bold</FontWeight>
+                                            </Style>
                                           </TextRun>
                                         </TextRuns>
                                         <Style />
@@ -299,13 +353,16 @@
                                         <TextRuns>
                                           <TextRun>
                                             <Value>NAME</Value>
-                                            <Style />
+                                            <Style>
+                                              <FontWeight>Bold</FontWeight>
+                                            </Style>
                                           </TextRun>
                                         </TextRuns>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
                                     <rd:DefaultName>Textbox74</rd:DefaultName>
+                                    <RepeatWith>Tablix6</RepeatWith>
                                     <Style>
                                       <Border>
                                         <Style>Solid</Style>
@@ -324,7 +381,7 @@
                               <TablixMembers>
                                 <TablixMember>
                                   <TablixHeader>
-                                    <Size>0.60704in</Size>
+                                    <Size>0.77044in</Size>
                                     <CellContents>
                                       <Textbox Name="Textbox72">
                                         <CanGrow>true</CanGrow>
@@ -334,7 +391,9 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value>LAST</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -343,13 +402,16 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value>NAME</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
                                         <rd:DefaultName>Textbox72</rd:DefaultName>
+                                        <RepeatWith>Tablix6</RepeatWith>
                                         <Style>
                                           <Border>
                                             <Style>Solid</Style>
@@ -368,7 +430,7 @@
                                   <TablixMembers>
                                     <TablixMember>
                                       <TablixHeader>
-                                        <Size>0.60704in</Size>
+                                        <Size>1.00401in</Size>
                                         <CellContents>
                                           <Textbox Name="Textbox70">
                                             <CanGrow>true</CanGrow>
@@ -378,7 +440,9 @@
                                                 <TextRuns>
                                                   <TextRun>
                                                     <Value>BIRTH</Value>
-                                                    <Style />
+                                                    <Style>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
@@ -387,13 +451,16 @@
                                                 <TextRuns>
                                                   <TextRun>
                                                     <Value>DATE</Value>
-                                                    <Style />
+                                                    <Style>
+                                                      <FontWeight>Bold</FontWeight>
+                                                    </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox70</rd:DefaultName>
+                                            <RepeatWith>Tablix6</RepeatWith>
                                             <Style>
                                               <Border>
                                                 <Style>Solid</Style>
@@ -412,7 +479,7 @@
                                       <TablixMembers>
                                         <TablixMember>
                                           <TablixHeader>
-                                            <Size>0.64038in</Size>
+                                            <Size>0.79548in</Size>
                                             <CellContents>
                                               <Textbox Name="Textbox68">
                                                 <CanGrow>true</CanGrow>
@@ -422,13 +489,16 @@
                                                     <TextRuns>
                                                       <TextRun>
                                                         <Value>GENDER</Value>
-                                                        <Style />
+                                                        <Style>
+                                                          <FontWeight>Bold</FontWeight>
+                                                        </Style>
                                                       </TextRun>
                                                     </TextRuns>
                                                     <Style />
                                                   </Paragraph>
                                                 </Paragraphs>
                                                 <rd:DefaultName>Textbox68</rd:DefaultName>
+                                                <RepeatWith>Tablix6</RepeatWith>
                                                 <Style>
                                                   <Border>
                                                     <Style>Solid</Style>
@@ -447,7 +517,7 @@
                                           <TablixMembers>
                                             <TablixMember>
                                               <TablixHeader>
-                                                <Size>0.72371in</Size>
+                                                <Size>0.91234in</Size>
                                                 <CellContents>
                                                   <Textbox Name="Textbox66">
                                                     <CanGrow>true</CanGrow>
@@ -457,13 +527,16 @@
                                                         <TextRuns>
                                                           <TextRun>
                                                             <Value>COUNTRY</Value>
-                                                            <Style />
+                                                            <Style>
+                                                              <FontWeight>Bold</FontWeight>
+                                                            </Style>
                                                           </TextRun>
                                                         </TextRuns>
                                                         <Style />
                                                       </Paragraph>
                                                     </Paragraphs>
                                                     <rd:DefaultName>Textbox66</rd:DefaultName>
+                                                    <RepeatWith>Tablix6</RepeatWith>
                                                     <Style>
                                                       <Border>
                                                         <Style>Solid</Style>
@@ -482,7 +555,7 @@
                                               <TablixMembers>
                                                 <TablixMember>
                                                   <TablixHeader>
-                                                    <Size>0.69038in</Size>
+                                                    <Size>1.53135in</Size>
                                                     <CellContents>
                                                       <Textbox Name="Textbox64">
                                                         <CanGrow>true</CanGrow>
@@ -492,13 +565,16 @@
                                                             <TextRuns>
                                                               <TextRun>
                                                                 <Value>FANTASY TEAM NAME</Value>
-                                                                <Style />
+                                                                <Style>
+                                                                  <FontWeight>Bold</FontWeight>
+                                                                </Style>
                                                               </TextRun>
                                                             </TextRuns>
                                                             <Style />
                                                           </Paragraph>
                                                         </Paragraphs>
                                                         <rd:DefaultName>Textbox64</rd:DefaultName>
+                                                        <RepeatWith>Tablix6</RepeatWith>
                                                         <Style>
                                                           <Border>
                                                             <Style>Solid</Style>
@@ -517,7 +593,7 @@
                                                   <TablixMembers>
                                                     <TablixMember>
                                                       <TablixHeader>
-                                                        <Size>0.80704in</Size>
+                                                        <Size>1.00018in</Size>
                                                         <CellContents>
                                                           <Textbox Name="Textbox62">
                                                             <CanGrow>true</CanGrow>
@@ -527,7 +603,9 @@
                                                                 <TextRuns>
                                                                   <TextRun>
                                                                     <Value>FAVORITE</Value>
-                                                                    <Style />
+                                                                    <Style>
+                                                                      <FontWeight>Bold</FontWeight>
+                                                                    </Style>
                                                                   </TextRun>
                                                                 </TextRuns>
                                                                 <Style />
@@ -536,13 +614,16 @@
                                                                 <TextRuns>
                                                                   <TextRun>
                                                                     <Value>CLUB</Value>
-                                                                    <Style />
+                                                                    <Style>
+                                                                      <FontWeight>Bold</FontWeight>
+                                                                    </Style>
                                                                   </TextRun>
                                                                 </TextRuns>
                                                                 <Style />
                                                               </Paragraph>
                                                             </Paragraphs>
                                                             <rd:DefaultName>Textbox62</rd:DefaultName>
+                                                            <RepeatWith>Tablix6</RepeatWith>
                                                             <Style>
                                                               <Border>
                                                                 <Style>Solid</Style>
@@ -593,7 +674,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>0.87371in</Size>
+                    <Size>1.04568in</Size>
                     <CellContents>
                       <Textbox Name="USERNAME1">
                         <CanGrow>true</CanGrow>
@@ -603,7 +684,9 @@
                             <TextRuns>
                               <TextRun>
                                 <Value>=Fields!USERNAME.Value</Value>
-                                <Style />
+                                <Style>
+                                  <FontFamily>Centaur gorthic</FontFamily>
+                                </Style>
                               </TextRun>
                             </TextRuns>
                             <Style />
@@ -628,7 +711,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>0.47371in</Size>
+                        <Size>1.05424in</Size>
                         <CellContents>
                           <Textbox Name="EMAIL">
                             <CanGrow>true</CanGrow>
@@ -638,7 +721,9 @@
                                 <TextRuns>
                                   <TextRun>
                                     <Value>=Fields!EMAIL.Value</Value>
-                                    <Style />
+                                    <Style>
+                                      <FontFamily>Centaur gorthic</FontFamily>
+                                    </Style>
                                   </TextRun>
                                 </TextRuns>
                                 <Style />
@@ -663,7 +748,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>0.60704in</Size>
+                            <Size>0.79567in</Size>
                             <CellContents>
                               <Textbox Name="FNAME">
                                 <CanGrow>true</CanGrow>
@@ -673,7 +758,9 @@
                                     <TextRuns>
                                       <TextRun>
                                         <Value>=Fields!FNAME.Value</Value>
-                                        <Style />
+                                        <Style>
+                                          <FontFamily>Centaur gorthic</FontFamily>
+                                        </Style>
                                       </TextRun>
                                     </TextRuns>
                                     <Style />
@@ -695,7 +782,7 @@
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>0.60704in</Size>
+                                <Size>0.72901in</Size>
                                 <CellContents>
                                   <Textbox Name="MNAME">
                                     <CanGrow>true</CanGrow>
@@ -705,7 +792,9 @@
                                         <TextRuns>
                                           <TextRun>
                                             <Value>=Fields!MNAME.Value</Value>
-                                            <Style />
+                                            <Style>
+                                              <FontFamily>Centaur gorthic</FontFamily>
+                                            </Style>
                                           </TextRun>
                                         </TextRuns>
                                         <Style />
@@ -727,7 +816,7 @@
                               <TablixMembers>
                                 <TablixMember>
                                   <TablixHeader>
-                                    <Size>0.60704in</Size>
+                                    <Size>0.77044in</Size>
                                     <CellContents>
                                       <Textbox Name="LNAME">
                                         <CanGrow>true</CanGrow>
@@ -737,7 +826,9 @@
                                             <TextRuns>
                                               <TextRun>
                                                 <Value>=Fields!LNAME.Value</Value>
-                                                <Style />
+                                                <Style>
+                                                  <FontFamily>Centaur gorthic</FontFamily>
+                                                </Style>
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
@@ -759,7 +850,7 @@
                                   <TablixMembers>
                                     <TablixMember>
                                       <TablixHeader>
-                                        <Size>0.60704in</Size>
+                                        <Size>1.00401in</Size>
                                         <CellContents>
                                           <Textbox Name="BIRTHDATE">
                                             <CanGrow>true</CanGrow>
@@ -769,7 +860,9 @@
                                                 <TextRuns>
                                                   <TextRun>
                                                     <Value>=Fields!BIRTHDATE.Value</Value>
-                                                    <Style />
+                                                    <Style>
+                                                      <FontFamily>Centaur gorthic</FontFamily>
+                                                    </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
@@ -791,7 +884,7 @@
                                       <TablixMembers>
                                         <TablixMember>
                                           <TablixHeader>
-                                            <Size>0.64038in</Size>
+                                            <Size>0.79548in</Size>
                                             <CellContents>
                                               <Textbox Name="GENDER">
                                                 <CanGrow>true</CanGrow>
@@ -801,7 +894,9 @@
                                                     <TextRuns>
                                                       <TextRun>
                                                         <Value>=Fields!GENDER.Value</Value>
-                                                        <Style />
+                                                        <Style>
+                                                          <FontFamily>Centaur gorthic</FontFamily>
+                                                        </Style>
                                                       </TextRun>
                                                     </TextRuns>
                                                     <Style />
@@ -823,7 +918,7 @@
                                           <TablixMembers>
                                             <TablixMember>
                                               <TablixHeader>
-                                                <Size>0.72371in</Size>
+                                                <Size>0.91234in</Size>
                                                 <CellContents>
                                                   <Textbox Name="COUNTRY">
                                                     <CanGrow>true</CanGrow>
@@ -833,7 +928,9 @@
                                                         <TextRuns>
                                                           <TextRun>
                                                             <Value>=Fields!COUNTRY.Value</Value>
-                                                            <Style />
+                                                            <Style>
+                                                              <FontFamily>Centaur gorthic</FontFamily>
+                                                            </Style>
                                                           </TextRun>
                                                         </TextRuns>
                                                         <Style />
@@ -855,7 +952,7 @@
                                               <TablixMembers>
                                                 <TablixMember>
                                                   <TablixHeader>
-                                                    <Size>0.69038in</Size>
+                                                    <Size>1.53135in</Size>
                                                     <CellContents>
                                                       <Textbox Name="FANTASY_TEAM_NAME">
                                                         <CanGrow>true</CanGrow>
@@ -865,7 +962,9 @@
                                                             <TextRuns>
                                                               <TextRun>
                                                                 <Value>=Fields!FANTASY_TEAM_NAME.Value</Value>
-                                                                <Style />
+                                                                <Style>
+                                                                  <FontFamily>Centaur gorthic</FontFamily>
+                                                                </Style>
                                                               </TextRun>
                                                             </TextRuns>
                                                             <Style />
@@ -887,7 +986,7 @@
                                                   <TablixMembers>
                                                     <TablixMember>
                                                       <TablixHeader>
-                                                        <Size>0.80704in</Size>
+                                                        <Size>1.00018in</Size>
                                                         <CellContents>
                                                           <Textbox Name="CLUB_SUPPORTED">
                                                             <CanGrow>true</CanGrow>
@@ -897,7 +996,9 @@
                                                                 <TextRuns>
                                                                   <TextRun>
                                                                     <Value>=Fields!CLUB_SUPPORTED.Value</Value>
-                                                                    <Style />
+                                                                    <Style>
+                                                                      <FontFamily>Centaur gorthic</FontFamily>
+                                                                    </Style>
                                                                   </TextRun>
                                                                 </TextRuns>
                                                                 <Style />
@@ -918,7 +1019,73 @@
                                                       </TablixHeader>
                                                       <TablixMembers>
                                                         <TablixMember>
-                                                          <Group Name="Details" />
+                                                          <Group Name="USERNAME1">
+                                                            <GroupExpressions>
+                                                              <GroupExpression>=Fields!USERNAME.Value</GroupExpression>
+                                                            </GroupExpressions>
+                                                          </Group>
+                                                          <SortExpressions>
+                                                            <SortExpression>
+                                                              <Value>=Fields!USERNAME.Value</Value>
+                                                            </SortExpression>
+                                                          </SortExpressions>
+                                                          <TablixMembers>
+                                                            <TablixMember>
+                                                              <Group Name="Details" />
+                                                            </TablixMember>
+                                                          </TablixMembers>
+                                                        </TablixMember>
+                                                      </TablixMembers>
+                                                    </TablixMember>
+                                                    <TablixMember>
+                                                      <TablixHeader>
+                                                        <Size>1.00018in</Size>
+                                                        <CellContents>
+                                                          <Textbox Name="Textbox1">
+                                                            <CanGrow>true</CanGrow>
+                                                            <KeepTogether>true</KeepTogether>
+                                                            <Paragraphs>
+                                                              <Paragraph>
+                                                                <TextRuns>
+                                                                  <TextRun>
+                                                                    <Value>Number of </Value>
+                                                                    <Style>
+                                                                      <FontFamily>Centaur gorthic</FontFamily>
+                                                                      <FontWeight>Bold</FontWeight>
+                                                                    </Style>
+                                                                  </TextRun>
+                                                                </TextRuns>
+                                                                <Style />
+                                                              </Paragraph>
+                                                              <Paragraph>
+                                                                <TextRuns>
+                                                                  <TextRun>
+                                                                    <Value>Competitions:</Value>
+                                                                    <Style>
+                                                                      <FontFamily>Centaur gorthic</FontFamily>
+                                                                      <FontWeight>Bold</FontWeight>
+                                                                    </Style>
+                                                                  </TextRun>
+                                                                </TextRuns>
+                                                                <Style />
+                                                              </Paragraph>
+                                                            </Paragraphs>
+                                                            <rd:DefaultName>Textbox1</rd:DefaultName>
+                                                            <Style>
+                                                              <Border>
+                                                                <Style>Solid</Style>
+                                                              </Border>
+                                                              <PaddingLeft>2pt</PaddingLeft>
+                                                              <PaddingRight>2pt</PaddingRight>
+                                                              <PaddingTop>2pt</PaddingTop>
+                                                              <PaddingBottom>2pt</PaddingBottom>
+                                                            </Style>
+                                                          </Textbox>
+                                                        </CellContents>
+                                                      </TablixHeader>
+                                                      <TablixMembers>
+                                                        <TablixMember>
+                                                          <KeepWithGroup>Before</KeepWithGroup>
                                                         </TablixMember>
                                                       </TablixMembers>
                                                     </TablixMember>
@@ -942,11 +1109,13 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>CompUser</DataSetName>
             <Top>0.16931in</Top>
             <Left>0.29885in</Left>
-            <Height>1.36667in</Height>
-            <Width>7.37374in</Width>
+            <Height>1.70569in</Height>
+            <Width>10.50535in</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -954,10 +1123,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.08cm</Height>
+        <Height>5.24909cm</Height>
         <Style />
       </Body>
-      <Width>20.46091cm</Width>
+      <Width>28.44421cm</Width>
       <Page>
         <PageHeader>
           <Height>2.54cm</Height>
@@ -980,7 +1149,7 @@
               </Paragraphs>
               <rd:DefaultName>prm1</rd:DefaultName>
               <Top>1.57903cm</Top>
-              <Left>16.98837cm</Left>
+              <Left>25.51854cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <Style>
@@ -1013,7 +1182,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.28787cm</Top>
-              <Left>0.75908cm</Left>
+              <Left>7.68058cm</Left>
               <Height>1.2985cm</Height>
               <Width>12.08245cm</Width>
               <ZIndex>1</ZIndex>
@@ -1035,7 +1204,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>2.54cm</Height>
+          <Height>0.889cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1054,10 +1223,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>1.0922cm</Top>
-              <Left>16.98837cm</Left>
+              <Top>0.10583cm</Top>
+              <Left>25.22221cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.5cm</Width>
+              <Width>2.79633cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1075,12 +1244,11 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
+        <PageHeight>21cm</PageHeight>
+        <PageWidth>29.7cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
-        <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>

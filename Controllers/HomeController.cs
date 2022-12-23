@@ -124,5 +124,62 @@ namespace FantasyPL.Controllers
             var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
             return File(res.MainStream, "application/pdf");
         }
+
+        public IActionResult PercentComp()
+        {
+            var dt = new DataTable();
+            dt = controller.PercentComp();
+
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\Percent.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("Percent", dt);//
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+        }
+
+        public IActionResult SelectedTimes()
+        {
+            var dt = new DataTable();
+            dt = controller.SelectedTimes();
+
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\SelectedTimes.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("SelectedTimes", dt);//
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+        }
+
+        public IActionResult PlayersStats()
+        {
+            var dt = new DataTable();
+            dt = controller.PlayersStats();
+
+            string mimeType = "";
+            int extension = 1;
+            var path = $"{_webHostEnv.WebRootPath}\\Reports\\Stats.rdlc";//
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("prm1", DateTime.Now.ToString("dd-MMM-yyyy"));
+
+            LocalReport localReport = new LocalReport(path);
+            localReport.AddDataSource("Stats", dt);//
+
+            var res = localReport.Execute(RenderType.Pdf, extension, parameters, mimeType);
+            return File(res.MainStream, "application/pdf");
+        }
     }
 }
