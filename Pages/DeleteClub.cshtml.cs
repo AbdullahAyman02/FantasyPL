@@ -13,6 +13,12 @@ namespace FantasyPL.Pages
         
         public void OnPost()
         {
+            string club = Request.Form["club"];
+			if (club == null)
+            {
+                Message = "No club selected";
+                return;
+            }
             int result = controller.CheckFixtures(Request.Form["club"]);
             if (result == -1)
                 Message = "An error has occured";

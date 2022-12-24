@@ -64,7 +64,10 @@
 				<a class="club_link" asp-area="" asp-page="/ViewClubLB">View Leaderboard</a>
 				<a style="background-color:black; color:white" class="club_link" href="../Home/StadiumInfo" target="_self">Stadium Info</a>
 				<a style="background-color:black; color:white" class="club_link" href="../Home/FavClub" target="_self">Clubs Supported Statistics</a>
-				<a style="background-color:black; color:white" class="club_link" href="../Home/MostGCByClub" target="_self">Goal Contributions</a>
+				@if (GlobalVar.listClubs.Count > 0)
+				{
+					<a style="background-color:black; color:white" class="club_link" href="../Home/MostGCByClub" target="_self">Goal Contributions</a>
+				}
 		 </div>
 		@if (GlobalVar.LoggedInUser.UserType == 'A')
 		{

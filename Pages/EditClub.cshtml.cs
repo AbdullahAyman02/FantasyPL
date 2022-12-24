@@ -20,6 +20,11 @@ namespace FantasyPL.Pages
                 return;
             }
             clubInfo.Name = Request.Form["club"];
+            if(clubInfo.Name == null)
+            {
+                Message = "No club selected";
+                return;
+            }
             clubInfo.Name_Abbreviation = Request.Form["club"];
             clubInfo.Establishment_year = Convert.ToInt32(Request.Form["establishment_year"]);
             clubInfo.City = Request.Form["city"];

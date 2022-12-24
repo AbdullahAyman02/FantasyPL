@@ -21,7 +21,6 @@ namespace FantasyPL.Pages
         public void OnPost()
         {
             clubInfo.Name = Request.Form["name"];
-            var match = clubInfo.Name.All(Char.IsLetter);
             clubInfo.Name_Abbreviation = Request.Form["name_abbreviation"];
             var match1 = clubInfo.Name_Abbreviation.All(Char.IsLetter);
 			clubInfo.Establishment_year = Convert.ToInt32(Request.Form["establishment_year"]);
@@ -33,7 +32,7 @@ namespace FantasyPL.Pages
             var match3 = clubInfo.Owner_Lname.All(Char.IsLetter);
 			clubInfo.Stadium = Request.Form["stadium"];
             clubInfo.Manager = Request.Form["manager"];
-            if(!match1 || !match2 || !match3 || !match)
+            if(!match1 || !match2 || !match3)
             {
 				Message = "Name must contain letters only";
 				return;

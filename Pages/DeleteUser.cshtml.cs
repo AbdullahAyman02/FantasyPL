@@ -13,6 +13,13 @@ namespace FantasyPL.Pages
         }
         public void OnPost()
         {
+            if(GlobalVar.LoggedInUser.Username == Request.Form["user"])
+            {
+				Message = controller.DeleteUser(Request.Form["user"]);
+                if(Message == "User deleted successfully")
+    				Response.Redirect("/Index");
+                return;
+			}
             Message = controller.DeleteUser(Request.Form["user"]);
             controller.GetAllUsers();
         }

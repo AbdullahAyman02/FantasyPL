@@ -1139,10 +1139,10 @@ namespace FantasyPL.Pages
                 using (SqlDataReader reader = dBManager.ExecuteReader(command))
                 {
                     GlobalVar.listReferees.Clear();
-                    Referee referee = new Referee();
                     while (reader.Read())
                     {
-                        referee.ID = reader.GetInt32(0);
+						Referee referee = new Referee();
+						referee.ID = reader.GetInt32(0);
                         referee.FName = reader.GetString(1);
                         referee.MName = reader.GetString(2);
                         referee.LName = reader.GetString(3);

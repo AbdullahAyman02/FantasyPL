@@ -27,7 +27,7 @@
 		</div>
 	</div>
 		<div class="txt_field">
-			<input type="number" name='age' min="18" value='18' required />
+			<input type="number" name='age' min="18" value='18' max="90" required />
 			<label>Age</label>
 		</div>
 		<div class="txt_field">
@@ -40,11 +40,11 @@
 			</select>
 		</div>
 		<div class="txt_field">
-			<input type="number" name='competitions_won' min="0" value='@Model.ManInfo.competitions_won' required />
+			<input type="number" name='competitions_won' min="0" max="100" value='0' required />
 			<label>Competitions Won</label>
 		</div>
 		<div class="txt_field">
-			<input type="number" name='experience' min="0" value='@Model.ManInfo.experience_in_years' required />
+			<input type="number" name='experience' min="0" max="75" value='0' required />
 			<label>Experience In Years</label>
 		</div>
 		<input type="submit" value="Insert" />
