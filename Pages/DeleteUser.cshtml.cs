@@ -13,7 +13,13 @@ namespace FantasyPL.Pages
         }
         public void OnPost()
         {
-            if(GlobalVar.LoggedInUser.Username == Request.Form["user"])
+            string test = Request.Form["user"];
+            if(test == null)
+            {
+                Message = "No user selected";
+                return;
+            }
+			if (GlobalVar.LoggedInUser.Username == Request.Form["user"])
             {
 				Message = controller.DeleteUser(Request.Form["user"]);
                 if(Message == "User deleted successfully")

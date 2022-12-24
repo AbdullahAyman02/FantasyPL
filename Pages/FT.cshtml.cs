@@ -21,11 +21,23 @@ namespace FantasyPL.Pages
             string btnvalue = Request.Form["Delete Player"];
             if (btnvalue != null)
             {
-                string[] value1 = Request.Form["player2"].ToString().Split(" ");
+				string test2 = Request.Form["player2"];
+				if (test2 == null)
+				{
+					Message = "No Player selected";
+					return;
+				}
+				string[] value1 = Request.Form["player2"].ToString().Split(" ");
                 string abbr1 = value1[0];
                 int no1 = Convert.ToInt32(value1[1]);
                 Message = controller.DeleteFTplayer(abbr1, no1, GlobalVar.LoggedInUser.Username);
                 GlobalVar.LoggedInUser.Balance = controller.GetBalanceOfUser(GlobalVar.LoggedInUser.Username);
+                return;
+            }
+            string test = Request.Form["player"];
+			if (test == null)
+            {
+                Message = "No Player selected";
                 return;
             }
             string[] value = Request.Form["player"].ToString().Split(" ");
