@@ -35,6 +35,11 @@ namespace FantasyPL.Pages
                 return;
             }
             int FID = Convert.ToInt32(Request.Form["fix"]);
+            if (controller.HasStartEvent(FID))
+            {
+                Message = "Cannot Edit an ongoing or previous fixture";
+                return;
+            }
             int gameweek = Convert.ToInt32(Request.Form["gameweek"]);
             string home = Request.Form["club"];
             string away = Request.Form["club1"];
