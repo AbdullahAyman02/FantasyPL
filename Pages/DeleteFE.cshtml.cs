@@ -28,7 +28,12 @@ namespace FantasyPL.Pages
                     Message = "Fixture started but did not end yet!";
                     return;
                 }
-                Message = controller.DeleteFixture(Convert.ToInt32(Request.Form["fix"]));
+				if (controller.HasStartEvent(Convert.ToInt32(Request.Form["fix"])))
+				{
+					Message = "Fixture is already played.";
+					return;
+				}
+				Message = controller.DeleteFixture(Convert.ToInt32(Request.Form["fix"]));
 				if (GlobalVar.listFixtures.Count > 0)
 				{
 					GlobalVar.fixtureQueried = GlobalVar.listFixtures[0];
