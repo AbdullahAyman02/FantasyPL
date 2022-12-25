@@ -16,7 +16,10 @@ namespace FantasyPL.Pages
                 controller.GetParticipantsInCompetition(GlobalVar.userComp[0].Id);
             }
             else
-                GlobalVar.compParticipants.Clear();
+            {
+                GlobalVar.compQueried = new();
+				GlobalVar.compParticipants.Clear();
+            }
         }
         public void OnPost()
         {
