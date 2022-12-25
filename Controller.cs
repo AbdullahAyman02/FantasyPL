@@ -854,7 +854,7 @@ namespace FantasyPL.Pages
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return null;
+                return "";
             }
         }
 
@@ -1378,7 +1378,8 @@ namespace FantasyPL.Pages
                 {
                     User u = new User();
                     u.Username = reader.GetString(0);
-                    u.Points= reader.GetInt32(1);
+                    u.FantasyTeamName = reader.GetString(1);
+                    u.Points= reader.GetInt32(2);
                     GlobalVar.compParticipants.Add(u);
                 }
                 reader.Close();

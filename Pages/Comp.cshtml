@@ -10,19 +10,43 @@
 		<h3>Competitions</h3>
 		@if (GlobalVar.LoggedInUser.UserType != 'A')
 		{
-        <div class="txt_field">
-        <label for="club" id="clublabel">Competition</label>      
-        <select id="club" name="comp" class="form-control">
-			@foreach(var comp in GlobalVar.userComp){
-					@if(GlobalVar.compQueried.Id == comp.Id){
+		<div class="txt_field">
+			<label for="club" id="clublabel">Competition</label>      
+			<select id="club" name="comp" class="form-control">
+				@foreach (var comp in GlobalVar.userComp)
+				{
+					@if (GlobalVar.compQueried.Id == comp.Id)
+					{
 						<option value="@comp.Id" selected>@comp.Name</option>
-					}else{
+					}
+					else
+					{
 						<option value="@comp.Id">@comp.Name</option>
 					}
+				}
+			</select>
+				</div>
+		}
+		else
+		{
+			<div class="txt_field">
+		<label for="club" id="clublabel">Competition</label>      
+		<select id="club" name="comp1" class="form-control">
+			@foreach (var comp in GlobalVar.listComp)
+			{
+				@if (GlobalVar.compQueried.Id == comp.Id)
+				{
+					<option value="@comp.Id" selected>@comp.Name</option>
+				}
+				else
+				{
+					<option value="@comp.Id">@comp.Name</option>
+				}
 			}
-        </select>
-		</div>
-		<table class="table">
+			</select>
+			</div>
+		}
+			<table class="table">
 			<tr>Rankings</tr>
 			<thead>
 				<tr>
@@ -34,7 +58,7 @@
 				@foreach(var user in GlobalVar.compParticipants)
 				{
 				<tr>
-					<td>@user.Username</td>
+					<td>@user.FantasyTeamName</td>
 					<td>@user.Points</td>
 				</tr>
 				}

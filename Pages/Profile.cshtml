@@ -53,7 +53,7 @@
                     <option Value="-">-</option>
                     @foreach (var club in GlobalVar.listClubs)
                     {
-                        if(club.Name_Abbreviation == @Model.FavClub){
+                        if(club.Name_Abbreviation == GlobalVar.FavClub){
                             <option Value="@club.Name_Abbreviation" selected>@club.Name</option>
                         }
                         else {

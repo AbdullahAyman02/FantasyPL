@@ -91,6 +91,11 @@ namespace FantasyPL.Pages
 			if (btnvalue4 != null)
 			{
 				int FID = Convert.ToInt32(Request.Form["fixture"]);
+				if(controller.SelectFixture(FID).Referee == "")
+				{
+					Message = "Cannot Start a match without a referee.";
+					return;
+				}
 				int EID = controller.lastEventID(FID) + 1;
 				Message = controller.InsertEvent(FID, EID, "Start", 0, "-", -1);
 				hasStart = controller.HasStartEvent(Convert.ToInt32(Request.Form["fixture"]));

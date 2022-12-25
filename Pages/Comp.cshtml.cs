@@ -9,6 +9,7 @@ namespace FantasyPL.Pages
         public void OnGet()
         {
             controller.UpdateCompetitionsByUsername(GlobalVar.LoggedInUser.Username);
+            controller.GetAllCompetitions();
             if (GlobalVar.userComp.Count > 0)
             {
                 GlobalVar.compQueried = GlobalVar.userComp[0];
@@ -19,9 +20,17 @@ namespace FantasyPL.Pages
         }
         public void OnPost()
         {
-            GlobalVar.compQueried.Id = Convert.ToInt32(Request.Form["comp"]);
-            controller.GetParticipantsInCompetition(Convert.ToInt32(Request.Form["comp"]));
-        }
+            if (GlobalVar.LoggedInUser.UserType != 'A')
+            {
+                GlobalVar.compQueried.Id = Convert.ToInt32(Request.Form["comp"]);
+                controller.GetParticipantsInCompetition(Convert.ToInt32(Request.Form["comp"]));
+            } else
+            {
+				GlobalVar.compQueried.Id = Convert.ToInt32(Request.Form["comp1"]);
+				controller.GetParticipantsInCompetition(Convert.ToInt32(Request.Form["comp1"]));
+			}
+			controller.GetAllCompetitions();
+		}
         
     }
 

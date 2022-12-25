@@ -38,6 +38,7 @@ namespace FantasyPL.Pages
     {
         public static bool statusFT = false;        //decides if in a gameweek or not to change fantasy teams for users
         public static List<Club> listClubs = new List<Club>();
+        public static string FavClub = "";
         public static List<player> listPlayers = new List<player>();
         public static List<player> userPlayers = new List<player>();
         public static Club clubQueried = new Club();

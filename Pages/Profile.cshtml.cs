@@ -7,12 +7,11 @@ namespace FantasyPL.Pages
     {
         public string Message = "";
         Controller controller = new Controller();
-        public string FavClub = "";
 
         public void OnGet()
         {
             GlobalVar.isAdmin = true;
-            FavClub = controller.GetFavClub(GlobalVar.LoggedInUser.Username);
+            GlobalVar.FavClub = controller.GetFavClub(GlobalVar.LoggedInUser.Username);
             controller.UpdateClubsList();
             GlobalVar.statusFT = controller.GetFT();
         }
@@ -23,7 +22,7 @@ namespace FantasyPL.Pages
             if (btnvalue != null)
             {
                 Message = controller.UpdateFavClub(GlobalVar.LoggedInUser.Username, Request.Form["favorite_club"]);
-                FavClub = Request.Form["favorite_club"];
+                GlobalVar.FavClub = Request.Form["favorite_club"];
                 return;
             }
             string btnvalue1 = Request.Form["toggle"];

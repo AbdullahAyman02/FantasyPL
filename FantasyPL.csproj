@@ -49,6 +49,16 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="ReportDataSet\Percent.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Percent.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="ReportDataSet\SelectedTimes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SelectedTimes.xsd</DependentUpon>
+    </Compile>
     <Compile Update="ReportDataSet\Stats.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
