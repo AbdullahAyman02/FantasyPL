@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FantasyPL.styles.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
@@ -33,6 +34,10 @@
         </main>
     </div>
 
+    <div class="loading">
+        <div class="spinner"><img src="~/img/pngwing.png"  width="100px"/></div>
+    </div>
+
     <footer class='footer'>
         <div class="container">
             &copy; 2022 - FantasyPL
@@ -42,7 +47,20 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script>
+        $(window).on("load", function(){
+            $(".loading").fadeToggle("slow")
+        });
+        $("a").on("click", function(){
+            $(".loading").fadeToggle("slow")
+        })
+        $("button").on("click", function () {
+            $(".loading").fadeToggle("slow")
+        })
+        $("input[type='submit']").on("click", function () {
+            $(".loading").fadeToggle("slow")
+        })
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
