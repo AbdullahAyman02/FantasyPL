@@ -259,3 +259,12 @@ div.flexcontainer input, div.flexcontainer a{
     width: 200px;
     margin: 10px auto;
 }
+
+#notes{
+    color: black;
+    font-size: 0.8em;
+}
+
+#minute{
+    margin-bottom: 10px;
+}

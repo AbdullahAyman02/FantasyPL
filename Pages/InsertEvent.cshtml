@@ -77,9 +77,17 @@
 					}
 				</select>
 			</div>
-			<div class="txt_field">
+			<div class="txt_field" id="minute">
 				<input type="number" name='minute' min="0" max="120"/>
 				<label>Event Minute</label>
+			</div>
+			<div id="notes">
+			<div>Notes: </div>
+			<ol>
+				<li>The events must be entered in chronological order.</li>
+				<li>Insert any goal before its assist, if any.</li>
+				<li>The Assist's minute must be the same as the Goal's minute.</li>
+			</ol>
 			</div>
 			<input type="submit" name="insert" id="insert"  value="Insert Event"/>
 			<input type="submit" name="end" id="end"  value="End Match"/>

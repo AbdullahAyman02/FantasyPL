@@ -77,7 +77,7 @@ namespace FantasyPL.Pages
 				player p = controller.SelectPlayer(clubAbbr,playerNo);
 				foreach(MEvent e in GlobalVar.fixtureEvents)
 				{
-					if (e.EventType == "Red Card" && e.Player == p.Fname && e.ClubAbbreviation == clubAbbr && e.Minute <= Convert.ToInt32(minu))
+					if (e.EventType == "Red Card" && e.Player == p.Fname && e.ClubAbbreviation == clubAbbr)
 					{
 						Message = "The player has a red card and is already out of play. ";
 						return;
@@ -87,7 +87,7 @@ namespace FantasyPL.Pages
 				}
 				if(!thereIsGoal)
 				{
-					Message = "Please Enter the Goal before the Assist. ";
+					Message = "Please Enter the Goal before the Assist and make sure they are at the same minute. ";
 					return;
 				}
 
