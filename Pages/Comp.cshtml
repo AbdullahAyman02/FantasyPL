@@ -46,8 +46,7 @@
 			</select>
 			</div>
 		}
-			<table class="table">
-			<tr>Rankings</tr>
+			<table id="width-table-350" class="table">
 			<thead>
 				<tr>
 					<th>Fantasy Team Name</th>
@@ -63,7 +62,7 @@
 				</tr>
 				}
 			</tbody>
-		</table>
+			</table>
 		<input type="submit" value="Submit"/>
 		}
 			<div class="flexcontainer">
@@ -71,7 +70,7 @@
 					@if (GlobalVar.LoggedInUser.UserType == 'A')
 					{
 						<a class="club_link" asp-area="" asp-page="/DeleteComp">Delete Competition</a>	@*Admin*@
-						<a class="club_link" asp-area="" asp-page="/RemoveFromComp">Remove User from Competition</a>	@*Admin*@
+					<a style="text-align: center;" class="club_link" asp-area="" asp-page="/RemoveFromComp">Remove User from Competition</a>	@*Admin*@
 					} else {
 					<a class="club_link" asp-area="" asp-page="/JoinComp">Join Competition</a>	@*Fan*@
 					<a class="club_link" asp-area="" asp-page="/ExitComp">Exit Competition</a>	@*Fan*@
