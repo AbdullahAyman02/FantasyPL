@@ -293,3 +293,13 @@ div.flexcontainer input, div.flexcontainer a{
         transform: rotate(360deg);
     }
 }
+}
+
+#notes{
+    color: black;
+    font-size: 0.8em;
+}
+
+#minute{
+    margin-bottom: 10px;
+}

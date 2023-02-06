@@ -60,11 +60,37 @@ namespace FantasyPL.Pages
 				string type = Request.Form["event"];
 				int FID = Convert.ToInt32(Request.Form["fixture"]);
 				string minu = Request.Form["minute"];
-				if (minu == "")
+                int lastmin = controller.lastEventMin(FID);
+                if (minu == "")
 				{
 					Message = "Please Specify a Minute.";
 					return;
 				}
+				else if (Convert.ToInt32(minu) < lastmin)
+				{
+					Message = "Cannot insert event before other previous events. ";
+					return;
+				}
+				bool thereIsGoal = false;
+				if (type != "Assist")
+					thereIsGoal= true;
+				player p = controller.SelectPlayer(clubAbbr,playerNo);
+				foreach(MEvent e in GlobalVar.fixtureEvents)
+				{
+					if (e.EventType == "Red Card" && e.Player == p.Fname && e.ClubAbbreviation == clubAbbr)
+					{
+						Message = "The player has a red card and is already out of play. ";
+						return;
+					}
+					if (type == "Assist" && e.EventType == "Goal" && e.Minute == Convert.ToInt32(minu) && e.ClubAbbreviation == clubAbbr && e.Player != p.Fname)
+						thereIsGoal= true;
+				}
+				if(!thereIsGoal)
+				{
+					Message = "Please Enter the Goal before the Assist and make sure they are at the same minute. ";
+					return;
+				}
+
 				int min = Convert.ToInt32(Request.Form["minute"]);
 				int EID = controller.lastEventID(FID) + 1;
 				Message = controller.InsertEvent(FID, EID, type, min, clubAbbr, playerNo);
@@ -81,7 +107,7 @@ namespace FantasyPL.Pages
 					Message = "Please Specify a Minute that is after all previous events.";
 					return;
 				}
-				int min = Convert.ToInt32(Request.Form["minute"]);
+                int min = Convert.ToInt32(Request.Form["minute"]);
 				int EID = controller.lastEventID(FID) + 1;
 				Message = controller.InsertEvent(FID, EID, "End", min, "-", -1);
 				hasEnd = controller.HasEndEvent(GlobalVar.fixture_in_insert_event.ID);
