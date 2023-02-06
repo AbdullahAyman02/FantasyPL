@@ -51,13 +51,10 @@
         $(window).on("load", function(){
             $(".loading").fadeToggle("slow")
         });
+        $(window).on("submit", function () {
+            $(".loading").fadeToggle("slow")
+        });
         $("a").on("click", function(){
-            $(".loading").fadeToggle("slow")
-        })
-        $("button").on("click", function () {
-            $(".loading").fadeToggle("slow")
-        })
-        $("input[type='submit']").on("click", function () {
             $(".loading").fadeToggle("slow")
         })
     </script>
