@@ -237,6 +237,7 @@ iframe {
 #index-form {
     max-height: 450px;
     max-width: 450px;
+    margin:auto;
 }
 
 .overflow {
@@ -256,8 +257,9 @@ div.flexcontainer input, div.flexcontainer a{
 }
 
 #width-table-350 {
-    width: 200px;
+    width: 370px;
     margin: 10px auto;
+    max-width:100%;
 }
 
 .loading {
