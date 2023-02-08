@@ -1,5 +1,7 @@
+using FplClient.Clients;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json.Linq;
 using System.Net;
 
 namespace FantasyPL.Pages
@@ -8,12 +10,25 @@ namespace FantasyPL.Pages
     {
         public string Message = "";
         Controller controller = new Controller();
-        public void OnGet()
+        public async void OnGet()
         {
             controller.UpdatePlayersList();
             controller.SelectPlayersByUsername(GlobalVar.LoggedInUser.Username);
             GlobalVar.statusFT = controller.GetFT();
             GlobalVar.LoggedInUser.Points = controller.GetPoints(GlobalVar.LoggedInUser.Username);
+            //var jObj = JObject.Parse("fpl.json");
+            //var playername = jObj["elements"]["first_name"];
+            //var result = players.OfType<JProperty>().Where((a, b) => {
+            //    return true;
+            //}).Select<JProperty, playerFT>((jp, i) => {
+            //    return new playerFT
+            //    {
+            //        Id = jp.Value["id"].ToObject<string>(),
+            //        Desc = jp.Value["description"].ToObject<string>()
+            //    };
+            //}).ToArray();
+            //var client = new FplEntryClient(new HttpClient());
+            //var playerData = await client.GetTeam(teamID: 12345, gameweek: 1);
         }
 
         public void OnPost()
@@ -21,13 +36,13 @@ namespace FantasyPL.Pages
             string btnvalue = Request.Form["Delete Player"];
             if (btnvalue != null)
             {
-				string test2 = Request.Form["player2"];
-				if (test2 == null)
-				{
-					Message = "No Player selected";
-					return;
-				}
-				string[] value1 = Request.Form["player2"].ToString().Split(" ");
+                string test2 = Request.Form["player2"];
+                if (test2 == null)
+                {
+                    Message = "No Player selected";
+                    return;
+                }
+                string[] value1 = Request.Form["player2"].ToString().Split(" ");
                 string abbr1 = value1[0];
                 int no1 = Convert.ToInt32(value1[1]);
                 Message = controller.DeleteFTplayer(abbr1, no1, GlobalVar.LoggedInUser.Username);
@@ -35,7 +50,7 @@ namespace FantasyPL.Pages
                 return;
             }
             string test = Request.Form["player"];
-			if (test == null)
+            if (test == null)
             {
                 Message = "No Player selected";
                 return;
@@ -66,4 +81,12 @@ namespace FantasyPL.Pages
             GlobalVar.LoggedInUser.Points = controller.GetPoints(GlobalVar.LoggedInUser.Username);
         }
     }
+
+    class playerFT{
+        public string FName { get; set; }
+        public string SName { get; set; }
+        public string Club { get; set; }
+        public string Code { get; set; }
+
+        }
 }

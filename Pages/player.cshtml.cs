@@ -69,5 +69,7 @@ namespace FantasyPL.Pages
         public int Points { get; set; }
         public string Position { get; set; }
         public int Count { get; set; }  //player number in fantasy team (to show in list of FT players instead of counting one by one)
+
+        public int FPLcode {get; set; }
     }
 }

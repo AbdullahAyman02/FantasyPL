@@ -121,7 +121,7 @@ form .txt_field {
     text-decoration: underline;
 }
 
-input[type="submit"], .club_link {
+input[type="submit"], input[type="button"],.club_link {
     width: 95%;
     height: 50px;
     border: 1px solid;
@@ -303,4 +303,70 @@ div.flexcontainer input, div.flexcontainer a{
 
 #minute{
     margin-bottom: 10px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column-reverse;
+    background-image: url('/img/field.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    max-width: 600px;
+    flex-wrap: nowrap;
+    height: auto;
+    flex: 1 1 0;
+    visibility:visible
+}
+
+.position {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+    width: 100%;
+}
+
+.player img {
+    max-width: 100px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+    flex: 1 1 0;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    width: 15%;
+}
+
+.nameFT {
+    display:inline;
+    text-align: center;
+    font-size: 6px;
+    font-weight: bold;
+    color: white;
+    background-color:darkgreen;
+    border-radius:3px;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    padding:3px;
+}
+
+#tabular{
+    display:none;
+}
+
+@media (width >= 500px){
+    .nameFT {
+        font-size: 10px;
+    }
 }

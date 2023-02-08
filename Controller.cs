@@ -588,7 +588,7 @@ namespace FantasyPL.Pages
         {
             try
             {
-                String query = "INSERT INTO Players VALUES(@abbr, @number, @fname, @mname, @lname, @price, @age, @height, @weight, @nationality, @year, @contract, @points, @position)";
+                String query = "INSERT INTO Players VALUES(@abbr, @number, @fname, @mname, @lname, @price, @age, @height, @weight, @nationality, @year, @contract, @points, @position, @code)";
                 using (SqlCommand command = new SqlCommand(query, dBManager.myConnection))
                 {
                     command.Parameters.AddWithValue("@abbr", p.Club_Abbreviation);
@@ -605,6 +605,7 @@ namespace FantasyPL.Pages
                     command.Parameters.AddWithValue("@contract", p.Contract_Length);
                     command.Parameters.AddWithValue("@points", p.Points);
                     command.Parameters.AddWithValue("@position", p.Position);
+                    command.Parameters.AddWithValue("@code", p.FPLcode);
                     if (dBManager.ExecuteNonQuery(command) > 0)
                     {
                         UpdatePlayersList();
@@ -746,6 +747,7 @@ namespace FantasyPL.Pages
                             player.Points = reader.GetInt32(12);
                             player.Position = reader.GetString(13);
                             player.Count = i++;
+                            player.FPLcode = reader.GetInt32(14);
                             GlobalVar.userPlayers.Add(player);
                         }
                         reader.Close();

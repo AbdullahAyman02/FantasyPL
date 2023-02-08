@@ -46,6 +46,7 @@ namespace FantasyPL.Pages
             playerinfo.Contract_Length = Convert.ToInt16(Request.Form["contract"]);
             playerinfo.Points = Convert.ToInt16(Request.Form["points"]);
             playerinfo.Position = Request.Form["position"];
+            playerinfo.FPLcode = Convert.ToInt32(Request.Form["fplcode"]);
             Message = controller.InsertPlayer(playerinfo);
             controller.UpdatePlayersList();
         }

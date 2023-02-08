@@ -72,7 +72,7 @@
 	 <label>Age</label>
 	</div>
 	<div class="txt_field">
-	 <input type="number" name='height' min="150" max="300" value='130' required/>
+	 <input type="number" name='height' min="130" max="300" value='150' required/>
 	 <label>Height</label>
 	</div>
 	<div class="txt_field">
@@ -99,6 +99,10 @@
 			<input type="number" name='debut' min="2000" value='2000' max="@DateTime.Now.Year" required/>
 		<label>Debut Year</label>
 	</div>
+		<div class="txt_field">
+			<input type="number" name='fplcode' required />
+			<label>FPL Code</label>
+		</div>
 	<div class="name">
 		<div class="txt_field">
 			<input type="number" name='contract' min="@DateTime.Now.Year" max="@DateTime.Now.Year + 15" value='@DateTime.Now.Year' required/>

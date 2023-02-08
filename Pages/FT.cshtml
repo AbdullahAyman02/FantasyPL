@@ -12,8 +12,101 @@
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
             }
-            @if (GlobalVar.statusFT)
+        <div class="flexcontainer">
+            <div style="margin: 5px">
+                <label style="color:black">Points: </label>
+                <label style="color:#0000FF">@GlobalVar.LoggedInUser.Points</label>
+            </div>
+            <div style="margin: 5px">
+                <label style="color:black">Balance: </label>
+                <label style="color:red">@GlobalVar.LoggedInUser.Balance</label>
+            </div>
+        </div>
+        <input id="Toggle" type="button" value="Toggle View"/>
+        <div id="container">
+        <div class="position">
+            @foreach (var player in GlobalVar.userPlayers)
             {
+                @if (player.Position == "Attacker")
+                {
+                    <div class="player">
+                        <img src=@string.Format(@GlobalVar.S, player.FPLcode)>
+                        <div class="nameFT">@player.Fname @player.Lname</div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="position">
+            @foreach (var player in GlobalVar.userPlayers)
+            {
+                @if (player.Position == "Midfielder")
+                {
+                    <div class="player">
+                        <img src=@string.Format(@GlobalVar.S, player.FPLcode)>
+                        <div class="nameFT">@player.Fname @player.Lname</div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="position">
+            @foreach (var player in GlobalVar.userPlayers)
+            {
+                @if (player.Position == "Defender")
+                {
+                    <div class="player">
+                        <img src=@string.Format(@GlobalVar.S, player.FPLcode)>
+                        <div class="nameFT">@player.Fname @player.Lname</div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="position">
+            @foreach (var player in GlobalVar.userPlayers)
+            {
+                @if (player.Position == "GoalKeeper")
+                {
+                    <div class="player">
+                        <img src=@string.Format(@GlobalVar.S, player.FPLcode)>
+                        <div class="nameFT">@player.Fname @player.Lname</div>
+                    </div>
+                }
+            }
+        </div>
+</div>
+        <table class="table" id="tabular">
+            <tr>Player Details</tr>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Position</th>
+                    <th>Fname</th>
+                    <th>Mname</th>
+                    <th>Lname</th>
+                    <th>Player Number</th>
+                    <th>Club Abbreviation</th>
+                    <th>Points</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var player in GlobalVar.userPlayers)
+                {
+                    <tr>
+                        <td>@player.Count</td>
+                        <td>@player.Position</td>
+                        <td>@player.Fname</td>
+                        <td>@player.Mname</td>
+                        <td>@player.Lname</td>
+                        <td>@player.Player_Number</td>
+                        <td>@player.Club_Abbreviation</td>
+                        <td>@player.Points</td>
+                        <td>@player.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (GlobalVar.statusFT)
+        {
             <div class="txt_field">
                 <label for="player" id="playerlabel">Player</label>
                 <select id="player" name="player" class="form-control">
@@ -26,48 +119,7 @@
                     }
                 </select>
             </div>
-            }
-        <div class="flexcontainer">
-            <div style="margin: 5px">
-                <label style="color:black">Points: </label>
-                <label style="color:#0000FF">@GlobalVar.LoggedInUser.Points</label>
-            </div>
-            <div style="margin: 5px">
-                <label style="color:black">Balance: </label>
-                <label style="color:red">@GlobalVar.LoggedInUser.Balance</label>
-            </div>
-        </div>
-            <table class="table">
-                <tr>Player Details</tr>
-                <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Position</th>
-                    <th>Fname</th>
-                    <th>Mname</th>
-                    <th>Lname</th>
-                    <th>Player Number</th>
-                    <th>Club Abbreviation</th>
-                    <th>Points</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach(var player in GlobalVar.userPlayers){
-                    <tr>
-                    <td>@player.Count</td>
-                    <td>@player.Position</td>
-                    <td>@player.Fname</td>
-                    <td>@player.Mname</td>
-                    <td>@player.Lname</td>
-                    <td>@player.Player_Number</td>
-                    <td>@player.Club_Abbreviation</td>
-                    <td>@player.Points</td>
-                    <td>@player.Price</td>
-                     </tr>
-                    }
-                </tbody>
-            </table>
+        }
         @if (GlobalVar.statusFT) {
             <input type="submit" value="Insert Player"/>
 
@@ -84,3 +136,18 @@
         }
         </form>
 </div>
+@section scripts{ 
+	<script>
+		$(function () {
+			$("#club2").on("change", function() {
+				$("#Refresh").click()
+			});
+		});
+        $(function () {
+            $("#Toggle").on("click", function () {
+                $("#container").toggle()
+                $("#tabular").toggle()
+            })
+        });
+	</script>
+}
