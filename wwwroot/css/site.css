@@ -317,7 +317,7 @@ div.flexcontainer input, div.flexcontainer a{
     flex-wrap: nowrap;
     height: auto;
     flex: 1 1 0;
-    visibility:visible
+    visibility:visible;
 }
 
 .position {
@@ -329,6 +329,7 @@ div.flexcontainer input, div.flexcontainer a{
     flex-wrap: nowrap;
     flex-shrink: 1;
     width: 100%;
+    height: 120px;
 }
 
 .player img {
