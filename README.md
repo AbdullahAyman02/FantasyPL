@@ -32,6 +32,8 @@ Fantasy Premier League is an online fantasy football game, based on the English 
 * Close/Open Fantasy Team editing capability for Fans
 * Generate reports
 
+https://user-images.githubusercontent.com/102327084/221045643-6cfc8d0e-6d03-4002-b6a6-3f6116927216.mp4
+
 ## Fans
 * View clubs in clubs tab
 * View players in players tab
