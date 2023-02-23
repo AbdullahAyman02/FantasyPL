@@ -1,4 +1,4 @@
-<div align="center"><img src="/media/LOGO.gif" alt="Robotic arm logo" width="500px"></div>
+<div align="center"><img src="/media/7850968.gif" alt="FPL logo" width="500px"></div>
 
 ## Table of Contents
 
