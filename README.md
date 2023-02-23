@@ -5,6 +5,7 @@
 * [Project Description](#Project-Description)
 * [How to Use](#How-to-Use)
 * [Walkthrough](#Walkthrough)
+* [Responsive Design](#Responsive-Design)
 * [Notes](#Notes)
 * [References](#References)
 
@@ -41,6 +42,14 @@ https://user-images.githubusercontent.com/102327084/221045643-6cfc8d0e-6d03-4002
 * Customize their own Fantasy team to earn points
 * Join Competitions with other players
 * Generate reports
+
+
+https://user-images.githubusercontent.com/102327084/221046102-89806858-3896-4570-9da8-8c8fa8f394f3.mp4
+
+# Responsive design
+https://user-images.githubusercontent.com/102327084/221046723-bfb73ca7-ec5e-4ba3-98da-c9801a31164b.mp4
+
+
 
 # Notes
 * The database and web app are currently hosted on Microsoft Azure. The live version of the web app will be available soon.
