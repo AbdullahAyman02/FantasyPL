@@ -7,7 +7,6 @@
 * [Walkthrough](#Walkthrough)
 * [Responsive Design](#Responsive-Design)
 * [Notes](#Notes)
-* [References](#References)
 
 # Project Description
 
